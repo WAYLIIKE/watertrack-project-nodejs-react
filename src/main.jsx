@@ -6,7 +6,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/react_vite">
+    <BrowserRouter basename="/watertrack-project-nodejs-react">
       <App />
     </BrowserRouter>
   </React.StrictMode>,
