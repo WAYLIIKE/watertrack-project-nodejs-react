@@ -31,6 +31,11 @@
   height: 40px;
 }
 
+.amountButton svg {
+  width: 100%;
+  height: 100%;
+}
+
 .amountButton:disabled svg path,
 .amountButton:disabled svg rect {
   stroke: #323f4750;
@@ -87,4 +92,69 @@
 
 .submitButton {
   padding: 14px 40px;
+  border-radius: 30px;
+  border: none;
+  background-color: var(--color-lightgreen);
+
+  /*content styles*/
+  color: var(--color-darkblue);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+}
+
+@media screen and (min-width: 768px) {
+  .subtitle {
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.18px;
+  }
+
+  .amountTitle {
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: -0.16px;
+  }
+
+  .amountButton {
+    width: 43px;
+    height: 43px;
+  }
+
+  .amountValue {
+    height: 43px;
+    font-size: 15px;
+    line-height: 1.49;
+  }
+
+  .timeLabel {
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.16px;
+  }
+
+  .input {
+    max-width: 438px;
+    padding: 16px;
+    margin-bottom: 24px;
+
+    /*content styles*/
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.16px;
+  }
+
+  .valueLabel {
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.18px;
+  }
+
+  .submitButton {
+    padding: 18px 50px;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.16;
+  }
 }
