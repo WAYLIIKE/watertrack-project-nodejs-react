@@ -1,12 +1,13 @@
 import { Helmet } from 'react-helmet-async';
+import { Container } from '../../components/Container/Container';
 
 export default function HomePage() {
   return (
-    <div>
+    <Container>
       <p>Home page...</p>
       <Helmet>
         <title>Home</title>
       </Helmet>
-    </div>
+    </Container>
   );
 }

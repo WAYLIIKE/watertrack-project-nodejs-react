@@ -9,7 +9,7 @@
 
 body {
   background-color: var(--color-white);
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: var(--color-black);
   margin: 0;
 }
@@ -21,19 +21,23 @@ h4,
 h5,
 h6,
 p {
-  margin-top: 0;
+  margin: 0;
 }
+
 a {
   text-decoration: none;
 }
+
 ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
 img {
   display: block;
 }
+
 button {
   cursor: pointer;
 }
