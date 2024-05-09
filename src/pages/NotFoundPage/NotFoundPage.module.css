@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.text {
+  font-size: 34px;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.link {
+  display: block;
+  font-size: 21px;
+  color: var(--color-black);
+  transition: color var(--animation);
+}
+
+.link:hover,
+.link:focus {
+  color: var(--color-lightgreen);
+}

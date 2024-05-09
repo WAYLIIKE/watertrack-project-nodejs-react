@@ -4,6 +4,7 @@
   --color-lightgreen: #9be1a0;
   --color-darkblue: #323f47;
   --color-black: #2f2f2f;
+  --animation: 150ms ease-in;
 }
 
 body {
