@@ -1,0 +1,1 @@
+import{j as r,H as e}from"./index-07eeb669.js";import{C as t}from"./Container-2972d1e8.js";function i(){return r.jsxs(t,{children:[r.jsx("p",{children:"Tracker page..."}),r.jsx(e,{children:r.jsx("title",{children:"Tracker"})})]})}export{i as default};
