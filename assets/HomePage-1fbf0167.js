@@ -1,0 +1,1 @@
+import{j as e,H as r}from"./index-73ae0e51.js";function t(){return e.jsxs("div",{children:[e.jsx("p",{children:"Home page..."}),e.jsx(r,{children:e.jsx("title",{children:"Home"})})]})}export{t as default};

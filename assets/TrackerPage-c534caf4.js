@@ -1,0 +1,1 @@
+import{j as e,H as r}from"./index-73ae0e51.js";function t(){return e.jsxs("div",{children:[e.jsx("p",{children:"Tracker page..."}),e.jsx(r,{children:e.jsx("title",{children:"Tracker"})})]})}export{t as default};
