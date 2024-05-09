@@ -1,0 +1,1 @@
+import{j as n,H as i}from"./index-f14cfc61.js";import{C as e}from"./Container-a8403fa6.js";function s(){return n.jsxs(e,{children:[n.jsx("p",{children:"Sign in page..."}),n.jsx(i,{children:n.jsx("title",{children:"Sign in"})})]})}export{s as default};
