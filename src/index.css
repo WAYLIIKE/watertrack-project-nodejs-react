@@ -41,3 +41,19 @@ img {
 button {
   cursor: pointer;
 }
+
+/* 
+/*  For close button style
+*/
+
+.close-modal-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  transition: fill var(--animation);
+}
+
+.close-modal-btn:hover {
+  fill: var(--color-lightgreen);
+}
