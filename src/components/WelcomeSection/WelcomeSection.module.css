@@ -1,0 +1,19 @@
+.welcomSection {
+  border-radius: 30px;
+  background: #f0eff4;
+  padding-right: 16px;
+  padding-left: 16px;
+  padding-top: 24px;
+  padding-bottom: 67px;
+}
+.logoThumb {
+  margin-bottom: 74px;
+}
+.mainTitle {
+  color: #323f47;
+  font-size: 38px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 38px; /* 100% */
+  letter-spacing: -0.38px;
+}

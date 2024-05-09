@@ -1,0 +1,9 @@
+.logo {
+  color: var(--color-darkblue);
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 100% */
+  letter-spacing: -0.24px;
+}
