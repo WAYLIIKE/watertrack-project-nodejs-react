@@ -1,0 +1,9 @@
+.title {
+  color: var(--color-darkblue);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+
+  margin-bottom: 24px;
+}

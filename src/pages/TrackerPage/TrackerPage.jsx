@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { WaterModal } from '../../components/WaterModal/WaterModal';
 
 export default function TrackerPage() {
   return (
@@ -7,6 +8,7 @@ export default function TrackerPage() {
       <Helmet>
         <title>Tracker</title>
       </Helmet>
+      <WaterModal title={'Add water'} />
     </div>
   );
 }

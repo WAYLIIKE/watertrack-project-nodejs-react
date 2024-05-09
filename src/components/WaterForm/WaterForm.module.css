@@ -1,0 +1,91 @@
+.subtitle {
+  color: var(--color-darkblue);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.16px;
+
+  margin-bottom: 20px;
+}
+
+.amountTitle {
+  color: var(--color-black);
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+  margin-bottom: 8px;
+}
+
+.amountWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.amountButton {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  height: 40px;
+}
+
+.amountButton:disabled svg path,
+.amountButton:disabled svg rect {
+  stroke: #323f4750;
+}
+
+.amountValue {
+  padding: 11px 20px;
+  height: 40px;
+  background-color: var(--color-darkblue);
+  border-radius: 30px;
+
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+}
+
+.fieldsWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.timeLabel {
+  color: var(--color-black);
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+  margin-bottom: 8px;
+}
+
+.input {
+  border-radius: 15px;
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  width: 100%;
+  min-width: 320px;
+  max-width: 375px;
+  padding: 14px 16px;
+  margin-bottom: 24px;
+
+  /*content styles*/
+  color: var(--color-black);
+  font-size: 14px;
+  line-height: 1.25;
+  letter-spacing: -0.14px;
+}
+
+.valueLabel {
+  color: var(--color-darkblue);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.16px;
+  margin-bottom: 8px;
+}
+
+.submitButton {
+  padding: 14px 40px;
+}
