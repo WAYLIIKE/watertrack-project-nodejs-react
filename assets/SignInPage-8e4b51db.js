@@ -1,0 +1,1 @@
+import{j as i,H as n}from"./index-a84e4c17.js";function r(){return i.jsxs("div",{children:[i.jsx("p",{children:"Sign in page..."}),i.jsx(n,{children:i.jsx("title",{children:"Sign in"})})]})}export{r as default};
