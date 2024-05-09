@@ -11,9 +11,13 @@ export const WelcomeSection = () => {
         </div>
         <p className={css.text}>Record daily water intake and track</p>
         <h1 className={css.mainTitle}>Water consumption tracker</h1>
-        <div>
-          <NavLink className={css.linkTracker}>Try tracker</NavLink>
-          <NavLink className={css.linkSignIn}>Sign In</NavLink>
+        <div className={css.linkThumb}>
+          <NavLink to="/signup" className={css.linkTracker}>
+            Try tracker
+          </NavLink>
+          <NavLink to="/signin" className={css.linkSignIn}>
+            Sign In
+          </NavLink>
         </div>
       </div>
     </div>

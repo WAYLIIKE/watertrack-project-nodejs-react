@@ -9,6 +9,15 @@
 .logoThumb {
   margin-bottom: 74px;
 }
+.text {
+  color: #2f2f2f;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: 0.84px;
+  margin-bottom: 16px;
+}
 .mainTitle {
   color: #323f47;
   font-size: 38px;
@@ -16,4 +25,29 @@
   font-weight: 700;
   line-height: 38px; /* 100% */
   letter-spacing: -0.38px;
+  margin-bottom: 32px;
+}
+.linkThumb {
+  display: flex;
+  gap: 10px;
+}
+.linkTracker {
+  display: flex;
+  padding: 14px 19px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 30px;
+  background: var(--Accent, #9be1a0);
+  color: black;
+}
+.linkSignIn {
+  display: flex;
+  padding: 14px 28px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: black;
+  border-radius: 30px;
+  border: 1px solid #323f47;
 }
