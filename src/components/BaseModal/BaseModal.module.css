@@ -1,0 +1,12 @@
+.modalContent {
+  position: relative;
+  border-radius: 15px;
+  background-color: white;
+}
+.button {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+}
