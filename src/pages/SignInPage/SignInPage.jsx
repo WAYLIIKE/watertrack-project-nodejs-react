@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { ErrorMessage, Field, Form, Formik, getIn } from 'formik';
 import { useId, useState } from 'react';
 import css from './SignInPage.module.css';
@@ -5,6 +6,11 @@ import * as Yup from 'yup';
 import { NavLink } from 'react-router-dom';
 import { IconEye } from '../../components/Icons/IconEye';
 import { IconEyeClose } from '../../components/Icons/IconEyeClose';
+=======
+import { Helmet } from 'react-helmet-async';
+import { Container } from '../../components/Container/Container';
+
+>>>>>>> main
 export default function SignInPage() {
   const emailId = useId();
   const passId = useId();
@@ -33,6 +39,7 @@ export default function SignInPage() {
     );
   };
   return (
+<<<<<<< HEAD
     <div className={css.signinBack}>
       <Formik
         initialValues={{
@@ -123,5 +130,13 @@ export default function SignInPage() {
       </Formik>
       <div></div>
     </div>
+=======
+    <Container>
+      <p>Sign in page...</p>
+      <Helmet>
+        <title>Sign in</title>
+      </Helmet>
+    </Container>
+>>>>>>> main
   );
 }
