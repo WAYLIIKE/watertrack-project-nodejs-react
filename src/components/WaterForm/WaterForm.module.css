@@ -93,9 +93,12 @@
   letter-spacing: -0.14px;
 }
 
+.input:hover {
+  border-color: var(--color-lightgreenhover);
+}
+
 .input:focus {
   border-color: var(--color-lightgreenhover);
-  box-shadow: 0 0 5px var(--color-lightgreen);
   transform: scale(1.01);
 }
 
