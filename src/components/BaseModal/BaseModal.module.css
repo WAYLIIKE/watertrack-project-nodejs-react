@@ -1,18 +1,18 @@
 .overlay {
   position: fixed;
+  padding: 0 20px;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
   overflow: hidden;
   overflow-y: auto;
   z-index: 999;
-  opacity: 0;
   background-color: rgba(47, 47, 47, 0.6);
-  transition: opacity 0.3s;
+  animation: fadeIn 0.2s ease-in-out forwards;
 }
 .ReactModal__Overlay--after-open {
   opacity: 1;
@@ -20,19 +20,35 @@
 .ReactModal__Overlay--before-close {
   opacity: 0;
 }
+
 .modalContent {
+  padding: 40px 20px;
   position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
+  width: 360px;
   border-radius: 15px;
   background-color: white;
 }
-.button {
-  cursor: pointer;
+
+@media screen and (min-width: 768px) {
+  .modalContent {
+    width: 520px;
+    padding: 40px;
+  }
+}
+
+.buttonClose {
   position: absolute;
   top: 20px;
-  right: 16px;
-  width: 24px;
-  height: 24px;
+  right: 20px;
+  cursor: pointer;
+  transition: color 100ms ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -9,13 +9,12 @@ export const BaseModal = ({ isOpen, onClose, children }) => {
       isOpen={isOpen}
       onRequestClose={() => onClose()}
       className={css.modalContent}
-      closeTimeoutMS={300}
       ariaHideApp={false}
       overlayClassName={css.overlay}
     >
-      <button onClick={() => onClose()}>
-        <IconClose className={css.button} />
-      </button>
+      <div onClick={() => onClose()}>
+        <IconClose />
+      </div>
       {children}
     </Modal>
   );
@@ -23,5 +22,5 @@ export const BaseModal = ({ isOpen, onClose, children }) => {
 BaseModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
