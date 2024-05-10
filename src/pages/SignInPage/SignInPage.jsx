@@ -1,12 +1,14 @@
 import { ErrorMessage, Field, Form, Formik, getIn } from 'formik';
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import css from './SignInPage.module.css';
 import * as Yup from 'yup';
 import { NavLink } from 'react-router-dom';
-
+import { IconEye } from '../../components/Icons/IconEye';
+import { IconEyeClose } from '../../components/Icons/IconEyeClose';
 export default function SignInPage() {
   const emailId = useId();
   const passId = useId();
+  const [showPassword, setShowPassword] = useState(false);
   const loginSchema = Yup.object().shape({
     email: Yup.string()
       .email()
@@ -17,6 +19,19 @@ export default function SignInPage() {
       .min(8, 'Password is too short - should be 8 chars minimum.')
       .matches('[a-zA-Z]', 'Password can only contain Latin letters.'),
   });
+  const IconEyes = ({ onClick }) => {
+    const [isVisible, setIsVisible] = useState(false);
+    return (
+      <div
+        onClick={() => {
+          setIsVisible(!isVisible);
+          onClick();
+        }}
+      >
+        {isVisible ? <IconEyeClose /> : <IconEye />}
+      </div>
+    );
+  };
   return (
     <div className={css.signinBack}>
       <Formik
@@ -32,9 +47,9 @@ export default function SignInPage() {
       >
         <Form className={css.signinForm} autoComplete="on">
           <h1 className={css.signinName}>Sign In</h1>
-          <div className={css.signinFormGroup}>
+          <div className={css.signinFormGroupEmail}>
             <label className={css.signinLabel} htmlFor={emailId}>
-              Email:
+              Email
             </label>
             <Field name="email">
               {({ field, form }) => {
@@ -61,29 +76,34 @@ export default function SignInPage() {
               className={css.signinError}
             />
           </div>
-          <div className={css.signinFormGroup}>
+          <div className={css.signinFormGroupPassword}>
             <label className={css.signinLabel} htmlFor={passId}>
-              Password:
+              Password
             </label>
-            <Field name="password">
-              {({ field, form }) => {
-                const error = getIn(form.errors, field.name);
-                const touched = getIn(form.touched, field.name);
-                const isError = error && touched;
-                return (
-                  <input
-                    {...field}
-                    type="password"
-                    className={`${css.signinField} ${
-                      isError ? css.signInErrorField : ''
-                    }`}
-                    id={passId}
-                    autoComplete="current-password"
-                    placeholder="Enter your password"
-                  />
-                );
-              }}
-            </Field>
+            <div className={css.signinIconEyes}>
+              <Field name="password">
+                {({ field, form }) => {
+                  const error = getIn(form.errors, field.name);
+                  const touched = getIn(form.touched, field.name);
+                  const isError = error && touched;
+                  return (
+                    <input
+                      {...field}
+                      type={showPassword ? 'text' : 'password'}
+                      className={`${css.signinField} ${
+                        isError ? css.signInErrorField : ''
+                      }`}
+                      id={passId}
+                      autoComplete="current-password"
+                      placeholder="Enter your password"
+                    />
+                  );
+                }}
+              </Field>
+              <div className={css.signinIcon}>
+                <IconEyes onClick={() => setShowPassword(!showPassword)} />
+              </div>
+            </div>
             <ErrorMessage
               name="password"
               component="span"
@@ -101,6 +121,7 @@ export default function SignInPage() {
           </p>
         </Form>
       </Formik>
+      <div></div>
     </div>
   );
 }
