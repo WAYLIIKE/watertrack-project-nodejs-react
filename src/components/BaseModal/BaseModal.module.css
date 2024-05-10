@@ -22,6 +22,7 @@
 }
 
 .modalContent {
+  padding: 40px 20px;
   position: relative;
   width: 360px;
   border-radius: 15px;
@@ -31,6 +32,7 @@
 @media screen and (min-width: 768px) {
   .modalContent {
     width: 520px;
+    padding: 40px;
   }
 }
 

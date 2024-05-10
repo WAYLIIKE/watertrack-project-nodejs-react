@@ -1,4 +1,4 @@
-export const IconPlus = () => {
+export const IconMinus = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,13 +15,6 @@ export const IconPlus = () => {
         rx="19.25"
         stroke="#323F47"
         strokeWidth="1.5"
-      />
-      <path
-        d="M20 12.8572V27.1429"
-        stroke="#323F47"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
       />
       <path
         d="M12.8569 20H27.1426"
