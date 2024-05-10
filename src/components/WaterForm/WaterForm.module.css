@@ -56,6 +56,7 @@
 .fieldsWrapper {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .timeLabel {
@@ -79,6 +80,15 @@
   font-size: 14px;
   line-height: 1.25;
   letter-spacing: -0.14px;
+}
+
+.validationError {
+  color: var(--color-error);
+  position: absolute;
+  top: 80px;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
 }
 
 .valueLabel {
