@@ -102,6 +102,11 @@
   font-weight: 700;
   line-height: 1.28;
   letter-spacing: -0.14px;
+  transition: background-color var(--animation);
+}
+
+.submitButton:hover {
+  background-color: var(--color-lightgreenhover);
 }
 
 @media screen and (min-width: 768px) {
