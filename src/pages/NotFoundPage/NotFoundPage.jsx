@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { TbError404 } from 'react-icons/tb';
-import css from './NotFoundPage.module.css';
 import { Container } from '../../components/Container/Container';
+import css from './NotFoundPage.module.css';
 
 export default function NotFound() {
   return (

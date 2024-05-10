@@ -1,9 +1,9 @@
-import { IoIosClose } from 'react-icons/io';
+import { IoClose } from 'react-icons/io5';
 
-export const IconClose = () => {
+export const IconClose = ({ styles }) => {
   return (
     <div>
-      <IoIosClose size={28} />
+      <IoClose size={26} className={'close-modal-btn'} style={styles} />
     </div>
   );
 };
