@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { ErrorMessage, Field, Form, Formik, getIn } from 'formik';
 import { useId, useState } from 'react';
 import css from './SignUpPage.module.css';
@@ -6,11 +5,6 @@ import * as Yup from 'yup';
 import { NavLink } from 'react-router-dom';
 import { IconEyeClose } from '../../components/Icons/IconEyeClose';
 import { IconEye } from '../../components/Icons/IconEye';
-=======
-import { Helmet } from 'react-helmet-async';
-import { Container } from '../../components/Container/Container';
->>>>>>> main
-
 export default function SignUpPage() {
   const emailId = useId();
   const passwordId = useId();
@@ -41,7 +35,6 @@ export default function SignUpPage() {
     );
   };
   return (
-<<<<<<< HEAD
     <div className={css.signupBack}>
       <Formik
         initialValues={{
@@ -166,13 +159,5 @@ export default function SignUpPage() {
         </Form>
       </Formik>
     </div>
-=======
-    <Container>
-      <p>Sign up page...</p>
-      <Helmet>
-        <title>Sign up</title>
-      </Helmet>
-    </Container>
->>>>>>> main
   );
 }
