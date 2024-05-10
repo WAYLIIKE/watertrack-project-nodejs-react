@@ -62,6 +62,7 @@
 .fieldsWrapper {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .timeLabel {
@@ -93,6 +94,15 @@
   letter-spacing: -0.14px;
 }
 
+.validationError {
+  color: var(--color-error);
+  position: absolute;
+  top: 80px;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+  
 .input:hover {
   border-color: var(--color-lightgreenhover);
 }
@@ -101,6 +111,7 @@
   border-color: var(--color-lightgreenhover);
   transform: scale(1.01);
 }
+
 
 .valueLabel {
   color: var(--color-darkblue);
