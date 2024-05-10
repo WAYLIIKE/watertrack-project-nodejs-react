@@ -4,6 +4,8 @@
   --color-lightgreen: #9be1a0;
   --color-darkblue: #323f47;
   --color-black: #2f2f2f;
+  --color-blacksemi: #2f2f2f80;
+  --color-error: #ef5050;
   --animation: 150ms ease-in;
 }
 
