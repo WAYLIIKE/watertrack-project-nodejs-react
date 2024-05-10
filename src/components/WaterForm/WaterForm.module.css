@@ -36,6 +36,12 @@
   height: 100%;
 }
 
+.amountButton:hover svg path,
+.amountButton:hover svg rect {
+  stroke: var(--color-lightgreenhover);
+  transition: stroke var(--animation);
+}
+
 .amountButton:disabled svg path,
 .amountButton:disabled svg rect {
   stroke: #323f4750;
@@ -70,15 +76,27 @@
   border-radius: 15px;
   border: 1px solid rgba(47, 47, 47, 0.15);
   width: 100%;
+  height: 46px;
   max-width: 375px;
   padding: 14px 16px;
   margin-bottom: 24px;
+  outline: none;
+  transition:
+    border-color var(--animation),
+    box-shadow var(--animation),
+    transform var(--animation);
 
   /*content styles*/
   color: var(--color-black);
   font-size: 14px;
-  line-height: 1.25;
+  line-height: 1.28;
   letter-spacing: -0.14px;
+}
+
+.input:focus {
+  border-color: var(--color-lightgreenhover);
+  box-shadow: 0 0 5px var(--color-lightgreen);
+  transform: scale(1.01);
 }
 
 .valueLabel {
@@ -140,6 +158,7 @@
   }
 
   .input {
+    height: 56px;
     max-width: 438px;
     padding: 16px;
     margin-bottom: 24px;
