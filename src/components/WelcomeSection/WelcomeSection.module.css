@@ -42,6 +42,11 @@
   background: var(--Accent, #9be1a0);
   color: black;
 }
+.linkTracker:hover,
+.linkTracker:active,
+.linkTracker:focus {
+  background-color: var(--);
+}
 .linkSignIn {
   display: flex;
   padding: 14px 28px;
