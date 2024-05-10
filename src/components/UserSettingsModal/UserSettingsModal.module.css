@@ -1,0 +1,87 @@
+.title {
+  color: var(--color-darkblue);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px; /* 120% */
+  letter-spacing: -0.2px;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+}
+
+.text {
+}
+
+.input {
+}
+
+.avatarWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+}
+
+.avatar {
+  width: 75px;
+  height: 75px;
+  margin-bottom: 10px;
+  border-radius: 75px;
+  background-color: indianred;
+}
+
+.hiddenFileInput {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.hiddenFileInput + label {
+  position: relative;
+  color: var(--color-black);
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+  cursor: pointer;
+  transition: color var(--animation);
+}
+
+.hiddenFileInput + label::before {
+  content: url('../Icons/upload.svg');
+  display: block;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: -26px;
+}
+
+.hiddenFileInput + label:hover {
+  color: var(--color-lightgreenhover);
+}
+
+/*  Gender  */
+.genderWrapper {
+}
+
+.genderRadioButton {
+}
+
+/* Daily norma */
+
+.normaWrapper {
+}
+
+.normaFormula {
+}
+
+.normaTextArea {
+}
+
+.submitButton {
+}
