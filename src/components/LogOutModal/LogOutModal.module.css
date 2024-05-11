@@ -1,0 +1,102 @@
+.container {
+  text-align: center;
+}
+
+.title {
+  color: var(--color-darkblue);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  margin-bottom: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 28px;
+    line-height: 1.14;
+    letter-spacing: -0.28px;
+    margin-bottom: 24px;
+  }
+}
+
+.question {
+  color: var(--color-darkblue);
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+  margin-bottom: 28px;
+}
+
+@media screen and (min-width: 768px) {
+  .question {
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.18px;
+    margin-bottom: 24px;
+  }
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 9px;
+}
+
+@media screen and (min-width: 768px) {
+  .buttonWrapper {
+    flex-direction: row;
+    gap: 10px;
+  }
+}
+
+.logoutButton {
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  background-color: var(--color-lightgreen);
+  color: var(--color-darkblue);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+  transition: background-color var(--animation);
+}
+
+@media screen and (min-width: 768px) {
+  .logoutButton {
+    padding: 18px 59px;
+  }
+}
+
+.logoutButton:hover {
+  background-color: var(--color-lightgreenhover);
+}
+
+.cancelButton {
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  background-color: var(--color-lightgray);
+  color: var(--color-darkblue);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+}
+
+@media screen and (min-width: 768px) {
+  .cancelButton {
+    padding: 18px 59px;
+  }
+}
+
+.cancelButtonText {
+  opacity: 0.3;
+  transition: opacity var(--animation);
+}
+
+.cancelButton:hover .cancelButtonText {
+  opacity: 1;
+}
