@@ -1,11 +1,29 @@
+@media screen and (min-width: 1440px) {
+  .signupLaptop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 32px;
+    gap: 32px;
+  }
+}
 .signupBack {
   background-color: var(--color-lightgray);
   height: 780px;
   border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 @media screen and (min-width: 768px) {
   .signupBack {
     height: 960px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .signupBack {
+    width: 672px;
+    height: 736px;
   }
 }
 .signupName {
@@ -27,22 +45,21 @@
 }
 .signupForm {
   display: flex;
-  padding: 170px 0;
   flex-direction: column;
   align-items: flex-start;
   margin: 0 auto;
 }
 @media screen and (max-width: 767.98px) {
   .signupForm {
-    max-width: 343px;
+    width: 343px;
   }
 }
 @media screen and (min-width: 768px) {
   .signupForm {
-    max-width: 436px;
-    padding: 227px 0;
+    width: 436px;
   }
 }
+
 .signupLabel {
   position: relative;
   color: var(--color-black);
@@ -192,6 +209,11 @@
 }
 @media screen and (max-width: 767.98px) {
   .signupIcon {
+    display: none;
+  }
+}
+@media screen and (max-width: 1439.98px) {
+  .signupPicture {
     display: none;
   }
 }

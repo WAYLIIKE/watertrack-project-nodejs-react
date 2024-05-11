@@ -1,11 +1,29 @@
+@media screen and (min-width: 1440px) {
+  .signinLaptop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 32px;
+    gap: 32px;
+  }
+}
 .signinBack {
   background-color: var(--color-lightgray);
   height: 780px;
   border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 @media screen and (min-width: 768px) {
   .signinBack {
     height: 960px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .signinBack {
+    width: 672px;
+    height: 736px;
   }
 }
 .signinName {
@@ -28,19 +46,16 @@
 .signinForm {
   display: flex;
   flex-direction: column;
-  padding: 216px 0;
   align-items: flex-start;
-  margin: 0 auto;
 }
 @media screen and (max-width: 767.98px) {
   .signinForm {
-    max-width: 311px;
+    width: 311px;
   }
 }
 @media screen and (min-width: 768px) {
   .signinForm {
-    max-width: 436px;
-    padding: 281px 0;
+    width: 436px;
   }
 }
 .signinLabel {
@@ -191,6 +206,11 @@
 }
 @media screen and (max-width: 767.98px) {
   .signinIcon {
+    display: none;
+  }
+}
+@media screen and (max-width: 1439.98px) {
+  .signinPicture {
     display: none;
   }
 }
