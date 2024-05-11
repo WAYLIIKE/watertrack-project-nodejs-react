@@ -41,8 +41,12 @@ export default function SignUpPage() {
         }}
         validationSchema={registerSchema}
         onSubmit={(values, action) => {
-          console.log('register success');
-          action.resetForm();
+          if (values.password !== values.passwordRepeat) {
+            action.setFieldError('passwordRepeat', 'Passwords do not match');
+          } else {
+            console.log('register success');
+            action.resetForm();
+          }
         }}
       >
         <Form className={css.signupForm}>
