@@ -5,25 +5,25 @@
   background-position: center;
   height: 353px;
   border-radius: 30px;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 0 16px 32px 16px;
+  position: relative;
 }
 .studentsBox {
+  display: inline-flex;
   margin-bottom: 8px;
   margin-top: 209px;
   width: 160px;
-  display: inline-flex;
   padding: 10px 14px;
   align-items: center;
   border-radius: 30px;
-  background: #fff;
+  background: var(--color-white);
   box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
 }
 .item {
   height: 28px;
   width: 28px;
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: 2px solid var(--color-white);
   overflow: hidden;
 }
 .img {
@@ -32,13 +32,11 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-
 .customerImg {
   display: flex;
 }
-
 .item:nth-child(1) {
-  z-index: 5;
+  z-index: 3;
   position: relative;
 }
 .item:nth-child(2) {
@@ -52,18 +50,15 @@
   position: relative;
 }
 .customerText {
-  color: #323f47;
+  color: var(--color-darkblue);
   font-size: 12px;
-  font-style: normal;
   font-weight: 700;
-  line-height: 14px; /* 116.667% */
+  line-height: 1.16;
   margin-left: -18px;
 }
 span {
-  color: var(--Accent, #9be1a0);
-  font-family: Poppins;
+  color: var(--color-lightgreen);
   font-size: 12px;
-  font-style: normal;
   font-weight: 700;
   line-height: 14px;
 }
@@ -71,7 +66,7 @@ span {
   border-radius: 50%;
   width: 8px;
   height: 8px;
-  background-color: var(--Accent, #9be1a0);
+  background-color: var(--color-lightgreen);
 }
 .textAdvantage {
   display: flex;
@@ -81,42 +76,114 @@ span {
   border-radius: 30px;
 }
 .textAdvantage:nth-child(2) {
-  background: var(--Accent, #9be1a0);
-  max-width: 83px;
+  background: var(--color-lightgreen);
+  width: 83px;
 }
 .textAdvantage:nth-child(1) {
-  background: #323f47;
-  max-width: 81px;
+  background: var(--color-darkblue);
+  width: 81px;
   gap: 4px;
 }
 .textAdvantage:nth-child(3) {
-  background: var(--Main_white, #fff);
-  max-width: 108px;
+  background: var(--color-white);
+  width: 108px;
 }
 
 .text {
-  color: #fff;
+  color: var(--color-white);
   text-align: center;
-  font-family: Poppins;
   font-size: 8px;
-  font-style: normal;
   font-weight: 700;
-  line-height: 8px; /* 100% */
+  line-height: 8px;
   letter-spacing: -0.08px;
 }
 .textBlack {
-  color: #323f47;
+  color: var(--color-darkblue);
   text-align: center;
-  font-family: Poppins;
   font-size: 8px;
-  font-style: normal;
   font-weight: 700;
-  line-height: 8px; /* 100% */
+  line-height: 8px;
   letter-spacing: -0.08px;
 }
 .advantagesGroup {
+  max-width: 168px;
   display: flex;
   flex-wrap: wrap;
-  gap: 3px;
-  margin-left: 139px;
+  gap: 4px;
+}
+.group {
+  display: flex;
+  justify-content: flex-end;
+}
+@media screen and (min-width: 768px) {
+  .section {
+    height: 446px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 32px;
+  }
+  .studentsBox {
+    display: inline-flex;
+    margin-bottom: 0;
+    margin-top: 283px;
+    width: 237px;
+    padding: 10px 20px;
+  }
+  .item {
+    height: 47px;
+    width: 47px;
+  }
+  .customerText {
+    font-size: 15px;
+    line-height: 1.49;
+  }
+  span {
+    font-size: 15px;
+    line-height: 1.49;
+  }
+  .group {
+    position: absolute;
+    right: 32px;
+    bottom: 32px;
+  }
+  .advantagesGroup {
+    gap: 10px;
+    max-width: 242px;
+  }
+  .textAdvantage {
+    padding: 11px 16px;
+  }
+  .textAdvantage:nth-child(2) {
+    width: 121px;
+  }
+  .textAdvantage:nth-child(1) {
+    width: 111px;
+    gap: 4px;
+  }
+  .textAdvantage:nth-child(3) {
+    width: 158px;
+  }
+  .text {
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: -0.12px;
+  }
+  .textBlack {
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: -0.12px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .section {
+    padding-bottom: 64px;
+    min-width: 672px;
+    height: 736px;
+  }
+  .studentsBox {
+    margin-top: 537px;
+  }
+  .group {
+    bottom: 64px;
+  }
 }

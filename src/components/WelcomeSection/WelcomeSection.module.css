@@ -1,30 +1,22 @@
 .welcomSection {
   border-radius: 30px;
-  background: #f0eff4;
-  padding-right: 16px;
-  padding-left: 16px;
-  padding-top: 24px;
-  padding-bottom: 67px;
+  background: var(--color-lightgray);
+  padding: 118px 16px 67px 16px;
   margin-bottom: 16px;
 }
-.logoThumb {
-  margin-bottom: 74px;
-}
 .text {
-  color: #2f2f2f;
+  color: var(--color-black);
   font-size: 14px;
-  font-style: normal;
   font-weight: 400;
-  line-height: 18px; /* 128.571% */
+  line-height: 1.28;
   letter-spacing: 0.84px;
   margin-bottom: 16px;
 }
 .mainTitle {
-  color: #323f47;
+  color: var(--color-darkblue);
   font-size: 38px;
-  font-style: normal;
   font-weight: 700;
-  line-height: 38px; /* 100% */
+  line-height: 38px;
   letter-spacing: -0.38px;
   margin-bottom: 32px;
 }
@@ -33,27 +25,93 @@
   gap: 10px;
 }
 .linkTracker {
+  width: 116px;
   display: flex;
   padding: 14px 19px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   border-radius: 30px;
-  background: var(--Accent, #9be1a0);
-  color: black;
+  background: var(--color-lightgreen);
+  color: var(--color-darkblue);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+  transition: background-color var(--animation);
 }
 .linkTracker:hover,
 .linkTracker:active,
 .linkTracker:focus {
-  background-color: var(--);
+  background-color: var(--color-lightgreenhover);
 }
 .linkSignIn {
+  width: 104px;
   display: flex;
   padding: 14px 28px;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  color: black;
+  color: var(--color-darkblue);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
   border-radius: 30px;
-  border: 1px solid #323f47;
+  border: 1px solid var(--color-darkblue);
+  transition:
+    border var(--animation),
+    color var(--animation);
+}
+.linkSignIn:hover,
+.linkSignIn:focus,
+.linkSignIn:active {
+  border: 1px solid var(--color-lightgreenhover);
+  color: var(--color-lightgreenhover);
+}
+@media screen and (min-width: 768px) {
+  .welcomSection {
+    padding-right: 93px;
+    padding-left: 64px;
+    padding-top: 106px;
+    padding-bottom: 50px;
+  }
+  .text {
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.96px;
+  }
+  .mainTitle {
+    font-size: 64px;
+    line-height: 70px;
+    letter-spacing: -0.64px;
+  }
+  .linkThum {
+    gap: 10px;
+  }
+  .linkTracker {
+    padding: 18px 40px;
+    width: 169px;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.16px;
+  }
+  .linkSignIn {
+    width: 135px;
+    padding: 18px 40px;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.16px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .welcomSection {
+    padding: 188px 64px 188px 61px;
+  }
+  .mainTitle {
+    font-size: 80px;
+    line-height: 76px;
+    letter-spacing: -0.8px;
+  }
 }

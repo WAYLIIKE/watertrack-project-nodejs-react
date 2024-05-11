@@ -1,0 +1,10 @@
+.page {
+  position: relative;
+}
+@media screen and (min-width: 1440px) {
+  .page {
+    display: flex;
+    gap: 32px;
+    position: relative;
+  }
+}

@@ -23,18 +23,20 @@ export const AdvantagesSection = () => {
         </p>
       </div>
 
-      <ul className={css.advantagesGroup}>
-        <li className={css.textAdvantage}>
-          <div className={css.ellipse}></div>
-          <p className={css.text}>Habit drive</p>
-        </li>
-        <li className={css.textAdvantage}>
-          <p className={css.textBlack}>View statistics</p>
-        </li>
-        <li className={css.textAdvantage}>
-          <p className={css.textBlack}>Personal rate setting</p>
-        </li>
-      </ul>
+      <div className={css.group}>
+        <ul className={css.advantagesGroup}>
+          <li className={css.textAdvantage}>
+            <div className={css.ellipse}></div>
+            <p className={css.text}>Habit drive</p>
+          </li>
+          <li className={css.textAdvantage}>
+            <p className={css.textBlack}>View statistics</p>
+          </li>
+          <li className={css.textAdvantage}>
+            <p className={css.textBlack}>Personal rate setting</p>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
