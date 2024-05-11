@@ -41,12 +41,21 @@ export default function SignUpPage() {
             passwordRepeat: '',
           }}
           validationSchema={registerSchema}
-          onSubmit={(values, action) => {
-            if (values.password !== values.passwordRepeat) {
-              action.setFieldError('passwordRepeat', 'Passwords do not match');
-            } else {
-              console.log('register success');
-              action.resetForm();
+          onSubmit={async (values, action) => {
+            const { passwordRepeat, password } = values;
+            try {
+              if (password !== passwordRepeat) {
+                action.setFieldError(
+                  'passwordRepeat',
+                  'Passwords do not match'
+                );
+              } else {
+                console.log('register success');
+                action.resetForm();
+              }
+              // await signUp(formData);
+            } catch (error) {
+              console.error('Registration failed:', error.message);
             }
           }}
         >
