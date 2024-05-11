@@ -1,15 +1,18 @@
 import { ErrorMessage, Field, Form, Formik, getIn } from 'formik';
-import { useId, useState } from 'react';
+import { useId } from 'react';
 import css from './SignUpPage.module.css';
 import * as Yup from 'yup';
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 import { IconEyeClose } from '../../components/Icons/IconEyeClose';
 import { IconEye } from '../../components/Icons/IconEye';
+
 export default function SignUpPage() {
   const emailId = useId();
   const passwordId = useId();
   const passwordRepeatId = useId();
   const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordReap, setshowPasswordReap] = useState(false);
   const registerSchema = Yup.object().shape({
     email: Yup.string()
       .email()
@@ -21,18 +24,12 @@ export default function SignUpPage() {
       .matches('[a-zA-Z]', 'Password can only contain Latin letters.'),
     passwordRepeat: Yup.string().required('No password provided'),
   });
-  const IconEyes = ({ onClick }) => {
-    const [isVisible, setIsVisible] = useState(false);
-    return (
-      <div
-        onClick={() => {
-          setIsVisible(!isVisible);
-          onClick();
-        }}
-      >
-        {isVisible ? <IconEyeClose /> : <IconEye />}
-      </div>
-    );
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  const togglePasswordVisibilityP = () => {
+    setshowPasswordReap(!showPasswordReap);
   };
   return (
     <div className={css.signupBack}>
@@ -50,7 +47,7 @@ export default function SignUpPage() {
       >
         <Form className={css.signupForm}>
           <h1 className={css.signupName}>Sign up</h1>
-          <div className={css.signupFormGroup}>
+          <div className={css.signupFormGroupEmail}>
             <label className={css.signupLabel} htmlFor={emailId}>
               Email
             </label>
@@ -62,7 +59,7 @@ export default function SignUpPage() {
                 return (
                   <input
                     {...field}
-                    type={showPassword ? 'text' : 'password'}
+                    type="text"
                     className={`${css.signupField} ${
                       isError ? css.signUpErrorField : ''
                     }`}
@@ -79,7 +76,7 @@ export default function SignUpPage() {
               className={css.signupError}
             />
           </div>
-          <div className={css.signupFormGroup}>
+          <div className={css.signupFormGroupEmail}>
             <label className={css.signupLabel} htmlFor={passwordId}>
               Password
             </label>
@@ -96,15 +93,18 @@ export default function SignUpPage() {
                       className={`${css.signupField} ${
                         isError ? css.signUpErrorField : ''
                       }`}
-                      id={emailId}
-                      autoComplete="current-password"
+                      id={passwordId}
+                      autoComplete="new-password"
                       placeholder="Enter your password"
                     />
                   );
                 }}
               </Field>
-              <div className={css.signupIcon}>
-                <IconEyes onClick={() => setShowPassword(!showPassword)} />
+              <div
+                className={css.signupIcon}
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? <IconEyeClose /> : <IconEye />}
               </div>
             </div>
             <ErrorMessage
@@ -126,23 +126,26 @@ export default function SignUpPage() {
                   return (
                     <input
                       {...field}
-                      type={showPassword ? 'text' : 'password'}
+                      type={showPasswordReap ? 'text' : 'password'}
                       className={`${css.signupField} ${
                         isError ? css.signUpErrorField : ''
                       }`}
-                      id={emailId}
-                      autoComplete="current-password"
+                      id={passwordRepeatId}
+                      autoComplete="new-password"
                       placeholder="Repeat password"
                     />
                   );
                 }}
               </Field>
-              <div className={css.signupIcon}>
-                <IconEyes onClick={() => setShowPassword(!showPassword)} />
+              <div
+                className={css.signupIcon}
+                onClick={togglePasswordVisibilityP}
+              >
+                {showPasswordReap ? <IconEyeClose /> : <IconEye />}
               </div>
             </div>
             <ErrorMessage
-              name="password"
+              name="passwordRepeat"
               component="span"
               className={css.signupError}
             />
@@ -151,9 +154,9 @@ export default function SignUpPage() {
             Sign Up
           </button>
           <p className={css.signupText}>
-            Don’t have an account?
+            Already have an account?{' '}
             <NavLink to="/signin" className={css.signupA}>
-              Sign Up
+              Sign In
             </NavLink>
           </p>
         </Form>

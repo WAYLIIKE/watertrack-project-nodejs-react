@@ -1,8 +1,12 @@
 .signupBack {
   background-color: var(--color-lightgray);
-  width: 100%;
   height: 780px;
   border-radius: 30px;
+}
+@media screen and (min-width: 768px) {
+  .signupBack {
+    height: 960px;
+  }
 }
 .signupName {
   color: var(--color-darkblue);
@@ -14,14 +18,30 @@
   margin: 0;
   padding-bottom: 32px;
 }
+@media screen and (min-width: 768px) {
+  .signupName {
+    font-size: 36px;
+    line-height: 38px;
+    letter-spacing: -0.36px;
+  }
+}
 .signupForm {
   display: flex;
-  min-width: 300px;
-  max-width: 311px;
   padding: 170px 0;
   flex-direction: column;
   align-items: flex-start;
   margin: 0 auto;
+}
+@media screen and (max-width: 767.98px) {
+  .signupForm {
+    max-width: 343px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .signupForm {
+    max-width: 436px;
+    padding: 227px 0;
+  }
 }
 .signupLabel {
   position: relative;
@@ -32,11 +52,25 @@
   line-height: 18px;
   letter-spacing: -0.14px;
 }
+@media screen and (min-width: 768px) {
+  .signupLabel {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.16px;
+  }
+}
 .signupFormGroup {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 32px;
+  width: 100%;
+}
+.signupFormGroupEmail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
   width: 100%;
 }
 .signupField {
@@ -63,7 +97,15 @@
   line-height: 18px;
   letter-spacing: -0.14px;
 }
-
+@media screen and (min-width: 768px) {
+  .signupField,
+  .signupField::placeholder {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.16px;
+    height: 56px;
+  }
+}
 .signupButton {
   display: flex;
   width: 100%;
@@ -82,6 +124,13 @@
   margin-bottom: 16px;
   transition: var(--animation);
 }
+@media screen and (min-width: 768px) {
+  .signupButton {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.16px;
+  }
+}
 .signupButton:hover {
   background: var(--color-lightgreenhover);
 }
@@ -94,6 +143,13 @@
   letter-spacing: -0.14px;
   margin: 0 auto;
 }
+@media screen and (min-width: 768px) {
+  .signupText {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.16px;
+  }
+}
 .signupA {
   color: var(--color-black);
   font-size: 14px;
@@ -102,6 +158,13 @@
   line-height: 18px;
   letter-spacing: -0.14px;
   text-decoration-line: underline;
+}
+@media screen and (min-width: 768px) {
+  .signupA {
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.16px;
+  }
 }
 .signupError {
   color: var(--color-error);

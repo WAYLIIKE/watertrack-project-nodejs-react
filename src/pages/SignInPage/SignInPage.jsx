@@ -19,18 +19,8 @@ export default function SignInPage() {
       .min(8, 'Password is too short - should be 8 chars minimum.')
       .matches('[a-zA-Z]', 'Password can only contain Latin letters.'),
   });
-  const IconEyes = ({ onClick }) => {
-    const [isVisible, setIsVisible] = useState(false);
-    return (
-      <div
-        onClick={() => {
-          setIsVisible(!isVisible);
-          onClick();
-        }}
-      >
-        {isVisible ? <IconEyeClose /> : <IconEye />}
-      </div>
-    );
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
   return (
     <div className={css.signinBack}>
@@ -100,8 +90,11 @@ export default function SignInPage() {
                   );
                 }}
               </Field>
-              <div className={css.signinIcon}>
-                <IconEyes onClick={() => setShowPassword(!showPassword)} />
+              <div
+                className={css.signinIcon}
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? <IconEyeClose /> : <IconEye />}
               </div>
             </div>
             <ErrorMessage
