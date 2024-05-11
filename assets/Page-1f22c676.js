@@ -1,0 +1,1 @@
+import{j as s,N as a}from"./index-4a4ce78e.js";const c="_logo_1jy6z_1",e={logo:c},n=()=>s.jsx(a,{to:"/",className:e.logo,children:"AquaTrack"}),t="_page_68jyn_1",r={page:t},l=({children:o})=>s.jsxs("div",{className:r.page,children:[s.jsx(n,{}),o]});export{l as P};
