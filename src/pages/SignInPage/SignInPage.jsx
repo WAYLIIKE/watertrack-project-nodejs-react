@@ -2,6 +2,7 @@ import { ErrorMessage, Field, Form, Formik, getIn } from 'formik';
 import { useId, useState } from 'react';
 import css from './SignInPage.module.css';
 import * as Yup from 'yup';
+import pictures from '../../assets/img/women.jpg';
 import { NavLink } from 'react-router-dom';
 import { IconEye } from '../../components/Icons/IconEye';
 import { IconEyeClose } from '../../components/Icons/IconEyeClose';
@@ -117,7 +118,16 @@ export default function SignInPage() {
         </Formik>
       </div>
       <div className={css.signinPicture}>
-        <h1>afjawnfiawfiawf aiwfbaiwbfiawf awhufbwau</h1>
+        <img src={pictures} alt="woman" className={css.signinWoman} />
+        <div className={css.signinHabitGroup}>
+          <p className={css.signinHabit}>Habit drive</p>
+        </div>
+        <div className={css.signinViewGroup}>
+          <p className={css.signinView}>View statistics</p>
+        </div>
+        <div className={css.signinPersonalGroup}>
+          <p className={css.signinPersonal}>Personal rate setting</p>
+        </div>
       </div>
     </div>
   );

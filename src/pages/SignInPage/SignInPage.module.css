@@ -214,3 +214,78 @@
     display: none;
   }
 }
+@media screen and (min-width: 1440px) {
+  .signinPicture {
+    position: relative;
+  }
+}
+.signinWoman {
+  display: block;
+  width: 672px;
+  height: 736px;
+  border-radius: 30px;
+  position: relative;
+}
+.signinHabit {
+  color: var(--color-white);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: -0.12px;
+}
+.signinHabitGroup {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 111px;
+  height: 34px;
+  border-radius: 30px;
+  background: var(--color-darkblue);
+  position: absolute;
+  bottom: 108px;
+  right: 163px;
+}
+.signinViewGroup {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 121px;
+  height: 34px;
+  border-radius: 30px;
+  background: var(--color-lightgreen);
+  position: absolute;
+  bottom: 108px;
+  right: 32px;
+}
+.signinView {
+  color: var(--color-darkblue);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: -0.12px;
+}
+.signinPersonalGroup {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 158px;
+  height: 34px;
+  border-radius: 30px;
+  background: var(--color-white);
+  position: absolute;
+  bottom: 64px;
+  right: 116px;
+}
+.signinPersonal {
+  color: var(--color-darkblue);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 12px; /* 100% */
+  letter-spacing: -0.12px;
+}
