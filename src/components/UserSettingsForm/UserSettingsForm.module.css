@@ -1,0 +1,235 @@
+.settingsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.subtitle {
+  color: var(--color-darkblue);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.16px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.text {
+  color: var(--color-black);
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+}
+
+.input {
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  border-radius: 15px;
+  border: 1px solid #2f2f2f26;
+  height: 46px;
+  width: 100%;
+
+  /* content styles */
+  color: #2f2f2f;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+}
+
+/* Avatar section */
+
+.avatarWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+}
+
+.avatar {
+  width: 75px;
+  height: 75px;
+  margin-bottom: 10px;
+  border-radius: 75px;
+  background-color: indianred;
+}
+
+.hiddenFileInput {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.hiddenFileInput + label {
+  position: relative;
+  color: var(--color-black);
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+  cursor: pointer;
+  transition: color var(--animation);
+}
+
+.hiddenFileInput + label::before {
+  content: url('../Icons/upload.svg');
+  display: block;
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: -26px;
+}
+
+.hiddenFileInput + label:hover {
+  color: var(--color-lightgreenhover);
+}
+
+/*  Gender  section */
+
+.genderWrapper .subtitle {
+  margin-bottom: 8px;
+}
+
+.hiddenRadioInput {
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.genderLabel::before {
+  content: '';
+  border-radius: 100%;
+  border: 1px solid var(--color-lightgreen);
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: 5px;
+  margin-right: 10px;
+}
+
+.hiddenRadioInput:checked + .genderLabel::before {
+  background-color: var(--color-lightgreen);
+  box-shadow: inset 0 0 0 4px white;
+}
+
+.genderLabel:not(:last-child) {
+  margin-right: 20px;
+}
+
+/* Main info  section*/
+.infoWrapper .input:last-child {
+  margin-bottom: 0;
+}
+
+/* Daily norma section*/
+
+.normaWrapper .subtitle {
+  margin-bottom: 14px;
+}
+
+.normaWrapper .text {
+  margin-bottom: 4px;
+}
+
+.normaWrapper .text:last-child {
+  margin-bottom: 0;
+}
+
+.normaFormula {
+  display: inline-block;
+  color: var(--color-lightgreen);
+  font-weight: 700;
+  margin-bottom: 12px !important;
+}
+
+.normaFormula:last-child {
+  margin-bottom: 14px !important;
+}
+
+.normaTextArea {
+  padding: 16px;
+  border-radius: 15px;
+  border: 1px solid #2f2f2f26;
+  margin-bottom: 14px;
+
+  /* content styles */
+  color: #2f2f2f99;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.14px;
+}
+
+.normaAsterisk {
+  color: var(--color-lightgreen);
+}
+
+.footnote {
+  display: flex;
+  gap: 4px;
+}
+
+.footnote::before {
+  content: url('../Icons/exclamation-mark.svg');
+  width: 18px;
+  height: 18px;
+}
+
+/* Metrics section */
+
+.metricsWrapper .text {
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.metricsWrapper .input:last-child {
+  margin-bottom: 0;
+}
+
+/* Water amount section */
+
+.waterAmountWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.waterAmountWrapper .text {
+  margin-bottom: 5px;
+}
+
+.amount {
+  color: var(--color-lightgreen);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+  margin-bottom: 14px;
+}
+
+.waterAmountWrapper .input {
+  margin-bottom: 40px;
+}
+
+.submitButton {
+  padding: 14px 40px;
+  border-radius: 30px;
+  border: none;
+  background-color: var(--color-lightgreen);
+
+  /*content styles*/
+  color: var(--color-darkblue);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+  transition: background-color var(--animation);
+}
+
+.submitButton:is(:hover :focus) {
+  background-color: var(--color-lightgreenhover);
+}

@@ -1,6 +1,6 @@
 .overlay {
   position: fixed;
-  padding: 0 20px;
+  padding: 20px;
   top: 0;
   left: 0;
   width: 100%;
@@ -23,15 +23,16 @@
 
 .modalContent {
   padding: 40px 20px;
+  margin: 80px auto auto;
   position: relative;
-  width: 360px;
+  width: 343px;
   border-radius: 15px;
   background-color: white;
 }
 
 @media screen and (min-width: 768px) {
   .modalContent {
-    width: 520px;
+    width: 648px;
     padding: 40px;
   }
 }
