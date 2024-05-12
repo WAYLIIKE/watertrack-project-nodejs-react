@@ -2,6 +2,14 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-bottom: 40px;
+}
+
+.leftDesktopWrapper,
+.rightDesktopWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .subtitle {
@@ -36,6 +44,10 @@
   letter-spacing: -0.14px;
 }
 
+.input:last-child {
+  margin-bottom: 0;
+}
+
 /* Avatar section */
 
 .avatarWrapper {
@@ -51,7 +63,7 @@
   width: 75px;
   height: 75px;
   margin-bottom: 10px;
-  border-radius: 75px;
+  border-radius: 50%;
   background-color: indianred;
 }
 
@@ -65,7 +77,10 @@
 }
 
 .hiddenFileInput + label {
-  position: relative;
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+  margin-right: auto;
   color: var(--color-black);
   font-size: 14px;
   line-height: 1.28;
@@ -76,11 +91,10 @@
 
 .hiddenFileInput + label::before {
   content: url('../Icons/upload.svg');
+  margin-left: auto;
   display: block;
-  position: absolute;
   width: 18px;
   height: 18px;
-  left: -26px;
 }
 
 .hiddenFileInput + label:hover {
@@ -116,7 +130,7 @@
 
 .hiddenRadioInput:checked + .genderLabel::before {
   background-color: var(--color-lightgreen);
-  box-shadow: inset 0 0 0 4px white;
+  box-shadow: inset 0 0 0 5px white;
 }
 
 .genderLabel:not(:last-child) {
@@ -146,11 +160,14 @@
   display: inline-block;
   color: var(--color-lightgreen);
   font-weight: 700;
-  margin-bottom: 12px !important;
 }
 
-.normaFormula:last-child {
-  margin-bottom: 14px !important;
+.formulaSubwrapper {
+  margin-bottom: 12px;
+}
+
+.formulaSubwrapper:last-child {
+  margin-bottom: 14px;
 }
 
 .normaTextArea {
@@ -162,7 +179,7 @@
   /* content styles */
   color: #2f2f2f99;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 1.28;
   letter-spacing: -0.14px;
 }
 
@@ -204,15 +221,12 @@
 }
 
 .amount {
+  display: block;
   color: var(--color-lightgreen);
   font-size: 14px;
   font-weight: 700;
   line-height: 1.28;
   margin-bottom: 14px;
-}
-
-.waterAmountWrapper .input {
-  margin-bottom: 40px;
 }
 
 .submitButton {
@@ -232,4 +246,107 @@
 
 .submitButton:is(:hover :focus) {
   background-color: var(--color-lightgreenhover);
+}
+
+@media screen and (min-width: 768px) {
+  .subtitle {
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.18px;
+    margin-bottom: 8px;
+  }
+
+  .text {
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.16px;
+  }
+
+  .input {
+    padding: 16px;
+    height: 54px;
+
+    /* content styles */
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.16px;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .hiddenFileInput + label {
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.16px;
+  }
+
+  .hiddenFileInput + label::before {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Daily norma section*/
+
+  .formulaWrapper {
+    display: flex;
+    margin-bottom: 14px;
+  }
+
+  .formulaSubwrapper {
+    margin-bottom: 0;
+  }
+
+  .formulaSubwrapper:last-child {
+    margin-bottom: 0;
+  }
+
+  .formulaSubwrapper:first-child {
+    margin-right: 28px;
+  }
+
+  .normaTextArea {
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.16px;
+  }
+
+  .footnote::before {
+    width: 22px;
+    height: 22px;
+  }
+
+  .submitButton {
+    padding: 16px 50px;
+
+    /*content styles*/
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.16px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .settingsWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .rightDesktopWrapper {
+    padding-top: 84px;
+  }
+  .amountField {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+
+  .amount {
+    font-size: 15px;
+    line-height: 1.49;
+  }
 }

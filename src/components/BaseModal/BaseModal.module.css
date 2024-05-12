@@ -3,11 +3,9 @@
   padding: 20px;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
   overflow-y: auto;
   z-index: 999;
@@ -25,14 +23,12 @@
   padding: 40px 20px;
   margin: 80px auto auto;
   position: relative;
-  width: 343px;
   border-radius: 15px;
   background-color: white;
 }
 
 @media screen and (min-width: 768px) {
   .modalContent {
-    width: 648px;
     padding: 40px;
   }
 }

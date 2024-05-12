@@ -53,11 +53,6 @@
   line-height: 1.28;
 }
 
-.fieldsWrapper {
-  display: flex;
-  flex-direction: column;
-}
-
 .timeLabel {
   color: var(--color-black);
   font-size: 14px;
@@ -70,7 +65,6 @@
   border-radius: 15px;
   border: 1px solid rgba(47, 47, 47, 0.15);
   width: 100%;
-  max-width: 375px;
   padding: 14px 16px;
   margin-bottom: 24px;
 
@@ -140,7 +134,6 @@
   }
 
   .input {
-    max-width: 438px;
     padding: 16px;
     margin-bottom: 24px;
 
