@@ -1,0 +1,48 @@
+.itemWrapper {
+  flex: 0 0 auto;
+  display: flex;
+  padding: 18px 14px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-right: 8px;
+  margin-bottom: 24px;
+
+  border-radius: 15px;
+  background: var(--color-lightgray);
+  backdrop-filter: blur(16.799999237060547px);
+}
+
+.itemWrapper:last-child {
+  margin-right: 0;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.amount {
+  color: var(--color-darkblue);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.time {
+  font-size: 12px;
+  line-height: 1;
+  opacity: 0.6;
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.button {
+  color: var(--color-darkblue);
+  border: none;
+}

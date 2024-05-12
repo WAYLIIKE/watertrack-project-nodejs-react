@@ -1,9 +1,9 @@
 import { FiEdit2 } from 'react-icons/fi';
 
-export const IconEdit = () => {
+export const IconEdit = ({ size }) => {
   return (
     <div>
-      <FiEdit2 size={16} />
+      <FiEdit2 size={size} />
     </div>
   );
 };

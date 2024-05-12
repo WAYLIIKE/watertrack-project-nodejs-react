@@ -4,6 +4,7 @@ import { DeleteWaterModal } from '../../components/DeleteWaterModal/DeleteWaterM
 import { LogOutModal } from '../../components/LogOutModal/LogOutModal';
 import { Container } from '../../components/Container/Container';
 import { BaseModal } from '../../components/BaseModal/BaseModal';
+import { WaterList } from '../../components/WaterList/WaterList';
 import { useState } from 'react';
 import { Page } from '../../components/Page/Page';
 
@@ -49,6 +50,8 @@ export default function TrackerPage() {
         <button type="button" onClick={openLogoutModal}>
           Log out
         </button>
+        <WaterList />
+
         <BaseModal isOpen={isOpen} onClose={closeModal}>
           <WaterModal title={'Add water'} />
         </BaseModal>
