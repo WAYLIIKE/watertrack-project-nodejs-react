@@ -5,6 +5,7 @@ import { LogOutModal } from '../../components/LogOutModal/LogOutModal';
 import { Container } from '../../components/Container/Container';
 import { BaseModal } from '../../components/BaseModal/BaseModal';
 import { useState } from 'react';
+import { Page } from '../../components/Page/Page';
 
 export default function TrackerPage() {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,28 +38,30 @@ export default function TrackerPage() {
 
   return (
     <Container>
-      <p>Tracker page...</p>
+      <Page>
+        <p>Tracker page...</p>
+        <button type="button" onClick={openModal}>
+          Open
+        </button>
+        <button type="button" onClick={openDeleteModal}>
+          Delete Water
+        </button>
+        <button type="button" onClick={openLogoutModal}>
+          Log out
+        </button>
+        <BaseModal isOpen={isOpen} onClose={closeModal}>
+          <WaterModal title={'Add water'} />
+        </BaseModal>
+        <BaseModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}>
+          <DeleteWaterModal title={'Delete entry'} />
+        </BaseModal>
+        <BaseModal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>
+          <LogOutModal title={'Log out'} />
+        </BaseModal>
+      </Page>
       <Helmet>
         <title>Tracker</title>
       </Helmet>
-      <button type="button" onClick={openModal}>
-        Open
-      </button>
-      <button type="button" onClick={openDeleteModal}>
-        Delete Water
-      </button>
-      <button type="button" onClick={openLogoutModal}>
-        Log out
-      </button>
-      <BaseModal isOpen={isOpen} onClose={closeModal}>
-        <WaterModal title={'Add water'} />
-      </BaseModal>
-      <BaseModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}>
-        <DeleteWaterModal title={'Delete entry'} />
-      </BaseModal>
-      <BaseModal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>
-        <LogOutModal title={'Log out'} />
-      </BaseModal>
     </Container>
   );
 }
