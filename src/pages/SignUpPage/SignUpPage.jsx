@@ -23,10 +23,13 @@ export default function SignUpPage() {
       .matches('^(?!.*@[^,]*,)', 'Invalid email')
       .required('Email is required'),
     password: Yup.string()
+      .matches(/\d/, 'The password must contain at least one number')
       .required('No password provided.')
       .min(8, 'Password is too short - should be 8 chars minimum.')
       .matches('[a-zA-Z]', 'Password can only contain Latin letters.'),
-    passwordRepeat: Yup.string().required('No password provided'),
+    passwordRepeat: Yup.string()
+      .required('No password provided')
+      .matches(/\d/, 'The password must contain at least one number'),
   });
 
   const togglePasswordVisibility = () => {
