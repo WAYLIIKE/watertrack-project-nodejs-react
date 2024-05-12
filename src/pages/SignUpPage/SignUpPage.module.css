@@ -3,14 +3,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 32px;
     gap: 32px;
   }
 }
 .signupBack {
   background-color: var(--color-lightgray);
-  height: 780px;
   border-radius: 30px;
+  height: 780px;
+  padding: 0 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,10 +18,12 @@
 @media screen and (min-width: 768px) {
   .signupBack {
     height: 960px;
+    padding: 0 134px;
   }
 }
 @media screen and (min-width: 1440px) {
   .signupBack {
+    padding: 0 118px;
     width: 672px;
     height: 736px;
   }

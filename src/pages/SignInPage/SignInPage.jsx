@@ -2,14 +2,18 @@ import { ErrorMessage, Field, Form, Formik, getIn } from 'formik';
 import { useId, useState } from 'react';
 import css from './SignInPage.module.css';
 import * as Yup from 'yup';
-import pictures from '../../assets/img/women.jpg';
-import { NavLink } from 'react-router-dom';
+import { AdvantagesSection } from '../../components/AdvantagesSection/AdvantagesSection';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { IconEye } from '../../components/Icons/IconEye';
 import { IconEyeClose } from '../../components/Icons/IconEyeClose';
+import { Page } from '../../components/Page/Page';
+import { Container } from '../../components/Container/Container';
+import { Helmet } from 'react-helmet-async';
 export default function SignInPage() {
   const emailId = useId();
   const passId = useId();
   const [showPassword, setShowPassword] = useState(false);
+  // const navigate = useNavigate();
   const loginSchema = Yup.object().shape({
     email: Yup.string()
       .email()
@@ -23,113 +27,122 @@ export default function SignInPage() {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
   return (
-    <div className={css.signinLaptop}>
-      <div className={css.signinBack}>
-        <Formik
-          initialValues={{
-            email: '',
-            password: '',
-          }}
-          validationSchema={loginSchema}
-          onSubmit={async (values, action) => {
-            // await signIn(values);
-            console.log('login success');
-            action.resetForm();
-          }}
-        >
-          <Form className={css.signinForm} autoComplete="on">
-            <h1 className={css.signinName}>Sign In</h1>
-            <div className={css.signinFormGroupEmail}>
-              <label className={css.signinLabel} htmlFor={emailId}>
-                Email
-              </label>
-              <Field name="email">
-                {({ field, form }) => {
-                  const error = getIn(form.errors, field.name);
-                  const touched = getIn(form.touched, field.name);
-                  const isError = error && touched;
-                  return (
-                    <input
-                      {...field}
-                      type="text"
-                      className={`${css.signinField} ${
-                        isError ? css.signInErrorField : ''
-                      }`}
-                      id={emailId}
-                      autoComplete="username"
-                      placeholder="Enter your email"
-                    />
-                  );
-                }}
-              </Field>
-              <ErrorMessage
-                name="email"
-                component="span"
-                className={css.signinError}
-              />
-            </div>
-            <div className={css.signinFormGroupPassword}>
-              <label className={css.signinLabel} htmlFor={passId}>
-                Password
-              </label>
-              <div className={css.signinIconEyes}>
-                <Field name="password">
-                  {({ field, form }) => {
-                    const error = getIn(form.errors, field.name);
-                    const touched = getIn(form.touched, field.name);
-                    const isError = error && touched;
-                    return (
-                      <input
-                        {...field}
-                        type={showPassword ? 'text' : 'password'}
-                        className={`${css.signinField} ${
-                          isError ? css.signInErrorField : ''
-                        }`}
-                        id={passId}
-                        autoComplete="current-password"
-                        placeholder="Enter your password"
-                      />
-                    );
-                  }}
-                </Field>
-                <div
-                  className={css.signinIcon}
-                  onClick={togglePasswordVisibility}
-                >
-                  {showPassword ? <IconEyeClose /> : <IconEye />}
+    <Container>
+      <Helmet>
+        <title>Sign in</title>
+      </Helmet>
+      <Page>
+        <div className={css.signinLaptop}>
+          <div className={css.signinBack}>
+            <Formik
+              initialValues={{
+                email: '',
+                password: '',
+              }}
+              validationSchema={loginSchema}
+              onSubmit={async (values, action) => {
+                try {
+                  const isLoggedIn = true;
+                  if (isLoggedIn) {
+                    // navigate('/tracker');
+                    console.log('Login successful, redirecting to TrackerPage');
+                    action.resetForm();
+                    // await signIn(values);
+                  } else {
+                    console.log('Login failed');
+                  }
+                } catch (error) {
+                  console.error('Login error:', error);
+                }
+              }}
+            >
+              <Form className={css.signinForm} autoComplete="on">
+                <h1 className={css.signinName}>Sign In</h1>
+                <div className={css.signinFormGroupEmail}>
+                  <label className={css.signinLabel} htmlFor={emailId}>
+                    Email
+                  </label>
+                  <Field name="email">
+                    {({ field, form }) => {
+                      const error = getIn(form.errors, field.name);
+                      const touched = getIn(form.touched, field.name);
+                      const isError = error && touched;
+                      return (
+                        <input
+                          {...field}
+                          type="text"
+                          className={`${css.signinField} ${
+                            isError ? css.signInErrorField : ''
+                          }`}
+                          id={emailId}
+                          autoComplete="username"
+                          placeholder="Enter your email"
+                        />
+                      );
+                    }}
+                  </Field>
+                  <ErrorMessage
+                    name="email"
+                    component="span"
+                    className={css.signinError}
+                  />
                 </div>
-              </div>
-              <ErrorMessage
-                name="password"
-                component="span"
-                className={css.signinError}
-              />
-            </div>
-            <button className={css.signinButton} type="submit">
-              Log In
-            </button>
-            <p className={css.signinText}>
-              Don’t have an account?
-              <NavLink to="/signup" className={css.signinA}>
-                Sign Up
-              </NavLink>
-            </p>
-          </Form>
-        </Formik>
-      </div>
-      <div className={css.signinPicture}>
-        <img src={pictures} alt="woman" className={css.signinWoman} />
-        <div className={css.signinHabitGroup}>
-          <p className={css.signinHabit}>Habit drive</p>
+                <div className={css.signinFormGroupPassword}>
+                  <label className={css.signinLabel} htmlFor={passId}>
+                    Password
+                  </label>
+                  <div className={css.signinIconEyes}>
+                    <Field name="password">
+                      {({ field, form }) => {
+                        const error = getIn(form.errors, field.name);
+                        const touched = getIn(form.touched, field.name);
+                        const isError = error && touched;
+                        return (
+                          <input
+                            {...field}
+                            type={showPassword ? 'text' : 'password'}
+                            className={`${css.signinField} ${
+                              isError ? css.signInErrorField : ''
+                            }`}
+                            id={passId}
+                            autoComplete="current-password"
+                            placeholder="Enter your password"
+                          />
+                        );
+                      }}
+                    </Field>
+                    <div
+                      className={css.signinIcon}
+                      onClick={togglePasswordVisibility}
+                    >
+                      {showPassword ? <IconEyeClose /> : <IconEye />}
+                    </div>
+                  </div>
+                  <ErrorMessage
+                    name="password"
+                    component="span"
+                    className={css.signinError}
+                  />
+                </div>
+                <button className={css.signinButton} type="submit">
+                  Log In
+                </button>
+                <p className={css.signinText}>
+                  Don’t have an account?
+                  <NavLink to="/signup" className={css.signinA}>
+                    Sign Up
+                  </NavLink>
+                </p>
+              </Form>
+            </Formik>
+          </div>
+          <div className={css.signinPicture}>
+            <AdvantagesSection />
+          </div>
         </div>
-        <div className={css.signinViewGroup}>
-          <p className={css.signinView}>View statistics</p>
-        </div>
-        <div className={css.signinPersonalGroup}>
-          <p className={css.signinPersonal}>Personal rate setting</p>
-        </div>
-      </div>
-    </div>
+      </Page>
+    </Container>
   );
 }
