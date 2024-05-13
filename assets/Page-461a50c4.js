@@ -1,1 +1,0 @@
-import{j as s,N as n}from"./index-423b6994.js";const a="_container_1nshq_1",c={container:a},_=({children:o})=>s.jsx("div",{className:c.container,children:o}),t="_logo_1jy6z_1",e={logo:t},r=()=>s.jsx(n,{to:"/",className:e.logo,children:"AquaTrack"}),i="_page_68jyn_1",g={page:i},j=({children:o})=>s.jsxs("div",{className:g.page,children:[s.jsx(r,{}),o]});export{_ as C,j as P};
