@@ -43,7 +43,7 @@
   padding: 0 !important;
 }
 
-@media only screen and (min-width: 768px) {
+@media (--tablet-bp) {
   .progressCont {
     width: 295px;
     height: 106px;
@@ -74,7 +74,7 @@
     height: 8px !important;
   }
 }
-@media only screen and (min-width: 1440px) {
+@media (--desktop-bp) {
   .progressCont {
     width: 295px;
     height: 106px;
