@@ -1,11 +1,18 @@
 :root {
+  /* Colors */
   --color-white: #ffffff;
   --color-lightgray: #f0eff4;
   --color-lightgreen: #9be1a0;
   --color-darkblue: #323f47;
   --color-black: #2f2f2f;
+
+  /* Animation */
   --animation: 150ms ease-in;
 }
+
+/* Breakpoints */
+@custom-media --tablet-bp (min-width: 768px);
+@custom-media --desktop-bp (min-width: 1440px);
 
 body {
   background-color: var(--color-white);
