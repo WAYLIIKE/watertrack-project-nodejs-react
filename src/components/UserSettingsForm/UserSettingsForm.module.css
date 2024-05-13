@@ -244,7 +244,8 @@
   transition: background-color var(--animation);
 }
 
-.submitButton:is(:hover :focus) {
+.submitButton:hover,
+.submitButton:focus {
   background-color: var(--color-lightgreenhover);
 }
 
@@ -260,16 +261,31 @@
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: -0.16px;
+    cursor: pointer;
   }
 
   .input {
     padding: 16px;
     height: 54px;
+    outline: none;
+    transition:
+      border-color var(--animation),
+      box-shadow var(--animation),
+      transform var(--animation);
 
     /* content styles */
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: -0.16px;
+  }
+
+  .input:hover {
+    border-color: var(--color-lightgreenhover);
+  }
+
+  .input:focus {
+    border-color: var(--color-lightgreenhover);
+    transform: scale(1.01);
   }
 
   .avatar {
