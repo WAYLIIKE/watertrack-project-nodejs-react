@@ -49,7 +49,7 @@ export const WaterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(submitForm)}>
+    <form className={css.formWrapper} onSubmit={handleSubmit(submitForm)}>
       <p className={css.subtitle}>Choose a value</p>
       <span className={css.amountTitle}>Amount of water:</span>
       <div className={css.amountWrapper}>
