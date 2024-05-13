@@ -1,0 +1,84 @@
+.progressCont {
+  position: absolute;
+  width: 198px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-white);
+  border-radius: 15px;
+  left: 50%;
+  margin-top: 175px;
+  transform: translate(-50%);
+}
+.textCont {
+  margin: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.title {
+  pointer-events: none;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 14px;
+}
+.percentBar {
+  pointer-events: none;
+  margin-top: 8px;
+  width: 174px;
+  display: flex;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 10px;
+  flex-direction: row;
+  opacity: 0.6;
+  justify-content: space-between;
+}
+
+.slider:global {
+  height: 6px !important;
+  pointer-events: none;
+  padding: 0 !important;
+}
+
+@media only screen and (min-width: 768px) {
+  .progressCont {
+    width: 295px;
+    height: 106px;
+    left: 50%;
+    margin-top: 253px;
+    transform: translate(-50%);
+  }
+  .textCont {
+    margin: 20px;
+    gap: 6px;
+  }
+  .title {
+    font-size: 15px;
+    line-height: 22.4px;
+  }
+  .percentBar {
+    width: 255px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 22.4px;
+    opacity: 0.6;
+  }
+  .slider:global {
+    height: 8px !important;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .progressCont {
+    width: 295px;
+    height: 106px;
+    left: 50%;
+    margin-top: 394px;
+  }
+}
