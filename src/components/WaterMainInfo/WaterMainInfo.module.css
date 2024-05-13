@@ -1,6 +1,6 @@
 .container {
     min-width: 288px;
-    max-width: 375px;
+    max-width: 343px;
   }
   .WaterMaininfoContainer {
     background: var(--color-lightgreen);
@@ -64,6 +64,7 @@
       width: 672px;
       margin: 0;
       padding: 0;
+      height: 736px;
     }
     .WaterMaininfoContainer {
       background: var(--color-lightgreen);
