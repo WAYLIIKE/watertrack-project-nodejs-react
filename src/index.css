@@ -3,9 +3,11 @@
   --color-white: #ffffff;
   --color-lightgray: #f0eff4;
   --color-lightgreen: #9be1a0;
+  --color-lightgreenhover: #87d28d;
   --color-darkblue: #323f47;
   --color-black: #2f2f2f;
-
+  --color-blacksemi: #2f2f2f80;
+  --color-error: #ef5050;
   /* Animation */
   --animation: 150ms ease-in;
 }
@@ -50,7 +52,7 @@ button {
 }
 
 /* 
-/*  For close button style
+/*  For close modal button style
 */
 
 .close-modal-btn {
@@ -63,4 +65,39 @@ button {
 
 .close-modal-btn:hover {
   fill: var(--color-lightgreen);
+}
+
+/* 
+/*  Scrollbar styles
+*/
+
+*::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 20px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--color-darkblue);
+  transition: background-color var(--animation);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-lightgreenhover);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: var(--color-lightgreenhover);
 }
