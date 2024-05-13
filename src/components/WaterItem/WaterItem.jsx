@@ -26,15 +26,15 @@ export const WaterItem = () => {
     <div className={css.itemWrapper}>
       <IconGlass />
       <div className={css.textWrapper}>
-        <p className={css.amount}>250 ml</p>
-        <p className={css.time}>7:00 AM</p>
+        <p className={css.amount}>Amount</p>
+        <p className={css.time}>Time</p>
       </div>
       <div className={css.buttonWrapper}>
         <button className={css.button} type="button" onClick={openModal}>
-          <IconEdit size={14} />
+          <IconEdit className={css.icon} />
         </button>
         <button className={css.button} type="button" onClick={openDeleteModal}>
-          <IconTrash size={14} />
+          <IconTrash className={css.icon} />
         </button>
       </div>
       <BaseModal isOpen={isOpen} onClose={closeModal}>

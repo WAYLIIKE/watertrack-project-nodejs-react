@@ -5,9 +5,6 @@ export const WaterList = () => {
   return (
     <ul className={css.wrapper}>
       <WaterItem />
-      <WaterItem />
-      <WaterItem />
-      <WaterItem />
     </ul>
   );
 };

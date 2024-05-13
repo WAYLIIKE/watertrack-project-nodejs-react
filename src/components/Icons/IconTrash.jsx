@@ -1,9 +1,9 @@
 import { FiTrash } from 'react-icons/fi';
 
-export const IconTrash = ({ size }) => {
+export const IconTrash = () => {
   return (
     <div>
-      <FiTrash size={size} />
+      <FiTrash size={14} />
     </div>
   );
 };
