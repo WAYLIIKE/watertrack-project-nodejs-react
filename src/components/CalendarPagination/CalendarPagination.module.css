@@ -1,0 +1,42 @@
+.paginationSection {
+  display: flex;
+  gap: 58px;
+}
+.month {
+  color: #323f47;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px; /* 120% */
+  letter-spacing: -0.2px;
+}
+.button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: black;
+  outline: none;
+}
+.button:focus {
+  outline: none;
+}
+.chevron {
+  width: 18px;
+  height: 18px;
+  stroke: '#323F47';
+  stroke-width: 1;
+}
+.chooseMonth {
+  display: flex;
+  gap: 16px;
+}
+.span {
+  color: #323f47;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.14px;
+}
