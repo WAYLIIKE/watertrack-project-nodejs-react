@@ -10,7 +10,7 @@ import { getCurrentTime } from '../../helpers/getCurrentTime';
 import css from './WaterForm.module.css';
 
 const schema = yup.object().shape({
-  time: yup.string().required('Time is required'),
+  time: yup.string().required('Please, enter the recorded time'),
   waterValue: yup
     .number()
     .typeError('Enter a valid number')
@@ -96,7 +96,9 @@ export const WaterForm = () => {
           onChange={(e) => setValue('waterValue', Number(e.target.value))}
         />
         {errors.waterValue && (
-          <span className={css.validationError}>{errors.time.message}</span>
+          <span className={css.validationError}>
+            {errors.waterValue.message}
+          </span>
         )}
       </div>
       <button className={css.submitButton} type="submit">
