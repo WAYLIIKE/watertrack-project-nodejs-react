@@ -5,6 +5,5 @@ export const convertTimeToUnix = (timeString) => {
   date.setHours(hours);
   date.setMinutes(minutes);
 
-  const result = date.getTime();
-  return result;
+  return date.getTime();
 };
