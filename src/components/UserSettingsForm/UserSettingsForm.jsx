@@ -10,33 +10,36 @@ const schema = yup.object().shape({
 
   gender: yup
     .string()
-    .oneOf(['Woman', 'Man'])
-    .required('Please select your gender'),
+    .nullable()
+    .oneOf(['Woman', 'Man', 'Please select your gender']),
 
-  name: yup
-    .string()
-    .min(3, 'Name must be at least 3 characters long')
-    .required('Please enter your name'),
+  name: yup.string(),
 
-  email: yup
-    .string()
-    .email('Please enter a valid email address')
-    .required('Please enter an email'),
+  email: yup.string().email('Please enter a valid email address'),
 
   weight: yup
-    .number('Please enter only digits')
-    .required('Please enter a weight')
-    .positive('Weight must be a positive number'),
+    .number()
+    .nullable()
+    .transform((value, originalValue) => {
+      if (originalValue === '') return null;
+      return value;
+    }),
 
   time: yup
-    .number('Please enter only digits')
-    .required('Please enter an active time')
-    .positive('Active time must be a positive number'),
+    .number()
+    .nullable()
+    .transform((value, originalValue) => {
+      if (originalValue === '') return null;
+      return value;
+    }),
 
   amount: yup
-    .number('Please enter only digits')
-    .positive('Water amount must be a positive number')
-    .required('Please enter an amount of water'),
+    .number()
+    .nullable()
+    .transform((value, originalValue) => {
+      if (originalValue === '') return null;
+      return value;
+    }),
 });
 
 export const UserSettingsForm = () => {
@@ -47,11 +50,6 @@ export const UserSettingsForm = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: {
-      weight: 0,
-      time: 0,
-      amount: 0,
-    },
   });
 
   const onSubmit = (data) => {
@@ -59,24 +57,39 @@ export const UserSettingsForm = () => {
       return;
     }
 
+    // створюємо та заповнюємо формДату
+
     const formData = new FormData();
 
     for (const key in data) {
       if (key === 'avatar') {
-        formData.append(key, data[key][0]);
+        if (data[key][0] !== undefined) {
+          formData.append(key, data[key][0]);
+        }
+        continue;
       }
+
+      if (data[key] === '' || data[key] === undefined || data[key] === null) {
+        continue;
+      }
+      formData.append(key, data[key]);
     }
+    // Тимчасовий вивід в консоль  форм-дати
 
-    console.log(formData);
-
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
     // далі відправляю форм дату
   };
 
-  const requiredWater = calcRequiredWater(
-    watch('gender'),
-    watch('weight'),
-    watch('time')
-  );
+  const { avatar, gender, name, email, weight, time, amount } = watch();
+
+  //перевірка, чи заповнене хоча б одно з полів форми
+  // якщо всі поля порожні -кнопка сабміту деактивована
+  const isAnyFieldFilled =
+    avatar || gender || name || email || weight || time || amount;
+
+  const requiredWater = calcRequiredWater(gender, weight, time);
 
   return (
     <form className={css.wrapper} onSubmit={handleSubmit(onSubmit)}>
@@ -239,7 +252,7 @@ export const UserSettingsForm = () => {
               </p>
 
               <span className={css.amount}>
-                {!watch('gender') || !watch('weight') || !watch('time')
+                {!watch('gender') || !watch('weight')
                   ? 'Waiting for your metrics'
                   : requiredWater + ' L'}
               </span>
@@ -261,7 +274,12 @@ export const UserSettingsForm = () => {
           </div>
         </div>
       </div>
-      <button className={css.submitButton} type="submit">
+
+      <button
+        className={css.submitButton}
+        type="submit"
+        disabled={!isAnyFieldFilled}
+      >
         Save
       </button>
     </form>
