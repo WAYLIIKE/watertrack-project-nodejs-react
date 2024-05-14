@@ -180,7 +180,7 @@ export const SignUpForm = () => {
             Sign Up
           </button>
           <p className={css.signupText}>
-            Already have an account?{' '}
+            {'Already have an account? '}
             <NavLink to="/signin" className={css.signupA}>
               Sign In
             </NavLink>
