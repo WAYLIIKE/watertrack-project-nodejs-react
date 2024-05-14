@@ -76,7 +76,6 @@
   outline: none;
   transition:
     border-color var(--animation),
-    box-shadow var(--animation),
     transform var(--animation);
 
   /*content styles*/
