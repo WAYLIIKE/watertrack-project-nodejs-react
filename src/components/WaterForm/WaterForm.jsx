@@ -46,7 +46,7 @@ export const WaterForm = ({ subtitle }) => {
       amount: data.amount,
       time: unixTime,
     };
-    console.log(dataToSend); // TEMPORARY
+    console.log(dataToSend); // тимчасовий консоль лог. Буде опрацьовуватись відправка
   };
 
   const subtract = () => {
