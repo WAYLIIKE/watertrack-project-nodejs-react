@@ -5,10 +5,17 @@ import { IconEye } from '../Icons/IconEye';
 import { NavLink } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useId, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { signIn } from '../../redux/user/userOps';
+
 export const SignInForm = () => {
+  const dispatch = useDispatch();
+
   const emailId = useId();
   const passId = useId();
+
   const [showPassword, setShowPassword] = useState(false);
+
   const loginSchema = Yup.object().shape({
     email: Yup.string()
       .email()
@@ -20,9 +27,11 @@ export const SignInForm = () => {
       .min(8, 'Password is too short - should be 8 chars minimum.')
       .matches('[a-zA-Z]', 'Password can only contain Latin letters.'),
   });
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
   return (
     <div className={css.signinBack}>
       <Formik
@@ -31,20 +40,9 @@ export const SignInForm = () => {
           password: '',
         }}
         validationSchema={loginSchema}
-        onSubmit={async (values, action) => {
-          try {
-            const isLoggedIn = true;
-            if (isLoggedIn) {
-              // navigate('/tracker');
-              console.log('Login successful, redirecting to TrackerPage');
-              action.resetForm();
-              // await signIn(values);
-            } else {
-              console.log('Login failed');
-            }
-          } catch (error) {
-            console.error('Login error:', error);
-          }
+        onSubmit={(values, action) => {
+          dispatch(signIn(values));
+          action.resetForm();
         }}
       >
         <Form className={css.signinForm} autoComplete="on">
