@@ -1,0 +1,21 @@
+.userPanel {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px 20px;
+
+  &__helloSign {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 32px;
+    letter-spacing: -0.01em;
+
+    color: var(--color-darkblue);
+  }
+
+  &__nameSign {
+    font-weight: 700;
+  }
+}
