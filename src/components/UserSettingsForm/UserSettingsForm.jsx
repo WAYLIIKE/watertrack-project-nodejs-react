@@ -6,12 +6,12 @@ import { FormValidateError } from '../FormValidateError/FormValidateError';
 import { calcRequiredWater } from '../../helpers/calcRequiredWater';
 
 const schema = yup.object().shape({
-  avatar: yup.mixed(),
+  avatarURL: yup.mixed(),
 
   gender: yup
     .string()
     .nullable()
-    .oneOf(['Woman', 'Man', 'Please select your gender']),
+    .oneOf(['Woman', 'Man'], 'Please select your gender'),
 
   name: yup.string(),
 
@@ -20,25 +20,35 @@ const schema = yup.object().shape({
   weight: yup
     .number()
     .nullable()
+    .max(600, 'Weight must be less than or equal to 600')
     .transform((value, originalValue) => {
       if (originalValue === '') return null;
       return value;
     }),
 
-  time: yup
+  activityTime: yup
     .number()
     .nullable()
+    .max(12, 'Time must be less than or equal to 12')
     .transform((value, originalValue) => {
       if (originalValue === '') return null;
       return value;
     }),
 
-  amount: yup
-    .number()
+  desiredVolume: yup
+    .string()
     .nullable()
     .transform((value, originalValue) => {
       if (originalValue === '') return null;
       return value;
+    })
+    .test('is-decimal', 'Please enter a valid number', (value) => {
+      if (value === undefined || value === null || value === '') return true;
+      return !isNaN(parseFloat(value)) && isFinite(value);
+    })
+    .test('max-value', 'Value must be less than or equal to 31.2', (value) => {
+      if (value === undefined || value === null || value === '') return true;
+      return parseFloat(value) <= 31.2;
     }),
 });
 
@@ -62,7 +72,7 @@ export const UserSettingsForm = () => {
     const formData = new FormData();
 
     for (const key in data) {
-      if (key === 'avatar') {
+      if (key === 'avatarURL') {
         if (data[key][0] !== undefined) {
           formData.append(key, data[key][0]);
         }
@@ -82,14 +92,28 @@ export const UserSettingsForm = () => {
     // далі відправляю форм дату
   };
 
-  const { avatar, gender, name, email, weight, time, amount } = watch();
+  const {
+    avatarURL,
+    gender,
+    name,
+    email,
+    weight,
+    activityTime,
+    desiredVolume,
+  } = watch();
 
   //перевірка, чи заповнене хоча б одно з полів форми
   // якщо всі поля порожні -кнопка сабміту деактивована
   const isAnyFieldFilled =
-    avatar || gender || name || email || weight || time || amount;
+    avatarURL ||
+    gender ||
+    name ||
+    email ||
+    weight ||
+    activityTime ||
+    desiredVolume;
 
-  const requiredWater = calcRequiredWater(gender, weight, time);
+  const requiredWater = calcRequiredWater(gender, weight, activityTime);
 
   return (
     <form className={css.wrapper} onSubmit={handleSubmit(onSubmit)}>
@@ -97,30 +121,32 @@ export const UserSettingsForm = () => {
         {/*      
           <img
             className={css.avatar}
-            src={URL.createObjectURL(watch('avatar')[0])}
+            src={URL.createObjectURL(avatarURL[0])}
             alt="Avatar"
           /> */}
 
         <div className={css.avatar}></div>
 
-        {!watch('avatar') || watch('avatar').length === 0 ? (
+        {!avatarURL || avatarURL.length === 0 ? (
           <>
             <input
-              {...register('avatar')}
+              {...register('avatarURL')}
               className={css.hiddenFileInput}
               type="file"
-              name="avatar"
-              id="avatar"
+              name="avatarURL"
+              id="avatarURL"
               placeholder={'Upload a photo'}
             />
-            <label htmlFor="avatar" className={css.fileLabel}>
+            <label htmlFor="avatarURL" className={css.fileLabel}>
               Upload a photo
             </label>
           </>
         ) : (
-          <strong>{watch('avatar')[0].name}</strong>
+          <strong>{avatarURL[0].name}</strong>
         )}
-        {errors.avatar && <FormValidateError message={errors.avatar.message} />}
+        {errors.avatarURL && (
+          <FormValidateError message={errors.avatarURL.message} />
+        )}
       </div>
 
       <div className={css.settingsWrapper}>
@@ -232,17 +258,19 @@ export const UserSettingsForm = () => {
               <FormValidateError message={errors.weight.message} />
             )}
 
-            <label className={css.text} htmlFor="time">
+            <label className={css.text} htmlFor="activityTime">
               The time of active participation in sports:
             </label>
             <input
-              {...register('time')}
+              {...register('activityTime')}
               className={css.input}
               type="number"
-              name="time"
-              id="time"
+              name="activityTime"
+              id="activityTime"
             />
-            {errors.time && <FormValidateError message={errors.time.message} />}
+            {errors.activityTime && (
+              <FormValidateError message={errors.activityTime.message} />
+            )}
           </div>
 
           <div className={css.waterAmountWrapper}>
@@ -258,18 +286,18 @@ export const UserSettingsForm = () => {
               </span>
             </div>
 
-            <label className={css.subtitle} htmlFor="amount">
+            <label className={css.subtitle} htmlFor="desiredVolume">
               Write down how much water you will drink:
             </label>
             <input
-              {...register('amount')}
+              {...register('desiredVolume')}
               className={css.input}
-              type="number"
-              name="amount"
-              id="amount"
+              type="text"
+              name="desiredVolume"
+              id="desiredVolume"
             />
-            {errors.amount && (
-              <FormValidateError message={errors.amount.message} />
+            {errors.desiredVolume && (
+              <FormValidateError message={errors.desiredVolume.message} />
             )}
           </div>
         </div>

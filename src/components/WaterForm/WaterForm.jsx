@@ -10,8 +10,8 @@ import { getCurrentTime } from '../../helpers/getCurrentTime';
 import css from './WaterForm.module.css';
 
 const schema = yup.object().shape({
-  time: yup.string().required('Please, enter the recorded time'),
-  waterValue: yup
+  date: yup.string().required('Please, enter the recorded time'),
+  amount: yup
     .number()
     .typeError('Enter a valid number')
     .positive('Value must be positive')
@@ -29,8 +29,8 @@ export const WaterForm = ({ subtitle }) => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      time: getCurrentTime(),
-      waterValue: 50,
+      date: getCurrentTime(),
+      amount: 50,
     },
   });
 
@@ -39,13 +39,13 @@ export const WaterForm = ({ subtitle }) => {
   };
 
   const subtract = () => {
-    const currentValue = getValues('waterValue');
-    setValue('waterValue', currentValue - 50);
+    const currentValue = getValues('amount');
+    setValue('amount', currentValue - 50);
   };
 
   const add = () => {
-    const currentValue = getValues('waterValue');
-    setValue('waterValue', currentValue + 50);
+    const currentValue = getValues('amount');
+    setValue('amount', currentValue + 50);
   };
 
   return (
@@ -57,12 +57,12 @@ export const WaterForm = ({ subtitle }) => {
           className={css.amountButton}
           onClick={subtract}
           type="button"
-          disabled={getValues('waterValue') === 0 ? true : false}
+          disabled={getValues('amount') === 0 ? true : false}
         >
           <IconMinus className={css.icon} />
         </button>
 
-        <span className={css.amountValue}>{`${watch('waterValue')} ml`}</span>
+        <span className={css.amountValue}>{`${watch('amount')} ml`}</span>
 
         <button className={css.amountButton} onClick={add} type="button">
           <IconPlus className={css.icon} />
@@ -70,35 +70,33 @@ export const WaterForm = ({ subtitle }) => {
       </div>
 
       <div className={css.fieldsWrapper}>
-        <label className={css.timeLabel} htmlFor="time">
+        <label className={css.timeLabel} htmlFor="date">
           Recording time:
         </label>
         <input
-          {...register('time')}
+          {...register('date')}
           className={css.input}
-          type="time"
-          name="time"
-          id="time"
+          type="date"
+          name="date"
+          id="date"
         />
-        {errors.time && (
-          <span className={css.validationError}>{errors.time.message}</span>
+        {errors.date && (
+          <span className={css.validationError}>{errors.date.message}</span>
         )}
 
         <label className={css.valueLabel} htmlFor="value">
           Enter the value of the water used:
         </label>
         <input
-          {...register('waterValue')}
+          {...register('amount')}
           className={css.input}
           type="number"
           name="value"
           id="value"
-          onChange={(e) => setValue('waterValue', Number(e.target.value))}
+          onChange={(e) => setValue('amount', Number(e.target.value))}
         />
-        {errors.waterValue && (
-          <span className={css.validationError}>
-            {errors.waterValue.message}
-          </span>
+        {errors.amount && (
+          <span className={css.validationError}>{errors.amount.message}</span>
         )}
       </div>
       <button className={css.submitButton} type="submit">
