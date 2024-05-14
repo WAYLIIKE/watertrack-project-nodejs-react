@@ -1,60 +1,52 @@
 .btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: absolute;
   right: 16px;
   bottom: 32px;
   width: 140px;
   height: 46px;
+  padding: 20px 14px;
+
   background-color: var(--color-darkblue);
-  color: var(--color-white);
-  border-radius: 30px;
   border: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-  padding-right: 20px;
-  padding-left: 10px;
+  border-radius: 30px;
   transition: var(--animation);
-}
-.btn svg {
-  width: 30px;
-  height: 30px;
-}
-.btn svg path {
-  stroke: var(--color-white);
-}
-.btnText {
+
+  /* TEXT */
   font-size: 14px;
   line-height: 1.28;
   letter-spacing: -0.01em;
   font-weight: bold;
+  color: var(--color-white);
+}
+.btn svg {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  stroke: var(--color-white);
 }
 .btn:hover,
-.btn svg path:hover {
+.btn svg:hover {
   stroke: var(--color-lightgreen);
   color: var(--color-lightgreen);
 }
 
-@media only screen and (min-width: 768px) {
+@media (--tablet-bp) {
   .btn {
     width: 178px;
     height: 60px;
-
     right: 32px;
     bottom: 64px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    padding: 18px 30px 18px 30px;
+    padding: 18px 30px;
+
+    /* TEXT */
+    font-size: 16px;
+    line-height: 1.5;
   }
   .btn svg {
-    width: 24px;
-    height: 24px;
-  }
-  .btnText {
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: -0.01em;
+    width: 28px;
+    height: 28px;
   }
 }
