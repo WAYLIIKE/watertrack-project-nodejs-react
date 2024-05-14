@@ -15,7 +15,7 @@ const schema = yup.object().shape({
     .number()
     .min(10, 'Amount of water must be greater than 10 ml')
     .max(2000, 'Amount of water must be less than 2000 ml')
-    .typeError('Enter a valid amount of vwater in ml')
+    .typeError('Enter a valid amount of water in ml')
     .positive('Value must be positive')
     .required('Value is required'),
 });
