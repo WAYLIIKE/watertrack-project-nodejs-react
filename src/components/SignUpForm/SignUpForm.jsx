@@ -3,14 +3,22 @@ import css from './SignUpForm.module.css';
 import { IconEyeClose } from '../Icons/IconEyeClose';
 import { IconEye } from '../Icons/IconEye';
 import * as Yup from 'yup';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
 import { useId, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../redux/user/userOps';
+
 export const SignUpForm = () => {
+  const dispatch = useDispatch();
+
   const emailId = useId();
   const passwordId = useId();
   const passwordRepeatId = useId();
+
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordReap, setshowPasswordReap] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
+
   const registerSchema = Yup.object().shape({
     email: Yup.string()
       .email()
@@ -25,13 +33,18 @@ export const SignUpForm = () => {
       .required('No password provided')
       .matches(/\d/, 'The password must contain at least one number'),
   });
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
   const togglePasswordVisibilityP = () => {
     setshowPasswordReap(!showPasswordReap);
   };
-  return (
+
+  return isRegistered ? (
+    <Navigate to="/signin" />
+  ) : (
     <div className={css.signupBack}>
       <Formik
         initialValues={{
@@ -40,19 +53,22 @@ export const SignUpForm = () => {
           passwordRepeat: '',
         }}
         validationSchema={registerSchema}
-        onSubmit={async (values, action) => {
-          const { passwordRepeat, password } = values;
-          try {
-            if (password !== passwordRepeat) {
-              action.setFieldError('passwordRepeat', 'Passwords do not match');
-            } else {
-              console.log('Register success');
-              action.resetForm();
-            }
-            // await signUp(formData);
-          } catch (error) {
-            console.error('Registration failed:', error.message);
-          }
+        onSubmit={(values, action) => {
+          const { passwordRepeat, password, email } = values;
+
+          if (password !== passwordRepeat)
+            return action.setFieldError(
+              'passwordRepeat',
+              'Passwords do not match'
+            );
+
+          const dispatchObj = { email, password };
+
+          console.log(dispatchObj);
+          dispatch(signUp(dispatchObj));
+          setIsRegistered(true);
+
+          action.resetForm();
         }}
       >
         <Form className={css.signupForm}>

@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import { WaterModal } from '../../components/WaterModal/WaterModal';
-import { DeleteWaterModal } from '../../components/DeleteWaterModal/DeleteWaterModal';
 import { LogOutModal } from '../../components/LogOutModal/LogOutModal';
 import { Container } from '../../components/Container/Container';
 import { BaseModal } from '../../components/BaseModal/BaseModal';
@@ -10,9 +9,7 @@ import { UserSettingsModal } from '../../components/UserSettingsModal/UserSettin
 import { Page } from '../../components/Page/Page';
 
 export default function TrackerPage() {
-  const [isOpen, setIsOpen] = useState(false);
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
@@ -59,7 +56,7 @@ export default function TrackerPage() {
         <WaterList />
 
         <BaseModal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>
-          <LogOutModal title={'Log out'} />
+          <LogOutModal title={'Log out'} onClose={closeLogoutModal} />
         </BaseModal>
 
         <BaseModal isOpen={isWaterModalOpen} onClose={closeWaterModal}>
