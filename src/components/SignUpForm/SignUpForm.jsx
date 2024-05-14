@@ -2,14 +2,29 @@ import { ErrorMessage, Field, Form, Formik, getIn } from 'formik';
 import css from './SignUpForm.module.css';
 import { IconEyeClose } from '../Icons/IconEyeClose';
 import { IconEye } from '../Icons/IconEye';
+import * as Yup from 'yup';
 import { NavLink } from 'react-router-dom';
 import { useId, useState } from 'react';
-export const SignUpForm = ({ registerSchema }) => {
+export const SignUpForm = () => {
   const emailId = useId();
   const passwordId = useId();
   const passwordRepeatId = useId();
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordReap, setshowPasswordReap] = useState(false);
+  const registerSchema = Yup.object().shape({
+    email: Yup.string()
+      .email()
+      .matches('^(?!.*@[^,]*,)', 'Invalid email')
+      .required('Email is required'),
+    password: Yup.string()
+      .matches(/\d/, 'The password must contain at least one number')
+      .required('No password provided.')
+      .min(8, 'Password is too short - should be 8 chars minimum.')
+      .matches('[a-zA-Z]', 'Password can only contain Latin letters.'),
+    passwordRepeat: Yup.string()
+      .required('No password provided')
+      .matches(/\d/, 'The password must contain at least one number'),
+  });
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };

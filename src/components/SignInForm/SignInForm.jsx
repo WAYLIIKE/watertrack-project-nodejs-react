@@ -3,11 +3,23 @@ import css from './SignInForm.module.css';
 import { IconEyeClose } from '../Icons/IconEyeClose';
 import { IconEye } from '../Icons/IconEye';
 import { NavLink } from 'react-router-dom';
+import * as Yup from 'yup';
 import { useId, useState } from 'react';
-export const SignInForm = ({ loginSchema }) => {
+export const SignInForm = () => {
   const emailId = useId();
   const passId = useId();
   const [showPassword, setShowPassword] = useState(false);
+  const loginSchema = Yup.object().shape({
+    email: Yup.string()
+      .email()
+      .matches('^(?!.*@[^,]*,)', 'Invalid email')
+      .required('Email is required'),
+    password: Yup.string()
+      .matches(/\d/, 'The password must contain at least one number')
+      .required('No password provided.')
+      .min(8, 'Password is too short - should be 8 chars minimum.')
+      .matches('[a-zA-Z]', 'Password can only contain Latin letters.'),
+  });
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
