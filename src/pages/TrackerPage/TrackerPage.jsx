@@ -4,6 +4,7 @@ import { DeleteWaterModal } from '../../components/DeleteWaterModal/DeleteWaterM
 import { LogOutModal } from '../../components/LogOutModal/LogOutModal';
 import { Container } from '../../components/Container/Container';
 import { BaseModal } from '../../components/BaseModal/BaseModal';
+import { WaterList } from '../../components/WaterList/WaterList';
 import { useState } from 'react';
 import { UserSettingsModal } from '../../components/UserSettingsModal/UserSettingsModal';
 import { Page } from '../../components/Page/Page';
@@ -20,24 +21,8 @@ export default function TrackerPage() {
     setIsWaterModalOpen(true);
   };
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
   const closeWaterModal = () => {
     setIsWaterModalOpen(false);
-  };
-
-  const openDeleteModal = () => {
-    setIsDeleteModalOpen(true);
-  };
-
-  const closeDeleteModal = () => {
-    setIsDeleteModalOpen(false);
   };
 
   const openLogoutModal = () => {
@@ -59,31 +44,20 @@ export default function TrackerPage() {
   return (
     <Container>
       <Page>
-        <p>Tracker page...</p>
-        <button type="button" onClick={openModal}>
-          Open
-        </button>
+        <div>
+          <button type="button" onClick={openWaterModal}>
+            Open add water
+          </button>
+          <button type="button" onClick={openSettingsModal}>
+            Open settings
+          </button>
+          <button type="button" onClick={openLogoutModal}>
+            Log out
+          </button>
+        </div>
+        
+        <WaterList />
 
-        <button type="button" onClick={openWaterModal}>
-          Open add water
-        </button>
-
-        <button type="button" onClick={openSettingsModal}>
-          Open settings
-        </button>
-
-        <button type="button" onClick={openDeleteModal}>
-          Delete Water
-        </button>
-        <button type="button" onClick={openLogoutModal}>
-          Log out
-        </button>
-        <BaseModal isOpen={isOpen} onClose={closeModal}>
-          <WaterModal title={'Add water'} />
-        </BaseModal>
-        <BaseModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}>
-          <DeleteWaterModal title={'Delete entry'} />
-        </BaseModal>
         <BaseModal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>
           <LogOutModal title={'Log out'} />
         </BaseModal>
