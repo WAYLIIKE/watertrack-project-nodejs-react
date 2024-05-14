@@ -1,0 +1,36 @@
+.userBar {
+  &__thumb {
+    position: relative;
+    display: inline-flex;
+    align-self: flex-start;
+    flex-direction: column;
+  }
+
+  &__button {
+    display: inline-flex;
+    align-self: flex-start;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px;
+    gap: 8px;
+    border-radius: 30px;
+    height: 50px;
+
+    background: var(--color-darkblue);
+    color: var(--color-white);
+  }
+
+  &__name {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+  }
+
+  &__avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: indianred;
+  }
+}
