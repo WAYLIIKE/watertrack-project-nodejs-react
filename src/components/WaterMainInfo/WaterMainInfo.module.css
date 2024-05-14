@@ -1,86 +1,67 @@
 .container {
-    min-width: 288px;
-    max-width: 343px;
-  }
-  .WaterMaininfoContainer {
-    background: var(--color-lightgreen);
-    border-radius: 30px;
-    height: 415px;
-    position: relative;
-  }
-  
-  .header {
-    font-size: 18px;
-    line-height: 20px;
-    letter-spacing: -0.01em;
-    padding-top: 24px;
-    padding-left: 16px;
-    margin: 0;
+  min-width: 288px;
+  max-width: 343px;
+  height: 415px;
+  background: var(--color-lightgreen);
+  border-radius: 30px;
+  position: relative;
+}
+.header {
+  font-size: 18px;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  padding-top: 24px;
+  padding-left: 16px;
+}
+.imgWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.img {
+  width: 262px;
+  height: 335px;
+  object-fit: cover;
+}
+
+@media (--tablet-bp) {
+  .container {
+    min-width: 704px;
+    height: 578px;
   }
   .imgWrapper {
-    width: 100%;
-  
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    margin-top: 6px;
+    margin-top: 13px;
   }
   .img {
-    padding: 0;
-    margin: 0;
-    max-width: 262px;
-    height: 335px;
-    margin-bottom: 30px;
+    width: 374px;
+    height: 477px;
   }
-  
-  @media only screen and (min-width: 768px) {
-    .container {
-      max-width: 768px;
-    }
-    .WaterMaininfoContainer {
-      background: var(--color-lightgreen);
-  
-      height: 578px;
-    }
-    .imgWrapper {
-      margin-top: 13px;
-    }
-    .img {
-      max-width: 374px;
-      height: 477px;
-      margin-bottom: 32px;
-    }
-    .header {
-      font-size: 24px;
-      line-height: 24px;
-      letter-spacing: -0.01em;
-      padding-top: 32px;
-      padding-left: 32px;
-    }
+  .header {
+    font-size: 24px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    padding-top: 32px;
+    padding-left: 32px;
+    margin-bottom: 13px;
   }
-  
-  @media only screen and (min-width: 1440px) {
-    .container {
-      width: 672px;
-      margin: 0;
-      padding: 0;
-      height: 736px;
-    }
-    .WaterMaininfoContainer {
-      background: var(--color-lightgreen);
-  
-      height: 736px;
-    }
-    .imgWrapper {
-      margin-top: 32px;
-    }
-    .img {
-      max-width: 472px;
-      height: 604px;
-      margin-bottom: 40px;
-    }
-    .header {
-      padding-top: 32px;
-      padding-left: 33px;
-    }
+}
+
+@media (--desktop-bp) {
+  .container {
+    min-width: 672px;
+    height: 736px;
   }
+  .imgWrapper {
+    margin-top: 32px;
+  }
+  .img {
+    width: 472px;
+    height: 604px;
+  }
+  .header {
+    padding-top: 32px;
+    padding-left: 33px;
+    margin-bottom: 36px;
+  }
+}

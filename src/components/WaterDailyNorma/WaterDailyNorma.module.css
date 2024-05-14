@@ -8,47 +8,41 @@
   border-radius: 15px;
   margin-left: 16px;
   margin-top: 72px;
+  padding: 12px;
 }
 .title {
   pointer-events: none;
   font-size: 14px;
   font-weight: bold;
-  line-height: 14px;
-  padding-top: 12px;
-  padding-left: 12px;
+  line-height: 1;
   margin-bottom: 6px;
+  color: var(--color-darkblue);
 }
 .desc {
   pointer-events: none;
   font-size: 10px;
-  line-height: 10px;
-  font-weight: 400;
-  padding-left: 12px;
+  line-height: 1;
   opacity: 0.6;
 }
-@media only screen and (min-width: 768px) {
+@media (--tablet-bp) {
   .dailyNorm {
     width: 129px;
     height: 78px;
     margin-left: 32px;
     margin-top: 88px;
+    padding: 14px 18px;
   }
   .title {
     font-size: 15px;
-
-    line-height: 22.4px;
-    padding-top: 14px;
-    padding-left: 18px;
+    line-height: 1.49;
     margin-bottom: 4px;
   }
   .desc {
     font-size: 12px;
-    line-height: 22.4px;
-    font-weight: 400;
-    padding-left: 18px;
+    line-height: 1.86;
   }
 }
-@media only screen and (min-width: 1440px) {
+@media (--desktop-bp) {
   .dailyNorm {
     margin-left: 64px;
     margin-top: 101px;

@@ -1,14 +1,33 @@
 import { useForm } from 'react-hook-form';
-
-import css from './WaterForm.module.css';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import { IconPlus } from '../../components/Icons/IconPlus';
 import { IconMinus } from '../Icons/IconMinus';
 
 import { getCurrentTime } from '../../helpers/getCurrentTime';
 
-export const WaterForm = () => {
-  const { register, setValue, getValues, watch, handleSubmit } = useForm({
+import css from './WaterForm.module.css';
+
+const schema = yup.object().shape({
+  time: yup.string().required('Time is required'),
+  waterValue: yup
+    .number()
+    .typeError('Enter a valid number')
+    .positive('Value must be positive')
+    .required('Value is required'),
+});
+
+export const WaterForm = ({ subtitle }) => {
+  const {
+    register,
+    setValue,
+    getValues,
+    watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
     defaultValues: {
       time: getCurrentTime(),
       waterValue: 50,
@@ -16,7 +35,7 @@ export const WaterForm = () => {
   });
 
   const submitForm = (data) => {
-    console.log(data);
+    console.log(data); // TEMPORARY
   };
 
   const subtract = () => {
@@ -30,8 +49,8 @@ export const WaterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(submitForm)}>
-      <p className={css.subtitle}>Choose a value</p>
+    <form className={css.formWrapper} onSubmit={handleSubmit(submitForm)}>
+      <p className={css.subtitle}>{subtitle}</p>
       <span className={css.amountTitle}>Amount of water:</span>
       <div className={css.amountWrapper}>
         <button
@@ -49,6 +68,7 @@ export const WaterForm = () => {
           <IconPlus className={css.icon} />
         </button>
       </div>
+
       <div className={css.fieldsWrapper}>
         <label className={css.timeLabel} htmlFor="time">
           Recording time:
@@ -60,6 +80,9 @@ export const WaterForm = () => {
           name="time"
           id="time"
         />
+        {errors.time && (
+          <span className={css.validationError}>{errors.time.message}</span>
+        )}
 
         <label className={css.valueLabel} htmlFor="value">
           Enter the value of the water used:
@@ -72,6 +95,9 @@ export const WaterForm = () => {
           id="value"
           onChange={(e) => setValue('waterValue', Number(e.target.value))}
         />
+        {errors.waterValue && (
+          <span className={css.validationError}>{errors.time.message}</span>
+        )}
       </div>
       <button className={css.submitButton} type="submit">
         Save

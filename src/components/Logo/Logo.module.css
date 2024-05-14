@@ -1,0 +1,18 @@
+.logo {
+  position: absolute;
+  z-index: 999;
+  top: 24px;
+  left: 16px;
+  color: var(--color-darkblue);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.24px;
+  text-transform: uppercase;
+}
+@media screen and (min-width: 768px) {
+  .logo {
+    top: 32px;
+    left: 32px;
+  }
+}

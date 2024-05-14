@@ -36,6 +36,12 @@
   height: 100%;
 }
 
+.amountButton:hover svg path,
+.amountButton:hover svg rect {
+  stroke: var(--color-lightgreenhover);
+  transition: stroke var(--animation);
+}
+
 .amountButton:disabled svg path,
 .amountButton:disabled svg rect {
   stroke: #323f4750;
@@ -53,11 +59,6 @@
   line-height: 1.28;
 }
 
-.fieldsWrapper {
-  display: flex;
-  flex-direction: column;
-}
-
 .timeLabel {
   color: var(--color-black);
   font-size: 14px;
@@ -70,15 +71,36 @@
   border-radius: 15px;
   border: 1px solid rgba(47, 47, 47, 0.15);
   width: 100%;
-  max-width: 375px;
   padding: 14px 16px;
   margin-bottom: 24px;
+  outline: none;
+  transition:
+    border-color var(--animation),
+    transform var(--animation);
 
   /*content styles*/
   color: var(--color-black);
   font-size: 14px;
-  line-height: 1.25;
+  line-height: 1.28;
   letter-spacing: -0.14px;
+}
+
+.validationError {
+  color: var(--color-error);
+  position: absolute;
+  top: 80px;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.input:hover {
+  border-color: var(--color-lightgreenhover);
+}
+
+.input:focus {
+  border-color: var(--color-lightgreenhover);
+  transform: scale(1.01);
 }
 
 .valueLabel {
@@ -140,7 +162,6 @@
   }
 
   .input {
-    max-width: 438px;
     padding: 16px;
     margin-bottom: 24px;
 

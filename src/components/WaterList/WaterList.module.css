@@ -1,0 +1,25 @@
+.wrapper {
+  width: 200px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--color-darkblue);
+  border-radius: 9px;
+}
+
+.wrapper::-webkit-scrollbar-track {
+  background-color: var(--color-white);
+  border-radius: 9px;
+}
+
+.wrapper::-webkit-scrollbar-thumb:vertical {
+  display: none;
+}

@@ -1,0 +1,105 @@
+.container {
+  text-align: center;
+}
+
+.title {
+  color: var(--color-darkblue);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  margin-bottom: 16px;
+  width: 316px;
+  max-width: 100%;
+}
+
+@media (--tablet-bp) {
+  .title {
+    font-size: 28px;
+    line-height: 1.14;
+    letter-spacing: -0.28px;
+    margin-bottom: 24px;
+    width: 436px;
+  }
+}
+
+.question {
+  color: var(--color-darkblue);
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+  margin-bottom: 28px;
+}
+
+@media (--tablet-bp) {
+  .question {
+    font-size: 18px;
+    line-height: 1.33;
+    letter-spacing: -0.18px;
+    margin-bottom: 24px;
+  }
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 9px;
+}
+
+@media (--tablet-bp) {
+  .buttonWrapper {
+    flex-direction: row;
+    gap: 10px;
+  }
+}
+
+.deleteButton {
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  background-color: var(--color-lightgreen);
+  color: var(--color-darkblue);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+  transition: background-color var(--animation);
+}
+
+@media (--tablet-bp) {
+  .deleteButton {
+    padding: 18px 59px;
+  }
+}
+
+.deleteButton:hover {
+  background-color: var(--color-lightgreenhover);
+}
+
+.cancelButton {
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  background-color: var(--color-lightgray);
+  color: var(--color-darkblue);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+}
+
+@media (--tablet-bp) {
+  .cancelButton {
+    padding: 18px 59px;
+  }
+}
+
+.cancelButtonText {
+  opacity: 0.3;
+  transition: opacity var(--animation);
+}
+
+.cancelButton:hover .cancelButtonText {
+  opacity: 1;
+}

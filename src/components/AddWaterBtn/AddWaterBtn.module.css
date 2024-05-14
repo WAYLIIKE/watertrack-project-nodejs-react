@@ -1,51 +1,38 @@
 .btn {
   position: absolute;
+  right: 16px;
+  bottom: 32px;
   width: 140px;
   height: 46px;
   background-color: var(--color-darkblue);
+  color: var(--color-white);
   border-radius: 30px;
-  right: 16px;
-  bottom: 32px;
+  border: none;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   align-content: center;
-  gap: 10px;
+  padding-right: 20px;
+  padding-left: 10px;
+  transition: var(--animation);
 }
-.svg {
-  fill: var(--color-lightgray) !important;
-  stroke: var(--color-lightgray) !important;
-  width: 16px;
-  height: 16px;
+.btn svg {
+  width: 30px;
+  height: 30px;
 }
-.icon {
-  width: 100%;
-  height: 100%;
-  fill: var(--color-lightgray) !important;
-  stroke: var(--color-lightgray) !important;
+.btn svg path {
+  stroke: var(--color-white);
 }
-
-
 .btnText {
-  color: var(--color-white);
   font-size: 14px;
-  line-height: 14px;
+  line-height: 1.28;
   letter-spacing: -0.01em;
   font-weight: bold;
 }
-
-.btn:focus,
-.btn:focus-visible {
-  outline: none;
-}
-.btn:hover {
-  background-color: var(--color-darkblue);
-  color: var(--color-lightgreen) !important;
-  fill: var(--color-lightgreen) !important;
-}
-.btn:active {
-  outline: none;
-  border: none;
+.btn:hover,
+.btn svg path:hover {
+  stroke: var(--color-lightgreen);
+  color: var(--color-lightgreen);
 }
 
 @media only screen and (min-width: 768px) {
@@ -61,12 +48,9 @@
     align-content: center;
     padding: 18px 30px 18px 30px;
   }
-  .svg {
+  .btn svg {
     width: 24px;
     height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
   .btnText {
     font-size: 16px;

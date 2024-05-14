@@ -1,16 +1,12 @@
-import css from "./AddWaterBtn.module.css";
+import { IconPlus } from '../Icons/IconPlus';
+import css from './AddWaterBtn.module.css';
 // import WaterModal from "../WaterModal/WaterModal";
 
 const AddWaterBtn = () => {
   return (
     <button className={css.btn} type="button">
-        <svg className={css.svg}>
-          <use
-            className={css.icon}
-            href="../Icons/IconPlus.jsx"
-          ></use>
-        </svg>
-        <a className={css.btnText}>Add water</a>
+      <IconPlus className={css.icon} />
+      <span className={css.btnText}>Add water</span>
     </button>
   );
 };
