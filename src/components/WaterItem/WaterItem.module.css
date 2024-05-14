@@ -86,6 +86,11 @@
   border: none;
   line-height: 0.7;
   padding: 0;
+  transition: color var(--animation);
+}
+
+.button:hover {
+  color: var(--color-lightgreenhover);
 }
 
 .button svg {

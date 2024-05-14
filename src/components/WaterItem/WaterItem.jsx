@@ -26,8 +26,8 @@ export const WaterItem = () => {
     <div className={css.itemWrapper}>
       <IconGlass />
       <div className={css.textWrapper}>
-        <p className={css.amount}>Amount</p>
-        <p className={css.time}>Time</p>
+        <p className={css.amount}>250 ml</p>
+        <p className={css.time}>11:34 AM</p>
       </div>
       <div className={css.buttonWrapper}>
         <button className={css.button} type="button" onClick={openModal}>
@@ -38,7 +38,7 @@ export const WaterItem = () => {
         </button>
       </div>
       <BaseModal isOpen={isOpen} onClose={closeModal}>
-        <WaterModal title={'Add water'} />
+        <WaterModal title={'Edit the entered amount of water'} />
       </BaseModal>
       <BaseModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}>
         <DeleteWaterModal title={'Delete entry'} />
