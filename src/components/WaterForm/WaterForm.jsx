@@ -18,7 +18,7 @@ const schema = yup.object().shape({
     .required('Value is required'),
 });
 
-export const WaterForm = () => {
+export const WaterForm = ({ subtitle }) => {
   const {
     register,
     setValue,
@@ -49,8 +49,8 @@ export const WaterForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(submitForm)}>
-      <p className={css.subtitle}>Choose a value</p>
+    <form className={css.formWrapper} onSubmit={handleSubmit(submitForm)}>
+      <p className={css.subtitle}>{subtitle}</p>
       <span className={css.amountTitle}>Amount of water:</span>
       <div className={css.amountWrapper}>
         <button

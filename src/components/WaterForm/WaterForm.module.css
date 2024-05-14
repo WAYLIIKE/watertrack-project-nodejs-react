@@ -59,12 +59,6 @@
   line-height: 1.28;
 }
 
-.fieldsWrapper {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
 .timeLabel {
   color: var(--color-black);
   font-size: 14px;
@@ -77,8 +71,6 @@
   border-radius: 15px;
   border: 1px solid rgba(47, 47, 47, 0.15);
   width: 100%;
-  height: 46px;
-  max-width: 375px;
   padding: 14px 16px;
   margin-bottom: 24px;
   outline: none;
@@ -102,7 +94,7 @@
   margin: 0;
   padding: 0;
 }
-  
+
 .input:hover {
   border-color: var(--color-lightgreenhover);
 }
@@ -111,7 +103,6 @@
   border-color: var(--color-lightgreenhover);
   transform: scale(1.01);
 }
-
 
 .valueLabel {
   color: var(--color-darkblue);
@@ -172,8 +163,6 @@
   }
 
   .input {
-    height: 56px;
-    max-width: 438px;
     padding: 16px;
     margin-bottom: 24px;
 
