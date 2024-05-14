@@ -13,7 +13,9 @@ const schema = yup.object().shape({
   date: yup.string().required('Please, enter the recorded time'),
   amount: yup
     .number()
-    .typeError('Enter a valid number')
+    .min(10, 'Amount of water must be greater than 10 ml')
+    .max(2000, 'Amount of water must be less than 2000 ml')
+    .typeError('Enter a valid amount of vwater in ml')
     .positive('Value must be positive')
     .required('Value is required'),
 });
@@ -76,7 +78,7 @@ export const WaterForm = ({ subtitle }) => {
         <input
           {...register('date')}
           className={css.input}
-          type="date"
+          type="time"
           name="date"
           id="date"
         />
