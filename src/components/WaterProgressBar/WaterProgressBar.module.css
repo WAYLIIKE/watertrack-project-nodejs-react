@@ -39,8 +39,12 @@
 }
 
 @media (--tablet-bp) {
+<<<<<<< HEAD
   .container {
     margin-top: 253px;
+=======
+  .progressCont {
+>>>>>>> 4d31f75033b007c3de1c1e1489e12fa3b25de29e
     width: 295px;
     height: 106px;
     gap: 6px;
@@ -65,7 +69,14 @@
   }
 }
 @media (--desktop-bp) {
+<<<<<<< HEAD
   .container {
+=======
+  .progressCont {
+    width: 295px;
+    height: 106px;
+    left: 50%;
+>>>>>>> 4d31f75033b007c3de1c1e1489e12fa3b25de29e
     margin-top: 394px;
   }
 }
