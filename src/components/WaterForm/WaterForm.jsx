@@ -8,6 +8,7 @@ import { IconMinus } from '../Icons/IconMinus';
 import { getCurrentTime } from '../../helpers/getCurrentTime';
 
 import css from './WaterForm.module.css';
+import { convertTimeToUnix } from '../../helpers/convertTimeToUnix';
 
 const schema = yup.object().shape({
   date: yup.string().required('Please, enter the recorded time'),
@@ -37,7 +38,15 @@ export const WaterForm = ({ subtitle }) => {
   });
 
   const submitForm = (data) => {
-    console.log(data); // TEMPORARY
+    const time = data.date;
+
+    const unixTime = convertTimeToUnix(time);
+
+    const dataToSend = {
+      amount: data.amount,
+      time: unixTime,
+    };
+    console.log(dataToSend); // TEMPORARY
   };
 
   const subtract = () => {
