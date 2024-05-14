@@ -38,7 +38,10 @@ export const WaterItem = () => {
         </button>
       </div>
       <BaseModal isOpen={isOpen} onClose={closeModal}>
-        <WaterModal title={'Edit the entered amount of water'} />
+        <WaterModal
+          title={'Edit the entered amount of water'}
+          subtitle={'Correct entered data:'}
+        />
       </BaseModal>
       <BaseModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}>
         <DeleteWaterModal title={'Delete entry'} />

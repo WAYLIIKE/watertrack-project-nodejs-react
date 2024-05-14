@@ -55,7 +55,7 @@ export default function TrackerPage() {
             Log out
           </button>
         </div>
-        
+
         <WaterList />
 
         <BaseModal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>
@@ -63,7 +63,7 @@ export default function TrackerPage() {
         </BaseModal>
 
         <BaseModal isOpen={isWaterModalOpen} onClose={closeWaterModal}>
-          <WaterModal title={'Add water'} />
+          <WaterModal title={'Add water'} subtitle={'Choose a value:'} />
         </BaseModal>
 
         <BaseModal isOpen={isSettingsModalOpen} onClose={closeSettingsModal}>

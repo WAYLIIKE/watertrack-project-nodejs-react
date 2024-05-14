@@ -13,7 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import { waterReducer } from './water/waterSlice';
 import { userReducer } from './user/userSlice';
 
-const authPersistConfig = {
+const userPersistConfig = {
   key: 'user',
   storage,
   whitelist: ['accessToken', 'refreshToken'],
@@ -22,7 +22,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     water: waterReducer,
-    user: persistReducer(authPersistConfig, userReducer),
+    user: persistReducer(userPersistConfig, userReducer),
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
