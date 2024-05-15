@@ -3,7 +3,6 @@ import { AdvantagesSection } from '../../components/AdvantagesSection/Advantages
 import { Container } from '../../components/Container/Container';
 import { WelcomeSection } from '../../components/WelcomeSection/WelcomeSection';
 import { Page } from '../../components/Page/Page';
-import { MonthInfo } from '../../components/MonthInfo/MonthInfo';
 
 export default function HomePage() {
   return (
@@ -15,7 +14,6 @@ export default function HomePage() {
         <WelcomeSection />
         <AdvantagesSection />
       </Page>
-      <MonthInfo />
     </Container>
   );
 }

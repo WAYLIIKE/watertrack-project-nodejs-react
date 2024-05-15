@@ -1,6 +1,7 @@
 .paginationSection {
   display: flex;
   gap: 58px;
+  margin-bottom: 24px;
 }
 .month {
   color: #323f47;
@@ -39,4 +40,30 @@
   font-weight: 700;
   line-height: 18px; /* 128.571% */
   letter-spacing: -0.14px;
+}
+@media (--tablet-bp) {
+  .paginationSection {
+    gap: 343px;
+  }
+  .month {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 32px; /* 114.286% */
+    letter-spacing: -0.28px;
+  }
+  .span {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.16px;
+  }
+  .chooseMonth {
+    gap: 20px;
+  }
+}
+@media (--desktop-bp) {
+  .paginationSection {
+    gap: 311px;
+  }
 }

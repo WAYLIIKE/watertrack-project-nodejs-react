@@ -7,6 +7,7 @@ import { WaterList } from '../../components/WaterList/WaterList';
 import { useState } from 'react';
 import { UserSettingsModal } from '../../components/UserSettingsModal/UserSettingsModal';
 import { Page } from '../../components/Page/Page';
+import { MonthInfo } from '../../components/MonthInfo/MonthInfo';
 
 export default function TrackerPage() {
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
@@ -66,6 +67,7 @@ export default function TrackerPage() {
         <BaseModal isOpen={isSettingsModalOpen} onClose={closeSettingsModal}>
           <UserSettingsModal />
         </BaseModal>
+        <MonthInfo />
       </Page>
       <Helmet>
         <title>Tracker</title>

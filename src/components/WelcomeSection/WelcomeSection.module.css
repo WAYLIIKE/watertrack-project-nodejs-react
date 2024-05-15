@@ -49,12 +49,10 @@
 .linkSignIn {
   width: 104px;
   display: flex;
-  padding: 14px 28px;
+  padding: 14px 24px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   color: var(--color-darkblue);
-  text-align: center;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.28;
@@ -100,7 +98,7 @@
   }
   .linkSignIn {
     width: 135px;
-    padding: 18px 40px;
+    padding: 18px 38px;
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: -0.16px;
@@ -117,7 +115,7 @@
   }
 }
 
-@media screen and (min-width: 1440px){
+@media screen and (min-width: 1440px) {
   .welcomSection {
     margin: 0;
   }
