@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './components/SharedLayout/SharedLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from './redux/selectors';
-import { refresh } from './redux/user/userOps';
+import { current } from './redux/user/userOps';
 import { RestrictedRoute } from './components/RestrictedRoute';
 import { PrivateRoute } from './components/PrivateRoute';
 import { Toaster } from 'react-hot-toast';
@@ -20,7 +20,7 @@ export function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(refresh());
+    dispatch(current());
   }, [dispatch]);
 
   return isRefreshing ? (
