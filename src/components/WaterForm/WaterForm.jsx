@@ -9,11 +9,15 @@ import { getCurrentTime } from '../../helpers/getCurrentTime';
 
 import css from './WaterForm.module.css';
 
+import { convertTimeToUnix } from '../../helpers/convertTimeToUnix';
+
 const schema = yup.object().shape({
-  time: yup.string().required('Time is required'),
-  waterValue: yup
+  date: yup.string().required('Please, enter the recorded time'),
+  amount: yup
     .number()
-    .typeError('Enter a valid number')
+    .min(10, 'Amount of water must be greater than 10 ml')
+    .max(2000, 'Amount of water must be less than 2000 ml')
+    .typeError('Enter a valid amount of water in ml')
     .positive('Value must be positive')
     .required('Value is required'),
 });
@@ -29,23 +33,31 @@ export const WaterForm = ({ subtitle }) => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      time: getCurrentTime(),
-      waterValue: 50,
+      date: getCurrentTime(),
+      amount: 50,
     },
   });
 
   const submitForm = (data) => {
-    console.log(data); // TEMPORARY
+    const time = data.date;
+
+    const unixTime = convertTimeToUnix(time);
+
+    const dataToSend = {
+      amount: data.amount,
+      time: unixTime,
+    };
+    console.log(dataToSend); // тимчасовий консоль лог. Буде опрацьовуватись відправка
   };
 
   const subtract = () => {
-    const currentValue = getValues('waterValue');
-    setValue('waterValue', currentValue - 50);
+    const currentValue = getValues('amount');
+    setValue('amount', currentValue - 50);
   };
 
   const add = () => {
-    const currentValue = getValues('waterValue');
-    setValue('waterValue', currentValue + 50);
+    const currentValue = getValues('amount');
+    setValue('amount', currentValue + 50);
   };
 
   return (
@@ -57,12 +69,12 @@ export const WaterForm = ({ subtitle }) => {
           className={css.amountButton}
           onClick={subtract}
           type="button"
-          disabled={getValues('waterValue') === 0 ? true : false}
+          disabled={getValues('amount') === 0 ? true : false}
         >
           <IconMinus className={css.icon} />
         </button>
 
-        <span className={css.amountValue}>{`${watch('waterValue')} ml`}</span>
+        <span className={css.amountValue}>{`${watch('amount')} ml`}</span>
 
         <button className={css.amountButton} onClick={add} type="button">
           <IconPlus className={css.icon} />
@@ -70,33 +82,33 @@ export const WaterForm = ({ subtitle }) => {
       </div>
 
       <div className={css.fieldsWrapper}>
-        <label className={css.timeLabel} htmlFor="time">
+        <label className={css.timeLabel} htmlFor="date">
           Recording time:
         </label>
         <input
-          {...register('time')}
+          {...register('date')}
           className={css.input}
           type="time"
-          name="time"
-          id="time"
+          name="date"
+          id="date"
         />
-        {errors.time && (
-          <span className={css.validationError}>{errors.time.message}</span>
+        {errors.date && (
+          <span className={css.validationError}>{errors.date.message}</span>
         )}
 
         <label className={css.valueLabel} htmlFor="value">
           Enter the value of the water used:
         </label>
         <input
-          {...register('waterValue')}
+          {...register('amount')}
           className={css.input}
           type="number"
           name="value"
           id="value"
-          onChange={(e) => setValue('waterValue', Number(e.target.value))}
+          onChange={(e) => setValue('amount', Number(e.target.value))}
         />
-        {errors.waterValue && (
-          <span className={css.validationError}>{errors.time.message}</span>
+        {errors.amount && (
+          <span className={css.validationError}>{errors.amount.message}</span>
         )}
       </div>
       <button className={css.submitButton} type="submit">
