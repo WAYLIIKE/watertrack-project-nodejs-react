@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { refreshTokens } from './userSlice';
 
 // axios.defaults.baseURL =
 //   'https://server-watertrack-project-nodejs.onrender.com/api';
@@ -18,33 +19,37 @@ const clearAuthHeader = () => {
   axiosInstance.defaults.headers.common.Authorization = '';
 };
 
-// axiosInstance.interceptors.response.use(
-//   (response) => response,
-//   async (error) => {
-//     if (error.response.status === 401) {
-//       const LSData = localStorage.getItem('persist:user');
-//       const persistObject = JSON.parse(LSData);
-//       const refreshTokenOld = persistObject.refreshToken;
-//       const refreshToken = refreshTokenOld.slice(1, -1);
+export const setupAxiosInterceptors = (store) => {
+  axiosInstance.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+      if (error.response.status === 401) {
+        try {
+          const { refreshToken } = store.getState().user;
+          if (refreshToken) {
+            const { data } = await axiosInstance.post(
+              '/users/current/refresh',
+              {
+                refreshToken,
+              }
+            );
+            await setAuthHeader(data.accessToken);
+            await store.dispatch(refreshTokens(data));
+            error.config.headers.authorization = `Bearer ${data.accessToken}`;
+          }
 
-//       console.log('INSTANSE INTERCEPTORS');
-//       try {
-//         const { data } = await axiosInstance.post('/users/current/refresh', {
-//           refreshToken,
-//         });
-//         setAuthHeader(data.accessToken);
-//         persistObject.accessToken = data.accessToken;
-//         persistObject.refreshToken = data.refreshToken;
-//         localStorage.setItem('persist:user', JSON.stringify(persistObject));
-
-//         return axiosInstance(error.config);
-//       } catch (error) {
-//         return Promise.reject(error);
-//       }
-//     }
-//     return Promise.reject(error);
-//   }
-// );
+          return axios.request(error.config);
+        } catch (error) {
+          return Promise.reject(error);
+        }
+      }
+      if (error.responce.status === 403) {
+        console.log('403');
+      }
+      return Promise.reject(error);
+    }
+  );
+};
 
 export const signUp = createAsyncThunk(
   'user/signup',
@@ -82,82 +87,6 @@ export const signOut = createAsyncThunk('user/signout', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-
-// export const refresh = createAsyncThunk(
-//   'user/refresh',
-//   async ({ abortController }, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const persistedRefreshToken = state.user.refreshToken;
-
-//     if (persistedRefreshToken === null) {
-//       return thunkAPI.rejectWithValue('Unable to refresh user');
-//     }
-
-//     try {
-//       const response = await axios.post(
-//         '/users/current/refresh',
-//         {
-//           refreshToken: persistedRefreshToken,
-//         },
-//         {
-//           signal: abortController.signal,
-//         }
-//       );
-//       console.log(response.data);
-
-//       setAuthHeader(response.data.accessToken);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-// export const refresh = createAsyncThunk('user/refresh', async (_, thunkAPI) => {
-//   const state = thunkAPI.getState();
-//   const persistedRefreshToken = state.user.refreshToken;
-
-//   if (persistedRefreshToken === null) {
-//     return thunkAPI.rejectWithValue('Unable to refresh user');
-//   }
-
-//   try {
-//     const response = await axiosInstance.post('/users/current/refresh', {
-//       refreshToken: persistedRefreshToken,
-//     });
-//     console.log(response.data);
-
-//     setAuthHeader(response.data.accessToken);
-
-//     return response.data;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// });
-
-// export const current = createAsyncThunk(
-//   'user/current',
-//   async ({ abortController }, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const persistedAccessToken = state.user.accessToken;
-
-//     if (persistedAccessToken === null) {
-//       return thunkAPI.rejectWithValue('Unable to get current user');
-//     }
-
-//     setAuthHeader(persistedAccessToken);
-
-//     try {
-//       const response = await axios.get('/users/current', {
-//         signal: abortController.signal,
-//       });
-
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
 
 export const current = createAsyncThunk('user/current', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
