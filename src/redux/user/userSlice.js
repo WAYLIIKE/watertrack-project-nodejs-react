@@ -23,6 +23,12 @@ const userSlice = createSlice({
     isRefreshing: false,
     loading: false,
   },
+  reducers: {
+    refreshTokens: (state, action) => {
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
+    },
+  },
   extraReducers: (builder) =>
     builder
       .addCase(signUp.pending, (state) => {
@@ -75,10 +81,10 @@ const userSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(current.rejected, (state) => {
-        state.accessToken = null;
-        state.refreshToken = null;
         state.isRefreshing = false;
       }),
 });
+
+export const { refreshTokens } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
