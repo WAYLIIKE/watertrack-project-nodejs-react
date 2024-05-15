@@ -117,7 +117,7 @@ export const SignInForm = () => {
             Log In
           </button>
           <p className={css.signinText}>
-            Don’t have an account?
+            {'Don`t have an account? '}
             <NavLink to="/signup" className={css.signinA}>
               Sign Up
             </NavLink>

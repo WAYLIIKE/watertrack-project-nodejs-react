@@ -51,6 +51,36 @@ export const signOut = createAsyncThunk('user/signout', async (_, thunkAPI) => {
   }
 });
 
+// export const refresh = createAsyncThunk(
+//   'user/refresh',
+//   async ({ abortController }, thunkAPI) => {
+//     const state = thunkAPI.getState();
+//     const persistedRefreshToken = state.user.refreshToken;
+
+//     if (persistedRefreshToken === null) {
+//       return thunkAPI.rejectWithValue('Unable to refresh user');
+//     }
+
+//     try {
+//       const response = await axios.post(
+//         '/users/current/refresh',
+//         {
+//           refreshToken: persistedRefreshToken,
+//         },
+//         {
+//           signal: abortController.signal,
+//         }
+//       );
+//       console.log(response.data);
+
+//       setAuthHeader(response.data.accessToken);
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
 export const refresh = createAsyncThunk('user/refresh', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
   const persistedRefreshToken = state.user.refreshToken;
@@ -59,22 +89,54 @@ export const refresh = createAsyncThunk('user/refresh', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue('Unable to refresh user');
   }
 
-  console.log(persistedRefreshToken);
-
   try {
     const response = await axios.post('/users/current/refresh', {
       refreshToken: persistedRefreshToken,
     });
+    console.log(response.data);
 
     setAuthHeader(response.data.accessToken);
+
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
 
+// export const current = createAsyncThunk(
+//   'user/current',
+//   async ({ abortController }, thunkAPI) => {
+//     const state = thunkAPI.getState();
+//     const persistedAccessToken = state.user.accessToken;
+
+//     if (persistedAccessToken === null) {
+//       return thunkAPI.rejectWithValue('Unable to get current user');
+//     }
+
+//     setAuthHeader(persistedAccessToken);
+
+//     try {
+//       const response = await axios.get('/users/current', {
+//         signal: abortController.signal,
+//       });
+
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
 export const current = createAsyncThunk('user/current', async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const persistedAccessToken = state.user.accessToken;
+
+  if (persistedAccessToken === null) {
+    return thunkAPI.rejectWithValue('Unable to get current user');
+  }
+
   try {
+    setAuthHeader(persistedAccessToken);
     const response = await axios.get('/users/current');
 
     return response.data;
