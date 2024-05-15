@@ -115,3 +115,10 @@ button {
 *::-webkit-scrollbar-thumb:active {
   background-color: var(--color-lightgreenhover);
 }
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

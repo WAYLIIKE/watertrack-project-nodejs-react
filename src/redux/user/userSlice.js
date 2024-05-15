@@ -21,20 +21,32 @@ const userSlice = createSlice({
     refreshToken: null,
     isLoggedIn: false,
     isRefreshing: false,
+    loading: false,
   },
   extraReducers: (builder) =>
     builder
+      .addCase(signUp.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(signUp.fulfilled, (state, action) => {
+        state.loading = false;
         toast.success('Successfully registered!', {
           duration: 5000,
           position: 'top-center',
         });
       })
+      .addCase(signIn.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(signIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
+        state.loading = false;
         state.isLoggedIn = true;
+      })
+      .addCase(signOut.pending, (state) => {
+        state.loading = true;
       })
       .addCase(signOut.fulfilled, (state) => {
         state.user = {
@@ -52,6 +64,7 @@ const userSlice = createSlice({
         state.accessToken = null;
         state.refreshToken = null;
         state.isLoggedIn = false;
+        state.loading = false;
       })
       .addCase(current.pending, (state) => {
         state.isRefreshing = true;
