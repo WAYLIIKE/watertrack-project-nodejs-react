@@ -23,31 +23,6 @@ export function App() {
     dispatch(current());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   const controller = new AbortController();
-
-  //   const fetchData = async () => {
-  //     const currentUserData = await dispatch(
-  //       current({
-  //         abortController: controller,
-  //       })
-  //     );
-  //     if (currentUserData) {
-  //       await dispatch(
-  //         refresh({
-  //           abortController: controller,
-  //         })
-  //       );
-  //     }
-  //   };
-
-  //   fetchData();
-
-  //   return () => {
-  //     controller.abort();
-  //   };
-  // }, [dispatch]);
-
   return isRefreshing ? (
     <p>Refreshing...</p>
   ) : (

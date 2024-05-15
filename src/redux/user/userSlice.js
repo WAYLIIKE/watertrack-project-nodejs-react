@@ -31,7 +31,6 @@ const userSlice = createSlice({
         });
       })
       .addCase(signIn.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.user = action.payload.user;
         state.accessToken = action.payload.accessToken;
         state.refreshToken = action.payload.refreshToken;
@@ -63,6 +62,8 @@ const userSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(current.rejected, (state) => {
+        state.accessToken = null;
+        state.refreshToken = null;
         state.isRefreshing = false;
       }),
 });

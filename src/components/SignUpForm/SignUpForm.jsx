@@ -130,7 +130,7 @@ export const SignUpForm = () => {
                 className={css.signupIcon}
                 onClick={togglePasswordVisibility}
               >
-                {showPassword ? <IconEyeClose /> : <IconEye />}
+                {showPassword ? <IconEye /> : <IconEyeClose />}
               </div>
             </div>
             <ErrorMessage
@@ -167,7 +167,7 @@ export const SignUpForm = () => {
                 className={css.signupIcon}
                 onClick={togglePasswordVisibilityP}
               >
-                {showPasswordReap ? <IconEyeClose /> : <IconEye />}
+                {showPasswordReap ? <IconEye /> : <IconEyeClose />}
               </div>
             </div>
             <ErrorMessage
