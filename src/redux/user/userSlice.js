@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signIn, signOut, signUp, current } from './userOps';
+import { signIn, signOut, signUp, current, currentEdit } from './userOps';
 import toast from 'react-hot-toast';
 
 const userSlice = createSlice({
@@ -64,6 +64,19 @@ const userSlice = createSlice({
       .addCase(current.rejected, (state) => {
         state.accessToken = null;
         state.refreshToken = null;
+        state.isRefreshing = false;
+      })
+      .addCase(currentEdit.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(currentEdit.fulfilled, (state, action) => {
+        state.user = {
+          ...state.user,
+          ...action.payload,
+        };
+        state.isRefreshing = false;
+      })
+      .addCase(currentEdit.rejected, (state) => {
         state.isRefreshing = false;
       }),
 });

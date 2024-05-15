@@ -186,6 +186,8 @@ export const currentEdit = createAsyncThunk(
         editedUser
       );
 
+      console.log(response);
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
