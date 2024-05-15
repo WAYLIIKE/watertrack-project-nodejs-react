@@ -49,7 +49,7 @@
 .linkSignIn {
   width: 104px;
   display: flex;
-  padding: 14px 24px;
+  padding: 14px 28px;
   justify-content: center;
   align-items: center;
   color: var(--color-darkblue);
@@ -98,7 +98,7 @@
   }
   .linkSignIn {
     width: 135px;
-    padding: 18px 38px;
+    padding: 18px 40px;
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: -0.16px;

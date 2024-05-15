@@ -31,7 +31,6 @@ export default function TrackerPage() {
     setIsLogoutModalOpen(false);
   };
 
-  // ==============================
   const openSettingsModal = () => {
     setIsSettingsModalOpen(true);
   };

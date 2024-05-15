@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './components/SharedLayout/SharedLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from './redux/selectors';
-import { refresh } from './redux/user/userOps';
+import { current } from './redux/user/userOps';
 import { RestrictedRoute } from './components/RestrictedRoute';
 import { PrivateRoute } from './components/PrivateRoute';
 import { Toaster } from 'react-hot-toast';
@@ -20,8 +20,33 @@ export function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(refresh());
+    dispatch(current());
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   const controller = new AbortController();
+
+  //   const fetchData = async () => {
+  //     const currentUserData = await dispatch(
+  //       current({
+  //         abortController: controller,
+  //       })
+  //     );
+  //     if (currentUserData) {
+  //       await dispatch(
+  //         refresh({
+  //           abortController: controller,
+  //         })
+  //       );
+  //     }
+  //   };
+
+  //   fetchData();
+
+  //   return () => {
+  //     controller.abort();
+  //   };
+  // }, [dispatch]);
 
   return isRefreshing ? (
     <p>Refreshing...</p>
