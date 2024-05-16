@@ -53,7 +53,7 @@ export const SignUpForm = () => {
           passwordRepeat: '',
         }}
         validationSchema={registerSchema}
-        onSubmit={(values, action) => {
+        onSubmit={async (values, action) => {
           const { passwordRepeat, password, email } = values;
 
           if (password !== passwordRepeat)
@@ -64,11 +64,10 @@ export const SignUpForm = () => {
 
           const dispatchObj = { email, password };
 
-          console.log(dispatchObj);
-          dispatch(signUp(dispatchObj));
-          setIsRegistered(true);
+          const res = await dispatch(signUp(dispatchObj));
 
-          action.resetForm();
+          if (res.payload.message === 'Successfully created')
+            setIsRegistered(true);
         }}
       >
         <Form className={css.signupForm}>
