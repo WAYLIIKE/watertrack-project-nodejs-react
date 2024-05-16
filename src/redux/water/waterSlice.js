@@ -4,7 +4,8 @@ import { addWater } from './waterOps';
 const waterSlice = createSlice({
   name: 'water',
   initialState: {
-    items: [],
+    date: null,
+    amount: null,
     loading: false,
     error: false,
   },
@@ -16,7 +17,8 @@ const waterSlice = createSlice({
       })
       .addCase(addWater.fulfilled, (state, action) => {
         state.loading = false;
-        state.items.push(action.payload);
+        state.date = action.payload.date;
+        state.amount = action.payload.amount;
       })
       .addCase(addWater.rejected, (state) => {
         state.loading = false;

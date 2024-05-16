@@ -7,6 +7,7 @@ import { current } from './redux/user/userOps';
 import { RestrictedRoute } from './components/RestrictedRoute';
 import { PrivateRoute } from './components/PrivateRoute';
 import { Toaster } from 'react-hot-toast';
+import { Loading } from './components/Loading/Loading';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage'));
@@ -24,7 +25,9 @@ export function App() {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <p>Refreshing...</p>
+    <div className="loader">
+      <Loading />
+    </div>
   ) : (
     <div>
       <Routes>
