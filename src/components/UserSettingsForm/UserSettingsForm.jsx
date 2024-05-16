@@ -131,7 +131,7 @@ export const UserSettingsForm = () => {
       <div className={css.avatarWrapper}>
         <img
           className={css.avatar}
-          src={`https://server-watertrack-project-nodejs.onrender.com/api/${user.avatarURL}`}
+          src={`https://server-watertrack-project-nodejs.onrender.com/${user.avatarURL}`}
           alt="Avatar"
         />
 
