@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addWater, deleteWater } from './waterOps';
+import { addWater, deleteWater, getDayWater, putWater } from './waterOps';
 
 const waterSlice = createSlice({
   name: 'water',
@@ -36,6 +36,41 @@ const waterSlice = createSlice({
         state.totalDayWater -= action.payload.amount;
       })
       .addCase(deleteWater.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(putWater.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(putWater.fulfilled, (state, action) => {
+        state.loading = false;
+        const deletedWaterIndex = state.items.findIndex(
+          (item) => item._id === action.payload._id
+        );
+        const prevWater = state.items.find(
+          (item) => item._id === action.payload._id
+        );
+        state.items = state.items.splice(deletedWaterIndex, 1, action.payload);
+        if (prevWater.amount > action.payload.amount)
+          state.totalDayWater += action.payload.amount - prevWater.amount;
+        else state.totalDayWater += prevWater.amount - action.payload.amount;
+      })
+      .addCase(putWater.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(getDayWater.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getDayWater.fulfilled, (state, action) => {
+        state.loading = false;
+        state.date = action.payload.date;
+        state.totalDayWater = action.payload.totalDayWater;
+        state.items = action.payload.consumedWaterData;
+      })
+      .addCase(getDayWater.rejected, (state) => {
         state.loading = false;
         state.error = true;
       }),
