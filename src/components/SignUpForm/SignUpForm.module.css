@@ -215,8 +215,3 @@
   transform: translateY(-50%);
   cursor: pointer;
 }
-@media screen and (max-width: 767.98px) {
-  .signupIcon {
-    display: none;
-  }
-}
