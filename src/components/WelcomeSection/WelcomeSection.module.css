@@ -49,8 +49,8 @@
 .linkSignIn {
   width: 104px;
   display: flex;
-  padding: 14px 28px;
-  /* padding: 14px 27px; */
+
+  padding: 14px 27px;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -101,7 +101,7 @@
   }
   .linkSignIn {
     width: 135px;
-    padding: 18px 40px;
+    padding: 18px 39px;
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: -0.16px;

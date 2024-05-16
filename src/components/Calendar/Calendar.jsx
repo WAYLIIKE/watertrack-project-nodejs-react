@@ -6,9 +6,16 @@ import {
   isSameDay,
 } from 'date-fns';
 import css from './Calendar.module.css';
+import { useSelector } from 'react-redux';
+import { selectUser, selectWater } from '../../redux/selectors';
 
 export const Calendar = ({ currentMonth }) => {
   // з редакс мені потрібно масив води випитої за кожен день місяця і денна норма кожного юзера
+  const waterData = useSelector(selectWater);
+  console.log(waterData);
+
+  const user = useSelector(selectUser);
+  console.log(user.desiredVolume);
 
   const totalDayWater = [
     { date: new Date('2024-05-01'), consumption: 900 },

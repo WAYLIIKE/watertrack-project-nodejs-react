@@ -1,6 +1,7 @@
 import css from './CalendarPagination.module.css';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { format, addMonths, subMonths } from 'date-fns';
+import { IconPie } from '../Icons/IconPie';
 
 export const CalendarPagination = ({ currentDate, setCurrentDate }) => {
   const handlePrevMonth = () => {
@@ -24,6 +25,9 @@ export const CalendarPagination = ({ currentDate, setCurrentDate }) => {
         <button className={css.button} onClick={handleNextMonth}>
           <BsChevronRight className={css.chevron} />
         </button>
+        {/* <button className={css.button}>
+          <IconPie className={css.svg} />
+        </button> */}
       </div>
     </div>
   );
