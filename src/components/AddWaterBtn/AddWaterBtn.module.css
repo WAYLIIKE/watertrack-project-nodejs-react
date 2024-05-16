@@ -15,11 +15,16 @@
   transition: var(--animation);
 
   /* TEXT */
+  color: var(--color-white);
   font-size: 14px;
   line-height: 1.28;
   letter-spacing: -0.01em;
   font-weight: bold;
-  color: var(--color-white);
+}
+.btn div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .btn svg {
   position: relative;

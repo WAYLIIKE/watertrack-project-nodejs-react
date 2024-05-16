@@ -244,6 +244,16 @@
   transition: background-color var(--animation);
 }
 
+.submitButton[disabled] {
+  cursor: not-allowed;
+  background: #e6e6e6;
+}
+
+.submitButton[disabled]:hover,
+.submitButton[disabled]:focus {
+  background: #cacaca;
+}
+
 .submitButton:hover,
 .submitButton:focus {
   background-color: var(--color-lightgreenhover);

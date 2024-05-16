@@ -3,10 +3,11 @@ import { Route, Routes } from 'react-router-dom';
 import { SharedLayout } from './components/SharedLayout/SharedLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from './redux/selectors';
-import { refresh } from './redux/user/userOps';
+import { current } from './redux/user/userOps';
 import { RestrictedRoute } from './components/RestrictedRoute';
 import { PrivateRoute } from './components/PrivateRoute';
 import { Toaster } from 'react-hot-toast';
+import { Loading } from './components/Loading/Loading';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage'));
@@ -20,11 +21,13 @@ export function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(refresh());
+    dispatch(current());
   }, [dispatch]);
 
   return isRefreshing ? (
-    <p>Refreshing...</p>
+    <div className="loader">
+      <Loading />
+    </div>
   ) : (
     <div>
       <Routes>

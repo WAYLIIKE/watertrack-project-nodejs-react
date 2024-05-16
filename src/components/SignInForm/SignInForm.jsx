@@ -104,7 +104,7 @@ export const SignInForm = () => {
                 className={css.signinIcon}
                 onClick={togglePasswordVisibility}
               >
-                {showPassword ? <IconEyeClose /> : <IconEye />}
+                {showPassword ? <IconEye /> : <IconEyeClose />}
               </div>
             </div>
             <ErrorMessage
