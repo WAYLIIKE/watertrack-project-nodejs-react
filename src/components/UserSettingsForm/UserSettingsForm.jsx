@@ -55,7 +55,7 @@ const schema = yup.object().shape({
     }),
 });
 
-export const UserSettingsForm = () => {
+export const UserSettingsForm = ({ onClose }) => {
   const user = useSelector(selectUser);
 
   const dispatch = useDispatch();
@@ -82,10 +82,7 @@ export const UserSettingsForm = () => {
       return;
     }
 
-    // на бек передаємо об'єм в мл
     data.desiredVolume = data.desiredVolume * 1000;
-
-    // створюємо та заповнюємо формДату
 
     const formData = new FormData();
 
@@ -102,14 +99,10 @@ export const UserSettingsForm = () => {
       }
       formData.append(key, data[key]);
     }
-    // Тимчасовий вивід в консоль  форм-дати
 
-    formData.forEach((value, key) => {
-      console.log(key, ':', value);
-    });
-
-    // далі відправляю форм дату
     dispatch(currentEdit(formData));
+
+    onClose();
   };
 
   const { avatar, gender, name, email, weight, activityTime, desiredVolume } =

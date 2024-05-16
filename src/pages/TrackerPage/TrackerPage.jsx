@@ -64,7 +64,7 @@ export default function TrackerPage() {
         </BaseModal>
 
         <BaseModal isOpen={isSettingsModalOpen} onClose={closeSettingsModal}>
-          <UserSettingsModal />
+          <UserSettingsModal onClose={closeSettingsModal} />
         </BaseModal>
         <MonthInfo />
       </Page>

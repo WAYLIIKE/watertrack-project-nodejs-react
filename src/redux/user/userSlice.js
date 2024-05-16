@@ -84,20 +84,18 @@ const userSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(currentEdit.pending, (state) => {
-        state.isRefreshing = true;
+        state.loading = true;
       })
       .addCase(currentEdit.fulfilled, (state, action) => {
-        state.user = {
-          ...state.user,
-          ...action.payload,
-        };
-        state.isRefreshing = false;
+        state.user = action.payload.user;
+        state.loading = false;
       })
       .addCase(currentEdit.rejected, (state) => {
-        state.isRefreshing = false;
+        state.loading = false;
       }),
 });
 
 export const { refreshTokens } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
+0;
