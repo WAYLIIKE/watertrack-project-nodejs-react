@@ -50,9 +50,12 @@
   width: 104px;
   display: flex;
   padding: 14px 28px;
+  /* padding: 14px 27px; */
   justify-content: center;
   align-items: center;
+  gap: 10px;
   color: var(--color-darkblue);
+  text-align: center;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.28;
@@ -118,5 +121,10 @@
 @media screen and (min-width: 1440px) {
   .welcomSection {
     margin: 0;
+  }
+}
+@media screen and (max-width: 330px) {
+  .mainTitle {
+    font-size: 30px;
   }
 }
