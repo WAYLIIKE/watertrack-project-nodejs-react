@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addWater } from './waterOps';
+import { addWater, deleteWater } from './waterOps';
 
 const waterSlice = createSlice({
   name: 'water',
   initialState: {
     date: null,
-    amount: null,
+    totalDayWater: 0,
+    items: [],
     loading: false,
     error: false,
   },
@@ -17,10 +18,24 @@ const waterSlice = createSlice({
       })
       .addCase(addWater.fulfilled, (state, action) => {
         state.loading = false;
-        state.date = action.payload.date;
-        state.amount = action.payload.amount;
+        state.items = state.items.push(action.payload);
+        state.totalDayWater += action.payload.amount;
       })
       .addCase(addWater.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(deleteWater.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(deleteWater.fulfilled, (state, action) => {
+        state.loading = false;
+        const deletedWaterIndex = state.items.findIndex(action.payload._id);
+        state.items = state.items.splice(deletedWaterIndex, 1);
+        state.totalDayWater -= action.payload.amount;
+      })
+      .addCase(deleteWater.rejected, (state) => {
         state.loading = false;
         state.error = true;
       }),
