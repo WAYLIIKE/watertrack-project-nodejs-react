@@ -6,53 +6,36 @@ import {
   isSameDay,
 } from 'date-fns';
 import css from './Calendar.module.css';
-import { useSelector } from 'react-redux';
-import { selectUser, selectWater } from '../../redux/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectMonthWater } from '../../redux/selectors';
+import { useEffect } from 'react';
+import { getMonthWater } from '../../redux/water/waterOps';
 
 export const Calendar = ({ currentMonth }) => {
-  // з редакс мені потрібно масив води випитої за кожен день місяця і денна норма кожного юзера
-  const waterData = useSelector(selectWater);
-  console.log(waterData);
-
-  const user = useSelector(selectUser);
-  console.log(user.desiredVolume);
-
-  const totalDayWater = [
-    { date: new Date('2024-05-01'), consumption: 900 },
-    { date: new Date('2024-05-02'), consumption: 250 },
-    { date: new Date('2024-05-03'), consumption: 3000 },
-    { date: new Date('2024-05-04'), consumption: 900 },
-    { date: new Date('2024-05-05'), consumption: 0 },
-    { date: new Date('2024-05-06'), consumption: 3000 },
-    { date: new Date('2024-05-07'), consumption: 900 },
-    { date: new Date('2024-05-08'), consumption: 250 },
-    { date: new Date('2024-05-09'), consumption: 3000 },
-  ];
+  const dispatch = useDispatch();
+  console.log(currentMonth);
+  const monthData = useSelector(selectMonthWater);
+  console.log(monthData);
+  useEffect(() => {
+    dispatch(getMonthWater(currentMonth));
+  }, [dispatch, currentMonth]);
 
   const days = eachDayOfInterval({
     start: startOfMonth(new Date(currentMonth)),
     end: endOfMonth(new Date(currentMonth)),
   });
 
+  const getDayData = (day) => {
+    return monthData.find((data) => isSameDay(new Date(data.date), day));
+  };
+
   return (
     <div>
       <ul className={css.listCalendar}>
         {days.map((day) => {
-          const matchingDay = totalDayWater.find((data) =>
-            isSameDay(data.date, day)
-          );
-          const consumption = matchingDay?.consumption || 0;
-          const percentage = Math.floor(
-            Math.min((consumption / 2000) * 100, 100)
-          );
-
           return (
-            <li className={css.itemCalendar} key={day.getTime()}>
-              <CalendarItem
-                day={day}
-                consumption={consumption}
-                percentage={percentage}
-              />
+            <li className={css.itemCalendar} key={day}>
+              <CalendarItem day={day} getDayData={getDayData} />
             </li>
           );
         })}

@@ -1,34 +1,31 @@
+import { selectDesiredVolume } from '../../redux/selectors';
 import css from './CalendarItem.module.css';
-import { isSameMonth } from 'date-fns';
-export const CalendarItem = ({ day, percentage }) => {
-  const handleClick = () => {};
+import { useSelector } from 'react-redux';
+
+export const CalendarItem = ({ day, getDayData }) => {
+  const waterData = getDayData(day);
+  const userNorma = useSelector(selectDesiredVolume);
+  let percentage = 0;
+
+  if (waterData) {
+    const consumption = waterData.totalDayWater || 0;
+    percentage = Math.floor(Math.min((consumption / userNorma) * 100, 100));
+  }
+
   const isFullConsumption = percentage === 100;
-  // потосна дата
-  const today = new Date();
-  const isToday = day.getDate() === today.getDate();
-  const getDayStyles = (isFullConsumption, isToday) => {
+
+  const getDayStyles = (isFullConsumption) => {
     if (isFullConsumption) {
       return {
         backgroundColor: 'white',
       };
     }
-    if (isToday && isSameMonth(day, new Date())) {
-      return {
-        backgroundColor: '#323F47',
-        color: '#9BE1A0',
-      };
-    }
     return {};
   };
-
-  const styles = getDayStyles(isFullConsumption, isToday);
+  const styles = getDayStyles(isFullConsumption);
   return (
     <div>
-      <button
-        className={css.button}
-        onClick={handleClick}
-        style={{ ...styles }}
-      >
+      <button className={css.button} style={{ ...styles }}>
         <div className={css.number}>{day.getDate()}</div>
       </button>
       <div className={css.percentage}>{percentage}%</div>

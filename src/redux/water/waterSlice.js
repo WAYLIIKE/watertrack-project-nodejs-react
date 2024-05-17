@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addWater, deleteWater, getDayWater, putWater } from './waterOps';
+import {
+  addWater,
+  deleteWater,
+  getDayWater,
+  getMonthWater,
+  putWater,
+} from './waterOps';
 
 const waterSlice = createSlice({
   name: 'water',
@@ -72,6 +78,12 @@ const waterSlice = createSlice({
       })
       .addCase(getDayWater.rejected, (state) => {
         state.loading = false;
+        state.error = true;
+      })
+      .addCase(getMonthWater.fulfilled, (state, action) => {
+        state.monthItems = action.payload;
+      })
+      .addCase(getMonthWater.rejected, (state) => {
         state.error = true;
       }),
 });

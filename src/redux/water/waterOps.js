@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { axiosInstance } from '../user/userOps';
 // import axios from 'axios';
-
-// axios.defaults.baseURL =
+import { getUnixDay } from '../../helpers/getUnixDay';
+// // axios.defaults.baseURL =
 //   'https://server-watertrack-project-nodejs.onrender.com/api/';
 
 export const addWater = createAsyncThunk(
@@ -50,6 +50,22 @@ export const getDayWater = createAsyncThunk(
     try {
       const response = await axiosInstance.get(`/water/day/${date}`);
 
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getMonthWater = createAsyncThunk(
+  'water/getMonthWater',
+
+  async (month, thunkAPI) => {
+    try {
+      const unixMonthStartDate = getUnixDay(month);
+      const response = await axiosInstance.get(
+        `/water/month/${unixMonthStartDate}`
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
