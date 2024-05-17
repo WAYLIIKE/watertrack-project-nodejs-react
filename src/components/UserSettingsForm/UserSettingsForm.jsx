@@ -4,9 +4,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import css from './UserSettingsForm.module.css';
 import { FormValidateError } from '../FormValidateError/FormValidateError';
 import { calcRequiredWater } from '../../helpers/calcRequiredWater';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../redux/selectors';
+import { currentEdit } from '../../redux/user/userOps';
 
 const schema = yup.object().shape({
-  avatarURL: yup.mixed(),
+  avatar: yup.mixed(),
 
   gender: yup
     .string()
@@ -20,6 +23,7 @@ const schema = yup.object().shape({
   weight: yup
     .number()
     .nullable()
+    .min(20, 'Weight must be greater than or equal to 20')
     .max(600, 'Weight must be less than or equal to 600')
     .transform((value, originalValue) => {
       if (originalValue === '') return null;
@@ -29,6 +33,7 @@ const schema = yup.object().shape({
   activityTime: yup
     .number()
     .nullable()
+    .min(0)
     .max(12, 'Time must be less than or equal to 12')
     .transform((value, originalValue) => {
       if (originalValue === '') return null;
@@ -52,7 +57,11 @@ const schema = yup.object().shape({
     }),
 });
 
-export const UserSettingsForm = () => {
+export const UserSettingsForm = ({ onClose }) => {
+  const user = useSelector(selectUser);
+
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -60,19 +69,27 @@ export const UserSettingsForm = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      gender: user.gender,
+      name: user.name,
+      email: user.email,
+      weight: user.weight,
+      activityTime: user.activityTime,
+      desiredVolume: user.desiredVolume / 1000,
+    },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (Object.keys(errors).length > 0) {
       return;
     }
 
-    // створюємо та заповнюємо формДату
+    data.desiredVolume = data.desiredVolume * 1000;
 
     const formData = new FormData();
 
     for (const key in data) {
-      if (key === 'avatarURL') {
+      if (key === 'avatar') {
         if (data[key][0] !== undefined) {
           formData.append(key, data[key][0]);
         }
@@ -84,28 +101,16 @@ export const UserSettingsForm = () => {
       }
       formData.append(key, data[key]);
     }
-    // Тимчасовий вивід в консоль  форм-дати
 
-    formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
-    // далі відправляю форм дату
+    const response = await dispatch(currentEdit(formData));
+    response.meta.requestStatus === 'fulfilled' && onClose();
   };
 
-  const {
-    avatarURL,
-    gender,
-    name,
-    email,
-    weight,
-    activityTime,
-    desiredVolume,
-  } = watch();
+  const { avatar, gender, name, email, weight, activityTime, desiredVolume } =
+    watch();
 
-  //перевірка, чи заповнене хоча б одно з полів форми
-  // якщо всі поля порожні -кнопка сабміту деактивована
   const isAnyFieldFilled =
-    avatarURL ||
+    avatar ||
     gender ||
     name ||
     email ||
@@ -118,35 +123,26 @@ export const UserSettingsForm = () => {
   return (
     <form className={css.wrapper} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.avatarWrapper}>
-        {/*      
-          <img
-            className={css.avatar}
-            src={URL.createObjectURL(avatarURL[0])}
-            alt="Avatar"
-          /> */}
+        <img className={css.avatar} src={user.avatarURL} alt="Avatar" />
 
-        <div className={css.avatar}></div>
-
-        {!avatarURL || avatarURL.length === 0 ? (
+        {!avatar || avatar.length === 0 ? (
           <>
             <input
-              {...register('avatarURL')}
+              {...register('avatar')}
               className={css.hiddenFileInput}
               type="file"
-              name="avatarURL"
-              id="avatarURL"
+              name="avatar"
+              id="avatar"
               placeholder={'Upload a photo'}
             />
-            <label htmlFor="avatarURL" className={css.fileLabel}>
+            <label htmlFor="avatar" className={css.fileLabel}>
               Upload a photo
             </label>
           </>
         ) : (
-          <strong>{avatarURL[0].name}</strong>
+          <strong>{avatar[0].name}</strong>
         )}
-        {errors.avatarURL && (
-          <FormValidateError message={errors.avatarURL.message} />
-        )}
+        {errors.avatar && <FormValidateError message={errors.avatar.message} />}
       </div>
 
       <div className={css.settingsWrapper}>

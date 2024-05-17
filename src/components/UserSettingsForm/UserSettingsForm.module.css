@@ -116,6 +116,10 @@
   z-index: -1;
 }
 
+.genderLabel {
+  cursor: pointer;
+}
+
 .genderLabel::before {
   content: '';
   border-radius: 100%;
@@ -271,7 +275,6 @@
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: -0.16px;
-    cursor: pointer;
   }
 
   .input {

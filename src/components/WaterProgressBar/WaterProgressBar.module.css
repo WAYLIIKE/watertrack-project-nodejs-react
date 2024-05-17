@@ -1,0 +1,71 @@
+.container {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 175px;
+  width: 198px;
+  height: 70px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background-color: var(--color-white);
+}
+
+.title {
+  pointer-events: none;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--color-darkblue);
+}
+.percentBar {
+  pointer-events: none;
+  width: 174px;
+  font-size: 10px;
+  line-height: 1;
+  opacity: 0.6;
+}
+.fifty {
+  margin-left: 66px;
+  margin-right: 49px;
+}
+
+.slider:global {
+  height: 6px !important;
+  pointer-events: none;
+  padding: 0 !important;
+}
+
+@media (--tablet-bp) {
+  .container {
+    margin-top: 253px;
+    width: 295px;
+    height: 106px;
+    gap: 6px;
+    padding: 20px;
+  }
+  .title {
+    font-size: 15px;
+    line-height: 1.49;
+    font-weight: 700;
+  }
+  .percentBar {
+    width: 255px;
+    font-size: 12px;
+    line-height: 1.86;
+  }
+  .fifty {
+    margin-left: 100px;
+    margin-right: 84px;
+  }
+  .slider:global {
+    height: 8px !important;
+  }
+}
+@media (--desktop-bp) {
+  .container {
+    margin-top: 394px;
+  }
+}

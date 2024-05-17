@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async';
-import { WaterModal } from '../../components/WaterModal/WaterModal';
 import { LogOutModal } from '../../components/LogOutModal/LogOutModal';
 import { Container } from '../../components/Container/Container';
 import { BaseModal } from '../../components/BaseModal/BaseModal';
@@ -7,13 +6,13 @@ import { WaterList } from '../../components/WaterList/WaterList';
 import { useEffect, useState } from 'react';
 import { UserSettingsModal } from '../../components/UserSettingsModal/UserSettingsModal';
 import { Page } from '../../components/Page/Page';
+import { WaterMainInfo } from '../../components/WaterMainInfo/WaterMainInfo';
 import { MonthInfo } from '../../components/MonthInfo/MonthInfo';
 import { useDispatch } from 'react-redux';
 import { getDayWater } from '../../redux/water/waterOps';
-import { getUnixDay } from '../../shared/helpers/getUnixDay';
+import { getUnixDay } from '../../helpers/getUnixDay';
 
 export default function TrackerPage() {
-  const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -21,13 +20,6 @@ export default function TrackerPage() {
 
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   // ТИМЧАСОВІ КНОПКИ ДЛЯ ВІДКРИТТЯ МОДАЛОК
-  const openWaterModal = () => {
-    setIsWaterModalOpen(true);
-  };
-
-  const closeWaterModal = () => {
-    setIsWaterModalOpen(false);
-  };
 
   const openLogoutModal = () => {
     setIsLogoutModalOpen(true);
@@ -52,33 +44,28 @@ export default function TrackerPage() {
   return (
     <Container>
       <Page>
-        <div>
-          <button type="button" onClick={openWaterModal}>
-            Open add water
-          </button>
-          <button type="button" onClick={openSettingsModal}>
-            Open settings
-          </button>
-          <button type="button" onClick={openLogoutModal}>
-            Log out
-          </button>
-        </div>
+        <WaterMainInfo />
 
-        <WaterList />
+        <MonthInfo />
 
         <BaseModal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>
           <LogOutModal title={'Log out'} onClose={closeLogoutModal} />
         </BaseModal>
 
-        <BaseModal isOpen={isWaterModalOpen} onClose={closeWaterModal}>
-          <WaterModal title={'Add water'} subtitle={'Choose a value:'} />
-        </BaseModal>
-
         <BaseModal isOpen={isSettingsModalOpen} onClose={closeSettingsModal}>
-          <UserSettingsModal />
+          <UserSettingsModal onClose={closeSettingsModal} />
         </BaseModal>
-        <MonthInfo />
       </Page>
+
+      <div style={{ display: 'block', margin: '100px 0' }}>
+        <WaterList />
+        <button type="button" onClick={openSettingsModal}>
+          Open settings
+        </button>
+        <button type="button" onClick={openLogoutModal}>
+          Log out
+        </button>
+      </div>
       <Helmet>
         <title>Tracker</title>
       </Helmet>
