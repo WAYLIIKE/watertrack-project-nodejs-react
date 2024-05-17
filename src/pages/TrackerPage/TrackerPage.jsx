@@ -10,7 +10,7 @@ import { WaterMainInfo } from '../../components/WaterMainInfo/WaterMainInfo';
 import { MonthInfo } from '../../components/MonthInfo/MonthInfo';
 import { useDispatch } from 'react-redux';
 import { getDayWater } from '../../redux/water/waterOps';
-import { getUnixDay } from '../../shared/helpers/getUnixDay';
+import { getUnixDay } from '../../helpers/getUnixDay';
 
 export default function TrackerPage() {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
