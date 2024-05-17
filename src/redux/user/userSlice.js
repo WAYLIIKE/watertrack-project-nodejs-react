@@ -98,4 +98,3 @@ const userSlice = createSlice({
 export const { refreshTokens } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
-0;
