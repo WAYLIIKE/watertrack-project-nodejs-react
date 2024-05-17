@@ -33,6 +33,7 @@ const schema = yup.object().shape({
   activityTime: yup
     .number()
     .nullable()
+    .min(0)
     .max(12, 'Time must be less than or equal to 12')
     .transform((value, originalValue) => {
       if (originalValue === '') return null;

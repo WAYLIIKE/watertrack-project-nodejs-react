@@ -120,7 +120,7 @@ const userSlice = createSlice({
       .addCase(currentEdit.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.loading = false;
-        toast.success('Success!', {
+        toast.success('Successfully updated profile!', {
           duration: 5000,
           position: 'top-center',
           style: {
@@ -131,7 +131,7 @@ const userSlice = createSlice({
       })
       .addCase(currentEdit.rejected, (state) => {
         state.loading = false;
-        toast.success('Something went wrong :(', {
+        toast.error('Something went wrong', {
           duration: 5000,
           position: 'top-center',
           style: {
