@@ -23,6 +23,7 @@ const schema = yup.object().shape({
   weight: yup
     .number()
     .nullable()
+    .min(20, 'Weight must be greater than or equal to 20')
     .max(600, 'Weight must be less than or equal to 600')
     .transform((value, originalValue) => {
       if (originalValue === '') return null;
@@ -77,7 +78,7 @@ export const UserSettingsForm = ({ onClose }) => {
     },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (Object.keys(errors).length > 0) {
       return;
     }
@@ -100,9 +101,8 @@ export const UserSettingsForm = ({ onClose }) => {
       formData.append(key, data[key]);
     }
 
-    dispatch(currentEdit(formData));
-
-    onClose();
+    const response = await dispatch(currentEdit(formData));
+    response.meta.requestStatus === 'fulfilled' && onClose();
   };
 
   const { avatar, gender, name, email, weight, activityTime, desiredVolume } =
@@ -122,11 +122,7 @@ export const UserSettingsForm = ({ onClose }) => {
   return (
     <form className={css.wrapper} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.avatarWrapper}>
-        <img
-          className={css.avatar}
-          src={`https://server-watertrack-project-nodejs.onrender.com/${user.avatarURL}`}
-          alt="Avatar"
-        />
+        <img className={css.avatar} src={user.avatarURL} alt="Avatar" />
 
         {!avatar || avatar.length === 0 ? (
           <>
