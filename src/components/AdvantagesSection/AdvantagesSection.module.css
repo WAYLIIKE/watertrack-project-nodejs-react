@@ -56,7 +56,7 @@
   line-height: 1.16;
   margin-left: -18px;
 }
-span {
+.span {
   color: var(--color-lightgreen);
   font-size: 12px;
   font-weight: 700;
