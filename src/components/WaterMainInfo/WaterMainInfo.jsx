@@ -7,7 +7,6 @@ import { bottle } from '../../assets/img';
 export const WaterMainInfo = () => {
   return (
     <div className={css.container}>
-      <h1 className={css.header}>AQUATRACK</h1>
       <WaterDailyNorma />
       <WaterProgressBar />
       <AddWaterBtn />
