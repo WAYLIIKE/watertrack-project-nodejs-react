@@ -4,14 +4,20 @@ import { LogOutModal } from '../../components/LogOutModal/LogOutModal';
 import { Container } from '../../components/Container/Container';
 import { BaseModal } from '../../components/BaseModal/BaseModal';
 import { WaterList } from '../../components/WaterList/WaterList';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { UserSettingsModal } from '../../components/UserSettingsModal/UserSettingsModal';
 import { Page } from '../../components/Page/Page';
 import { MonthInfo } from '../../components/MonthInfo/MonthInfo';
+import { useDispatch } from 'react-redux';
+import { getDayWater } from '../../redux/water/waterOps';
+import { getUnixDay } from '../../shared/helpers/getUnixDay';
 
 export default function TrackerPage() {
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const unixCurrentDate = getUnixDay(new Date());
 
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   // ТИМЧАСОВІ КНОПКИ ДЛЯ ВІДКРИТТЯ МОДАЛОК
@@ -38,6 +44,11 @@ export default function TrackerPage() {
   const closeSettingsModal = () => {
     setIsSettingsModalOpen(false);
   };
+
+  useEffect(() => {
+    dispatch(getDayWater(unixCurrentDate));
+  }, [dispatch, unixCurrentDate]);
+
   return (
     <Container>
       <Page>

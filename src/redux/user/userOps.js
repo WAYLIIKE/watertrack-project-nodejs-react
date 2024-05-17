@@ -5,7 +5,7 @@ import { refreshTokens } from './userSlice';
 // axios.defaults.baseURL =
 //   'https://server-watertrack-project-nodejs.onrender.com/api';
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: 'https://server-watertrack-project-nodejs.onrender.com/api',
 });
 

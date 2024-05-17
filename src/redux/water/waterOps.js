@@ -1,14 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { axiosInstance } from '../user/userOps';
+// import axios from 'axios';
 
-axios.defaults.baseURL =
-  'https://server-watertrack-project-nodejs.onrender.com/api/';
+// axios.defaults.baseURL =
+//   'https://server-watertrack-project-nodejs.onrender.com/api/';
 
 export const addWater = createAsyncThunk(
   'water/addWater',
   async (water, thunkAPI) => {
     try {
-      const response = await axios.post('/water/add', water);
+      const response = await axiosInstance.post('/water/add', water);
 
       return response.data;
     } catch (error) {
@@ -21,7 +22,7 @@ export const deleteWater = createAsyncThunk(
   'water/deleteWater',
   async (id, thunkAPI) => {
     try {
-      const response = await axios.delete(`/water/remove/${id}`);
+      const response = await axiosInstance.delete(`/water/remove/${id}`);
 
       return response.data;
     } catch (error) {
@@ -34,7 +35,7 @@ export const putWater = createAsyncThunk(
   'water/putWater',
   async ([id, putedWater], thunkAPI) => {
     try {
-      const response = await axios.put(`/water/edit/${id}`, putedWater);
+      const response = await axiosInstance.put(`/water/edit/${id}`, putedWater);
 
       return response.data;
     } catch (error) {
@@ -47,7 +48,7 @@ export const getDayWater = createAsyncThunk(
   'water/getDayWater',
   async (date, thunkAPI) => {
     try {
-      const response = await axios.get(`/water/day/${date}`);
+      const response = await axiosInstance.get(`/water/day/${date}`);
 
       return response.data;
     } catch (error) {
