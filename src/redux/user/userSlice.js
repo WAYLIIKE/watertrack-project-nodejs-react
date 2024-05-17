@@ -36,14 +36,17 @@ const userSlice = createSlice({
       })
       .addCase(signUp.fulfilled, (state) => {
         state.loading = false;
-        toast.success('Successfully registered!', {
-          duration: 5000,
-          position: 'top-center',
-          style: {
-            textAlign: 'center',
-            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
-          },
-        });
+        toast.success(
+          'Check your email. Verification link has been sent to your email!',
+          {
+            duration: 5000,
+            position: 'top-center',
+            style: {
+              textAlign: 'center',
+              boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+            },
+          }
+        );
       })
       .addCase(signUp.rejected, (state) => {
         state.loading = false;
