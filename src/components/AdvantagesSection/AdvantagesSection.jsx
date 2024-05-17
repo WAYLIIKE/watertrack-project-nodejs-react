@@ -19,7 +19,7 @@ export const AdvantagesSection = () => {
         </ul>
 
         <p className={css.customerText}>
-          Our <span>happy</span> customers
+          Our <span className={css.span}>happy</span> customers
         </p>
       </div>
 
