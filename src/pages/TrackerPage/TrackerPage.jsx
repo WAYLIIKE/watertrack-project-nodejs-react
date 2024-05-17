@@ -3,16 +3,16 @@ import { WaterModal } from '../../components/WaterModal/WaterModal';
 import { LogOutModal } from '../../components/LogOutModal/LogOutModal';
 import { Container } from '../../components/Container/Container';
 import { BaseModal } from '../../components/BaseModal/BaseModal';
-import { WaterList } from '../../components/WaterList/WaterList';
 import { useState } from 'react';
 import { UserSettingsModal } from '../../components/UserSettingsModal/UserSettingsModal';
 import { Page } from '../../components/Page/Page';
+import { WaterDetailedInfo } from '../../components/WaterDetailedInfo/WaterDetailedInfo';
 
 export default function TrackerPage() {
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
-
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
+
   // ТИМЧАСОВІ КНОПКИ ДЛЯ ВІДКРИТТЯ МОДАЛОК
   const openWaterModal = () => {
     setIsWaterModalOpen(true);
@@ -52,7 +52,10 @@ export default function TrackerPage() {
           </button>
         </div>
 
-        <WaterList />
+        <WaterDetailedInfo
+          openSettings={setIsSettingsModalOpen}
+          openLogout={openLogoutModal}
+        />
 
         <BaseModal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>
           <LogOutModal title={'Log out'} onClose={closeLogoutModal} />
