@@ -44,12 +44,9 @@ export default function TrackerPage() {
   return (
     <Container>
       <Page>
-        
         <WaterMainInfo />
-        
-        <MonthInfo />
 
-        
+        <MonthInfo />
 
         <BaseModal isOpen={isLogoutModalOpen} onClose={closeLogoutModal}>
           <LogOutModal title={'Log out'} onClose={closeLogoutModal} />
@@ -58,18 +55,17 @@ export default function TrackerPage() {
         <BaseModal isOpen={isSettingsModalOpen} onClose={closeSettingsModal}>
           <UserSettingsModal />
         </BaseModal>
-        
       </Page>
-      
-      <div style={{display: 'block', margin: '100px 0'}}>
-      <WaterList />
-          <button type="button" onClick={openSettingsModal}>
-            Open settings
-          </button>
-          <button type="button" onClick={openLogoutModal}>
-            Log out
-          </button>
-        </div>
+
+      <div style={{ display: 'block', margin: '100px 0' }}>
+        <WaterList />
+        <button type="button" onClick={openSettingsModal}>
+          Open settings
+        </button>
+        <button type="button" onClick={openLogoutModal}>
+          Log out
+        </button>
+      </div>
       <Helmet>
         <title>Tracker</title>
       </Helmet>
