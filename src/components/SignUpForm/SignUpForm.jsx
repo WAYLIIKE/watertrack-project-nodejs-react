@@ -53,7 +53,7 @@ export const SignUpForm = () => {
           passwordRepeat: '',
         }}
         validationSchema={registerSchema}
-        onSubmit={(values, action) => {
+        onSubmit={async (values, action) => {
           const { passwordRepeat, password, email } = values;
 
           if (password !== passwordRepeat)
@@ -64,11 +64,10 @@ export const SignUpForm = () => {
 
           const dispatchObj = { email, password };
 
-          console.log(dispatchObj);
-          dispatch(signUp(dispatchObj));
-          setIsRegistered(true);
+          const res = await dispatch(signUp(dispatchObj));
 
-          action.resetForm();
+          if (res.payload.message === 'Successfully created')
+            setIsRegistered(true);
         }}
       >
         <Form className={css.signupForm}>
@@ -130,7 +129,7 @@ export const SignUpForm = () => {
                 className={css.signupIcon}
                 onClick={togglePasswordVisibility}
               >
-                {showPassword ? <IconEyeClose /> : <IconEye />}
+                {showPassword ? <IconEye /> : <IconEyeClose />}
               </div>
             </div>
             <ErrorMessage
@@ -167,7 +166,7 @@ export const SignUpForm = () => {
                 className={css.signupIcon}
                 onClick={togglePasswordVisibilityP}
               >
-                {showPasswordReap ? <IconEyeClose /> : <IconEye />}
+                {showPasswordReap ? <IconEye /> : <IconEyeClose />}
               </div>
             </div>
             <ErrorMessage
