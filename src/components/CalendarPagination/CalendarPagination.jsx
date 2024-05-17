@@ -16,7 +16,9 @@ export const CalendarPagination = ({ currentDate, setCurrentDate }) => {
       setCurrentDate(newMonth);
     }
   };
-  console.log(currentDate);
+  const isPrevDisabled = currentDate <= startOfMonth(minDate);
+  const isNextDisabled = currentDate >= new Date();
+
   return (
     <div className={css.paginationSection}>
       <p className={css.month}>Month</p>
@@ -26,11 +28,15 @@ export const CalendarPagination = ({ currentDate, setCurrentDate }) => {
           onClick={handlePrevMonth}
           disabled={currentDate <= startOfMonth(minDate)}
         >
-          <BsChevronLeft className={css.chevron} />
+          <BsChevronLeft
+            className={isPrevDisabled ? css.chevronDisabled : css.chevron}
+          />
         </button>
         <span className={css.span}>{format(currentDate, 'MMMM, yyyy')}</span>
         <button className={css.button} onClick={handleNextMonth}>
-          <BsChevronRight className={css.chevron} />
+          <BsChevronRight
+            className={isNextDisabled ? css.chevronDisabled : css.chevron}
+          />
         </button>
         {/* <button className={css.button}>
           <IconPie className={css.svg} />

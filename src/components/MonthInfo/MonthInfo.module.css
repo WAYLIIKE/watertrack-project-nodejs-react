@@ -1,13 +1,14 @@
 .calendar {
+  margin-top: 382px;
   background-color: #f0eff4;
   padding-bottom: 40px;
-  padding-top: 40px;
   border-radius: 30px;
   padding-left: 20px;
   padding-right: 20px;
 }
 @media (--tablet-bp) {
   .calendar {
+    margin-top: 342px;
     padding-left: 32px;
     padding-right: 32px;
     padding-bottom: 35px;

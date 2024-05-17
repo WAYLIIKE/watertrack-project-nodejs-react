@@ -10,6 +10,10 @@
   line-height: 1.2;
   letter-spacing: -0.2px;
 }
+.chevronDisabled {
+  color: rgba(50, 63, 71, 0.2);
+  font-size: 20px;
+}
 .button {
   padding: 0;
   border: none;
@@ -20,6 +24,9 @@
 }
 .button:focus {
   outline: none;
+}
+.chevron:disabled {
+  color: grey;
 }
 .chevron {
   width: 18px;

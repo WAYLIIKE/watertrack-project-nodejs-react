@@ -13,6 +13,7 @@ const waterSlice = createSlice({
     date: null,
     totalDayWater: 0,
     items: [],
+    monthItems: [],
     loading: false,
     error: false,
   },
