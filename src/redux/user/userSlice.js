@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signIn, signOut, signUp, current } from './userOps';
+import { signIn, signOut, signUp, current, currentEdit } from './userOps';
 import toast from 'react-hot-toast';
 
 const userSlice = createSlice({
@@ -113,6 +113,32 @@ const userSlice = createSlice({
       })
       .addCase(current.rejected, (state) => {
         state.isRefreshing = false;
+      })
+      .addCase(currentEdit.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(currentEdit.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.loading = false;
+        toast.success('Success!', {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            textAlign: 'center',
+            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+          },
+        });
+      })
+      .addCase(currentEdit.rejected, (state) => {
+        state.loading = false;
+        toast.success('Something went wrong :(', {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            textAlign: 'center',
+            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+          },
+        });
       }),
 });
 
