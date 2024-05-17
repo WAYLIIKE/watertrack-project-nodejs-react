@@ -109,7 +109,15 @@ export const current = createAsyncThunk('user/current', async (_, thunkAPI) => {
 export const currentEdit = createAsyncThunk(
   'user/currentEdit',
   async (editedUser, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedAccessToken = state.user.accessToken;
+
+    if (persistedAccessToken === null) {
+      return thunkAPI.rejectWithValue('Unable to get current user');
+    }
+
     try {
+      setAuthHeader(persistedAccessToken);
       const response = await axiosInstance.patch(
         `/users/current/edit`,
         editedUser
