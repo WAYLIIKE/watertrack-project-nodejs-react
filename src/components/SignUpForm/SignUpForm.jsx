@@ -66,7 +66,10 @@ export const SignUpForm = () => {
 
           const res = await dispatch(signUp(dispatchObj));
 
-          if (res.payload.message === 'Successfully created')
+          if (
+            res.payload.message ===
+            'Verification link has been sent to your email'
+          )
             setIsRegistered(true);
         }}
       >

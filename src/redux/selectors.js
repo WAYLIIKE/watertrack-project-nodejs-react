@@ -13,3 +13,7 @@ export const selectTotalDayWater = (state) => state.water.totalDayWater;
 export const selectWaterItems = (state) => state.water.items;
 
 export const selectWaterLoading = (state) => state.water.loading;
+
+export const selectMonthWater = (state) => state.water.monthItems;
+
+export const selectDesiredVolume = (state) => state.user.user.desiredVolume;

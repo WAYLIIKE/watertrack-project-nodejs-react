@@ -1,24 +1,31 @@
+import { selectDesiredVolume } from '../../redux/selectors';
 import css from './CalendarItem.module.css';
+import { useSelector } from 'react-redux';
 
-export const CalendarItem = ({ day, percentage }) => {
-  const handleClick = () => {};
+export const CalendarItem = ({ day, getDayData }) => {
+  const waterData = getDayData(day);
+  const userNorma = useSelector(selectDesiredVolume);
+  let percentage = 0;
+
+  if (waterData) {
+    const consumption = waterData.totalDayWater || 0;
+    percentage = Math.floor(Math.min((consumption / userNorma) * 100, 100));
+  }
+
   const isFullConsumption = percentage === 100;
+
   const getDayStyles = (isFullConsumption) => {
     if (isFullConsumption) {
       return {
         backgroundColor: 'white',
       };
     }
-    return {}; // залишаємо стилі за замовчуванням
+    return {};
   };
   const styles = getDayStyles(isFullConsumption);
   return (
     <div>
-      <button
-        className={css.button}
-        onClick={handleClick}
-        style={{ ...styles }}
-      >
+      <button className={css.button} style={{ ...styles }}>
         <div className={css.number}>{day.getDate()}</div>
       </button>
       <div className={css.percentage}>{percentage}%</div>

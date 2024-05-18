@@ -1,17 +1,21 @@
 .paginationSection {
   display: flex;
-  gap: 58px;
+  justify-content: space-between;
   margin-bottom: 24px;
 }
 .month {
-  color: #323f47;
+  color: var(--color-darkblue);
   font-size: 20px;
-  font-style: normal;
   font-weight: 700;
-  line-height: 24px; /* 120% */
+  line-height: 1.2;
   letter-spacing: -0.2px;
 }
+.chevronDisabled {
+  color: rgba(50, 63, 71, 0.2);
+  font-size: 20px;
+}
 .button {
+  padding: 0;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -21,24 +25,27 @@
 .button:focus {
   outline: none;
 }
+.chevron:disabled {
+  color: grey;
+}
 .chevron {
   width: 18px;
   height: 18px;
-  stroke: '#323F47';
+  stroke: var(--color-darkblue);
   stroke-width: 1;
 }
 .chooseMonth {
   display: flex;
-  gap: 16px;
+  justify-content: space-between;
+  gap: 4px;
 }
 .span {
-  color: #323f47;
+  width: 119px;
+  color: var(--color-darkblue);
   text-align: center;
-  font-family: Poppins;
   font-size: 14px;
-  font-style: normal;
   font-weight: 700;
-  line-height: 18px; /* 128.571% */
+  line-height: 1.28;
   letter-spacing: -0.14px;
 }
 @media (--tablet-bp) {
@@ -48,15 +55,15 @@
   .month {
     font-size: 28px;
     font-weight: 700;
-    line-height: 32px; /* 114.286% */
+    line-height: 1.14;
     letter-spacing: -0.28px;
   }
   .span {
     font-size: 16px;
-    font-style: normal;
     font-weight: 700;
-    line-height: 24px; /* 150% */
+    line-height: 1.5;
     letter-spacing: -0.16px;
+    width: 135px;
   }
   .chooseMonth {
     gap: 20px;
