@@ -49,6 +49,7 @@
 .linkSignIn {
   width: 104px;
   display: flex;
+
   padding: 14px 27px;
   justify-content: center;
   align-items: center;
@@ -122,7 +123,6 @@
     margin: 0;
   }
 }
-
 @media screen and (max-width: 330px) {
   .mainTitle {
     font-size: 30px;
