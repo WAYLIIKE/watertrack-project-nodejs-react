@@ -87,8 +87,6 @@
 
 .validationError {
   color: var(--color-error);
-  position: absolute;
-  top: 80px;
   font-size: 14px;
   margin: 0;
   padding: 0;

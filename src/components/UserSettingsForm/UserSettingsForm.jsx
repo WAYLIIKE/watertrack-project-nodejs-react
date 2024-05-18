@@ -1,10 +1,10 @@
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import css from './UserSettingsForm.module.css';
 import { FormValidateError } from '../FormValidateError/FormValidateError';
 import { calcRequiredWater } from '../../helpers/calcRequiredWater';
-import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/selectors';
 import { currentEdit } from '../../redux/user/userOps';
 
@@ -140,7 +140,7 @@ export const UserSettingsForm = ({ onClose }) => {
             </label>
           </>
         ) : (
-          <strong>{avatar[0].name}</strong>
+          <strong className={css.avatarName}>{avatar[0].name}</strong>
         )}
         {errors.avatar && <FormValidateError message={errors.avatar.message} />}
       </div>

@@ -22,7 +22,11 @@ export const AddWaterBtn = () => {
         <span>Add water</span>
       </button>
       <BaseModal isOpen={isWaterModalOpen} onClose={closeWaterModal}>
-        <WaterModal title={'Add water'} subtitle={'Choose a value:'} />
+        <WaterModal
+          title={'Add water'}
+          subtitle={'Choose a value:'}
+          onClose={closeWaterModal}
+        />
       </BaseModal>
     </>
   );
