@@ -1,29 +1,21 @@
-import { useState } from 'react';
+import clsx from 'clsx';
 import { IconPlusWater } from '../Icons/IconPlusWater';
-import { BaseModal } from '../../components/BaseModal/BaseModal';
-import { WaterModal } from '../WaterModal/WaterModal';
 import css from './AddWaterBtn.module.css';
 
-export const AddWaterBtn = () => {
-  const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
-
-  const openWaterModal = () => {
-    setIsWaterModalOpen(true);
-  };
-
-  const closeWaterModal = () => {
-    setIsWaterModalOpen(false);
-  };
-
+export const AddWaterBtn = ({ openWaterModal, isPrimary = true }) => {
   return (
     <>
-      <button className={css.btn} type="button" onClick={openWaterModal}>
-        <IconPlusWater />
+      <button
+        className={clsx(
+          css.btn,
+          isPrimary ? css.btn__Primary : css.btn__Secondary
+        )}
+        type="button"
+        onClick={openWaterModal}
+      >
+        <IconPlusWater isPrimary={isPrimary} className={clsx(css.btn__svg, isPrimary && css.btn__svg_primary)} />
         <span>Add water</span>
       </button>
-      <BaseModal isOpen={isWaterModalOpen} onClose={closeWaterModal}>
-        <WaterModal title={'Add water'} subtitle={'Choose a value:'} />
-      </BaseModal>
     </>
   );
 };
