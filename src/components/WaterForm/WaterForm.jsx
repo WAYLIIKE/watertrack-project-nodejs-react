@@ -23,7 +23,7 @@ const schema = yup.object().shape({
     .required('Value is required'),
 });
 
-export const WaterForm = ({ subtitle }) => {
+export const WaterForm = ({ subtitle, onClose }) => {
   const dispatch = useDispatch();
 
   const {
@@ -41,7 +41,7 @@ export const WaterForm = ({ subtitle }) => {
     },
   });
 
-  const submitForm = (data) => {
+  const submitForm = async (data) => {
     const time = data.date;
 
     const unixTime = convertTimeToUnix(time);
@@ -51,9 +51,9 @@ export const WaterForm = ({ subtitle }) => {
       date: unixTime,
     };
 
-    const response = dispatch(addWater(dataToSend));
+    const response = await dispatch(addWater(dataToSend));
 
-    console.log(response);
+    response.meta.requestStatus === 'fulfilled' && onClose();
   };
 
   const subtract = () => {

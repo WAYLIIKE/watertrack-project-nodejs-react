@@ -7,6 +7,8 @@ import {
   putWater,
 } from './waterOps';
 
+import toast from 'react-hot-toast';
+
 const waterSlice = createSlice({
   name: 'water',
   initialState: {
@@ -27,10 +29,27 @@ const waterSlice = createSlice({
         state.loading = false;
         state.items.push(action.payload);
         state.totalDayWater += action.payload.amount;
+        toast.success('Saved successfully!', {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            textAlign: 'center',
+            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+          },
+        });
       })
       .addCase(addWater.rejected, (state) => {
         state.loading = false;
         state.error = true;
+        toast.error('Something went wrong... Please, try again!'),
+          {
+            duration: 5000,
+            position: 'top-center',
+            style: {
+              textAlign: 'center',
+              boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+            },
+          };
       })
       .addCase(deleteWater.pending, (state) => {
         state.loading = true;
