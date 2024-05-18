@@ -41,7 +41,7 @@ export const WaterForm = ({ subtitle }) => {
     },
   });
 
-  const submitForm = async (data) => {
+  const submitForm = (data) => {
     const time = data.date;
 
     const unixTime = convertTimeToUnix(time);
@@ -51,7 +51,7 @@ export const WaterForm = ({ subtitle }) => {
       date: unixTime,
     };
 
-    const response = await dispatch(addWater(dataToSend));
+    const response = dispatch(addWater(dataToSend));
 
     console.log(response);
   };
