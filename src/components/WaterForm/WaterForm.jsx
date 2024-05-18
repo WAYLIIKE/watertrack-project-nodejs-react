@@ -10,6 +10,8 @@ import { getCurrentTime } from '../../helpers/getCurrentTime';
 import css from './WaterForm.module.css';
 
 import { convertTimeToUnix } from '../../helpers/convertTimeToUnix';
+import { useDispatch } from 'react-redux';
+import { addWater } from '../../redux/water/waterOps';
 
 const schema = yup.object().shape({
   date: yup.string().required('Please, enter the recorded time'),
@@ -18,11 +20,12 @@ const schema = yup.object().shape({
     .min(10, 'Amount of water must be greater than 10 ml')
     .max(2000, 'Amount of water must be less than 2000 ml')
     .typeError('Enter a valid amount of water in ml')
-    .positive('Value must be positive')
     .required('Value is required'),
 });
 
 export const WaterForm = ({ subtitle }) => {
+  const dispatch = useDispatch();
+
   const {
     register,
     setValue,
@@ -38,16 +41,19 @@ export const WaterForm = ({ subtitle }) => {
     },
   });
 
-  const submitForm = (data) => {
+  const submitForm = async (data) => {
     const time = data.date;
 
     const unixTime = convertTimeToUnix(time);
 
     const dataToSend = {
       amount: data.amount,
-      time: unixTime,
+      date: unixTime,
     };
-    console.log(dataToSend); // тимчасовий консоль лог. Буде опрацьовуватись відправка
+
+    const response = await dispatch(addWater(dataToSend));
+
+    console.log(response);
   };
 
   const subtract = () => {
@@ -76,7 +82,12 @@ export const WaterForm = ({ subtitle }) => {
 
         <span className={css.amountValue}>{`${watch('amount')} ml`}</span>
 
-        <button className={css.amountButton} onClick={add} type="button">
+        <button
+          className={css.amountButton}
+          onClick={add}
+          type="button"
+          disabled={getValues('amount') === 5000 ? true : false}
+        >
           <IconPlus className={css.icon} />
         </button>
       </div>
