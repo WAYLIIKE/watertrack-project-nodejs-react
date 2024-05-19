@@ -57,13 +57,34 @@ const waterSlice = createSlice({
       })
       .addCase(deleteWater.fulfilled, (state, action) => {
         state.loading = false;
-        const deletedWaterIndex = state.items.findIndex(action.payload._id);
-        state.items = state.items.splice(deletedWaterIndex, 1);
-        state.totalDayWater -= action.payload.amount;
+        const id = action.payload._id;
+        const deletedWaterIndex = state.items.findIndex(
+          (item) => item._id === id
+        );
+        if (deletedWaterIndex !== -1) {
+          state.totalDayWater -= state.items[deletedWaterIndex].amount;
+          state.items.splice(deletedWaterIndex, 1);
+          toast.success('Deleted successfully!', {
+            duration: 5000,
+            position: 'top-center',
+            style: {
+              textAlign: 'center',
+              boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+            },
+          });
+        }
       })
       .addCase(deleteWater.rejected, (state) => {
         state.loading = false;
         state.error = true;
+        toast.error('Failed to delete.', {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            textAlign: 'center',
+            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+          },
+        });
       })
       .addCase(putWater.pending, (state) => {
         state.loading = true;
