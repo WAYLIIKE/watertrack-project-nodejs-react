@@ -1,20 +1,13 @@
 .itemWrapper {
-  flex: 0 0 auto;
   display: flex;
   padding: 18px 14px;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-right: 8px;
+  gap: 8px;
   margin-bottom: 24px;
 
   border-radius: 15px;
   background: var(--color-white);
-  backdrop-filter: blur(16.8px);
-}
-
-.itemWrapper:last-child {
-  margin-right: 0;
 }
 
 @media (--tablet-bp) {
@@ -35,6 +28,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  white-space: nowrap;
 }
 
 @media (--tablet-bp) {
