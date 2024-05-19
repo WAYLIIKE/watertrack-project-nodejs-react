@@ -52,4 +52,9 @@
 
 .translucent {
   color: var(--color-darkblue-translucent);
+  transition: var(--animation);
+
+  &:hover {
+    color: var(--color-darkblue);
+  }
 }
