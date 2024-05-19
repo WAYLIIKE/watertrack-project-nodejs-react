@@ -4,20 +4,19 @@ import Slider from '@mui/material/Slider';
 import css from './WaterProgressBar.module.css';
 
 export const WaterProgressBar = () => {
-  // const totalDayWater = useSelector(selectTotalDayWater);
-  // const user = useSelector(selectUser);
+  const totalDayWater = useSelector(selectTotalDayWater);
+  const user = useSelector(selectUser);
 
-  // const percentage = totalDayWater
-  //   ? (totalDayWater / user.desiredVolume) * 100
-  //   : 0;
+  const percentage = totalDayWater
+    ? (totalDayWater / user.desiredVolume) * 100
+    : 0;
 
   return (
     <div className={css.container}>
       <strong className={css.title}>Today</strong>
       <Slider
         className={css.slider}
-        // defaultValue={percentage}
-        // value={percentage}
+        value={percentage}
         sx={{
           m: 0,
           p: 0,
