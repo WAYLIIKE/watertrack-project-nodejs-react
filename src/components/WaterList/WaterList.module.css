@@ -9,10 +9,11 @@
 .wrapper {
   display: flex;
   flex-wrap: nowrap;
-  overflow-x: auto;
+  overflow-x: overlay;
   gap: 8px;
   max-width: 672px;
   padding-top: 24px;
+  
 }
 
 .wrapper::-webkit-scrollbar {
