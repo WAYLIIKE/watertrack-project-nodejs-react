@@ -1,9 +1,10 @@
-export const IconChevronDown = ({size = 16, color = "white"}) => {
+export const IconChevronDown = ({ className, color = 'white' }) => {
   return (
     <>
       <svg
-        width={size}
-        height={size}
+        className={className}
+        height="currentSize"
+        width="currentSize"
         viewBox="0 0 16 16"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
