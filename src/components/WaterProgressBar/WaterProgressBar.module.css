@@ -1,14 +1,14 @@
 .container {
   position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-  margin-top: 175px;
+  display: flex;
+  flex-direction: column;
+  left: 73px;
+  top: 225px;
+  gap: 8px;
+
   width: 198px;
   height: 70px;
   border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
   padding: 12px;
   background-color: var(--color-white);
 }
@@ -40,10 +40,12 @@
 
 @media (--tablet-bp) {
   .container {
-    margin-top: 253px;
+    left: 204px;
+    top: 322px;
+    gap: 6px;
+
     width: 295px;
     height: 106px;
-    gap: 6px;
     padding: 20px;
   }
   .title {
@@ -66,6 +68,7 @@
 }
 @media (--desktop-bp) {
   .container {
-    margin-top: 394px;
+    left: 188px;
+    top: 450px;
   }
 }

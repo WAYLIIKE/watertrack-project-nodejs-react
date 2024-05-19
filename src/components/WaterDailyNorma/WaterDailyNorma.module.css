@@ -1,13 +1,14 @@
 .dailyNorm {
-  position: absolute;
-  width: 102px;
-  height: 54px;
   display: flex;
   flex-direction: column;
+  position: absolute;
+  left: 16px;
+  top: 122px;
+
+  width: 102px;
+  height: 54px;
   background-color: var(--color-white);
   border-radius: 15px;
-  margin-left: 16px;
-  margin-top: 72px;
   padding: 12px;
 }
 .title {
@@ -28,8 +29,8 @@
   .dailyNorm {
     width: 129px;
     height: 78px;
-    margin-left: 32px;
-    margin-top: 88px;
+    left: 32px;
+    top: 157px;
     padding: 14px 18px;
   }
   .title {
@@ -44,7 +45,7 @@
 }
 @media (--desktop-bp) {
   .dailyNorm {
-    margin-left: 64px;
-    margin-top: 101px;
+    left: 64px;
+    top: 157px;
   }
 }
