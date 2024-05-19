@@ -1,57 +1,78 @@
 .btn {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  position: absolute;
-  right: 16px;
-  bottom: 32px;
-  width: 140px;
-  height: 46px;
-  padding: 20px 14px;
-
-  background-color: var(--color-darkblue);
-  border: none;
+  gap: 10px;
   border-radius: 30px;
-  transition: var(--animation);
-
-  /* TEXT */
-  color: var(--color-white);
-  font-size: 14px;
-  line-height: 1.28;
   letter-spacing: -0.01em;
   font-weight: bold;
-}
-.btn div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.btn svg {
-  position: relative;
-  width: 22px;
-  height: 22px;
-  stroke: var(--color-white);
-}
-.btn:hover,
-.btn svg:hover {
-  stroke: var(--color-lightgreen);
-  color: var(--color-lightgreen);
-}
+  transition: var(--animation);
 
-@media (--tablet-bp) {
-  .btn {
-    width: 178px;
-    height: 60px;
-    right: 32px;
-    bottom: 64px;
-    padding: 18px 30px;
+  &__Primary {
+    position: absolute;
+    right: 16px;
+    bottom: 32px;
+    width: 140px;
+    height: 46px;
+    padding: 20px 14px;
 
-    /* TEXT */
+    font-size: 14px;
+    line-height: 1.29;
+
+    color: var(--color-white);
+    background-color: var(--color-darkblue);
+
+    &:hover {
+      stroke: var(--color-lightgreen);
+      color: var(--color-lightgreen);
+    }
+
+    @media (--tablet-bp) {
+      width: 178px;
+      height: 60px;
+      right: 32px;
+      bottom: 64px;
+      padding: 18px 30px;
+
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  }
+
+  &__svg {
+    position: relative;
+    width: 16px;
+    height: 16px;
+
+    @media (--tablet-bp) {
+      &_primary {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  &__Secondary {
     font-size: 16px;
     line-height: 1.5;
-  }
-  .btn svg {
-    width: 28px;
-    height: 28px;
+    padding: 0px;
+
+    color: var(--color-darkblue);
+    background-color: transparent;
+
+    &:hover div {
+      background-color: var(--color-darkblue);
+      color: var(--color-white);
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      height: 30px;
+      width: 30px;
+      transition: var(--animation);
+      background-color: var(--color-lightgreen);
+    }
   }
 }

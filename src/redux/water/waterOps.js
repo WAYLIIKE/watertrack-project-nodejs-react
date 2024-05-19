@@ -1,9 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { axiosInstance } from '../user/userOps';
-// import axios from 'axios';
 import { getUnixDay } from '../../helpers/getUnixDay';
-// // axios.defaults.baseURL =
-//   'https://server-watertrack-project-nodejs.onrender.com/api/';
 
 export const addWater = createAsyncThunk(
   'water/addWater',

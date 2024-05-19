@@ -4,12 +4,12 @@ import { WaterProgressBar } from '../WaterProgressBar/WaterProgressBar';
 import { AddWaterBtn } from '../AddWaterBtn/AddWaterBtn';
 import { bottle } from '../../assets/img';
 
-export const WaterMainInfo = () => {
+export const WaterMainInfo = ({ openWaterModal }) => {
   return (
     <div className={css.container}>
       <WaterDailyNorma />
       <WaterProgressBar />
-      <AddWaterBtn />
+      <AddWaterBtn openWaterModal={openWaterModal} />
       <div className={css.imgWrapper}>
         <img className={css.img} src={bottle} alt="Water bottle image" />
       </div>

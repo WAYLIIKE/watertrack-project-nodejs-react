@@ -1,0 +1,60 @@
+.userBarPopover {
+  &__thumb {
+    position: absolute;
+    top: 54px;
+    width: 100%;
+    z-index: 999;
+
+    box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+
+    background-color: var(--color-white);
+
+    @media (--tablet-bp) {
+      top: 60px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  &__item {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+
+    &:first-child {
+      padding-top: 14px;
+    }
+
+    &:last-child {
+      padding-bottom: 14px;
+    }
+  }
+
+  &__button {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+
+    color: inherit;
+    background-color: inherit;
+  }
+}
+
+.dark {
+  color: var(--color-darkblue);
+}
+
+.translucent {
+  color: var(--color-darkblue-translucent);
+  transition: var(--animation);
+
+  &:hover {
+    color: var(--color-darkblue);
+  }
+}
