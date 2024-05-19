@@ -68,7 +68,7 @@ const userSlice = createSlice({
         state.refreshToken = action.payload.refreshToken;
         state.loading = false;
         state.isLoggedIn = true;
-        toast.success('Successfully logged in!', {
+        toast.success('Logged in successfully!', {
           duration: 5000,
           position: 'top-center',
           style: {
@@ -97,7 +97,7 @@ const userSlice = createSlice({
         state.refreshToken = null;
         state.isLoggedIn = false;
         state.loading = false;
-        toast.success('Successfully logged out!', {
+        toast.success('Logged out successfully!', {
           duration: 5000,
           position: 'top-center',
           style: {
@@ -123,7 +123,7 @@ const userSlice = createSlice({
       .addCase(currentEdit.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.loading = false;
-        toast.success('Successfully updated profile!', {
+        toast.success('Updated profile successfully!', {
           duration: 5000,
           position: 'top-center',
           style: {
@@ -134,7 +134,7 @@ const userSlice = createSlice({
       })
       .addCase(currentEdit.rejected, (state) => {
         state.loading = false;
-        toast.error('Something went wrong', {
+        toast.error('Failed to update profile.', {
           duration: 5000,
           position: 'top-center',
           style: {

@@ -62,7 +62,7 @@ export const WaterForm = ({ subtitle, onClose, toggleHandle, water }) => {
     const unixTime = convertTimeToUnix(time);
 
     if (unixTime > Date.now()) {
-      toast.error("You can't choose a date in the future :( "),
+      toast.error("You can't choose a date in the future."),
         {
           duration: 5000,
           position: 'top-center',

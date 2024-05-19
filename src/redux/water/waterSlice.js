@@ -29,7 +29,7 @@ const waterSlice = createSlice({
         state.loading = false;
         state.items.push(action.payload);
         state.totalDayWater += action.payload.amount;
-        toast.success('Saved successfully!', {
+        toast.success('Added water successfully!', {
           duration: 5000,
           position: 'top-center',
           style: {
@@ -41,7 +41,7 @@ const waterSlice = createSlice({
       .addCase(addWater.rejected, (state) => {
         state.loading = false;
         state.error = true;
-        toast.error('Something went wrong... Please, try again!'),
+        toast.error('Failed'),
           {
             duration: 5000,
             position: 'top-center',
@@ -64,7 +64,7 @@ const waterSlice = createSlice({
         if (deletedWaterIndex !== -1) {
           state.totalDayWater -= state.items[deletedWaterIndex].amount;
           state.items.splice(deletedWaterIndex, 1);
-          toast.success('Deleted successfully!', {
+          toast.success('Deleted water successfully!', {
             duration: 5000,
             position: 'top-center',
             style: {
@@ -77,7 +77,7 @@ const waterSlice = createSlice({
       .addCase(deleteWater.rejected, (state) => {
         state.loading = false;
         state.error = true;
-        toast.error('Failed to delete.', {
+        toast.error('Failed to delete water.', {
           duration: 5000,
           position: 'top-center',
           style: {
@@ -116,7 +116,7 @@ const waterSlice = createSlice({
       .addCase(putWater.rejected, (state) => {
         state.loading = false;
         state.error = true;
-        toast.error('Failed to delete.', {
+        toast.error('Failed to update water.', {
           duration: 5000,
           position: 'top-center',
           style: {
