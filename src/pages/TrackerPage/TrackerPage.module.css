@@ -1,1 +1,10 @@
+.flexContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 
+  @media (--desktop-bp) {
+    flex-direction: row;
+    gap: 32px;
+  }
+}

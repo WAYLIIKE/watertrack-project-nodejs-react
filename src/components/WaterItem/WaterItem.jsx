@@ -6,10 +6,13 @@ import { BaseModal } from '../../components/BaseModal/BaseModal';
 import { WaterModal } from '../../components/WaterModal/WaterModal';
 import { DeleteWaterModal } from '../../components/DeleteWaterModal/DeleteWaterModal';
 import css from './WaterItem.module.css';
+import { formatTimestampToTime } from '../../helpers/formatTimestampToTime';
 
-export const WaterItem = () => {
+export const WaterItem = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const formattedTime = formatTimestampToTime(item.date);
+
   const openModal = () => {
     setIsOpen(true);
   };
@@ -24,10 +27,10 @@ export const WaterItem = () => {
   };
   return (
     <div className={css.itemWrapper}>
-      <IconGlass />
+      <IconGlass size={38} />
       <div className={css.textWrapper}>
-        <p className={css.amount}>250 ml</p>
-        <p className={css.time}>11:34 AM</p>
+        <p className={css.amount}>{item.amount} ml</p>
+        <p className={css.time}>{formattedTime}</p>
       </div>
       <div className={css.buttonWrapper}>
         <button className={css.button} type="button" onClick={openModal}>
@@ -44,7 +47,11 @@ export const WaterItem = () => {
         />
       </BaseModal>
       <BaseModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}>
-        <DeleteWaterModal title={'Delete entry'} />
+        <DeleteWaterModal
+          title={'Delete entry'}
+          id={item._id}
+          closeDeleteModal={closeDeleteModal}
+        />
       </BaseModal>
     </div>
   );

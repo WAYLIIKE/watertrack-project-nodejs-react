@@ -1,11 +1,8 @@
 .waterDetailedInfoBack {
-  width: 672px;
-  height: 736px;
-  left: 736px;
-  top: 32px;
-
-  background-color: var(--color-lightgray);
   border-radius: 30px;
+  background-color: var(--color-lightgray);
 
-  margin-top: 50px;
+  @media (--desktop-bp) {
+    width: 672px;
+  }
 }

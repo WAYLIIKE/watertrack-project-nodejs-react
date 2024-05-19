@@ -1,9 +1,18 @@
+.noWater {
+  padding-top: 30px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  color: var(--color-darkblue-translucent);
+}
+
 .wrapper {
-  width: 200px;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-  max-width: 100%;
+  gap: 8px;
+  max-width: 672px;
+  padding-top: 24px;
 }
 
 .wrapper::-webkit-scrollbar {
