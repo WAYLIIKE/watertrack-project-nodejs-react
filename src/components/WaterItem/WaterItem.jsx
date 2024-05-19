@@ -46,7 +46,7 @@ export const WaterItem = ({ item }) => {
           subtitle={'Correct entered data:'}
           onClose={closeModal}
           toggleHandle={false}
-          id={item._id}
+          water={item}
         />
       </BaseModal>
       <BaseModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}>

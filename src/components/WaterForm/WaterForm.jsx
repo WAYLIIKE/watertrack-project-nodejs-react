@@ -24,8 +24,25 @@ const schema = yup.object().shape({
     .required('Value is required'),
 });
 
-export const WaterForm = ({ subtitle, onClose, toggleHandle, id }) => {
+const formatToLocalTime = (timestamp) => {
+  const date = new Date(timestamp);
+  const offset = date.getTimezoneOffset() * 60000;
+  const localDate = new Date(date.getTime() - offset);
+  return localDate.toISOString().slice(11, 16);
+};
+
+export const WaterForm = ({ subtitle, onClose, toggleHandle, water }) => {
   const dispatch = useDispatch();
+
+  const defaultValues = water
+    ? {
+        date: formatToLocalTime(water.date),
+        amount: water.amount,
+      }
+    : {
+        date: getCurrentTime(),
+        amount: 50,
+      };
 
   const {
     register,
@@ -36,10 +53,7 @@ export const WaterForm = ({ subtitle, onClose, toggleHandle, id }) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: {
-      date: getCurrentTime(),
-      amount: 50,
-    },
+    defaultValues,
   });
 
   const submitForm = async (data) => {
@@ -67,9 +81,7 @@ export const WaterForm = ({ subtitle, onClose, toggleHandle, id }) => {
 
     const response = toggleHandle
       ? await dispatch(addWater(dataToSend))
-      : await dispatch(putWater([id, dataToSend]));
-
-    console.log(response);
+      : await dispatch(putWater([water._id, dataToSend]));
 
     response.meta.requestStatus === 'fulfilled' && onClose();
   };

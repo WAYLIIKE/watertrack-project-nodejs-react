@@ -8,7 +8,6 @@ import { Page } from '../../components/Page/Page';
 import { WaterMainInfo } from '../../components/WaterMainInfo/WaterMainInfo';
 import { useDispatch } from 'react-redux';
 import { getDayWater } from '../../redux/water/waterOps';
-import { getUnixDay } from '../../helpers/getUnixDay';
 import { WaterDetailedInfo } from '../../components/WaterDetailedInfo/WaterDetailedInfo';
 import css from './TrackerPage.module.css';
 import { WaterModal } from '../../components/WaterModal/WaterModal';
@@ -16,7 +15,7 @@ import { WaterModal } from '../../components/WaterModal/WaterModal';
 export default function TrackerPage() {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const dispatch = useDispatch();
-  const unixCurrentDate = getUnixDay(new Date());
+  // const unixCurrentDate = getUnixDay(new Date());
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
 
@@ -45,8 +44,8 @@ export default function TrackerPage() {
   };
 
   useEffect(() => {
-    dispatch(getDayWater(unixCurrentDate));
-  }, [dispatch, unixCurrentDate]);
+    dispatch(getDayWater(Date.now()));
+  }, [dispatch]);
 
   return (
     <Container>

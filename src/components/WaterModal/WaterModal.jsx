@@ -1,7 +1,13 @@
 import { WaterForm } from '../WaterForm/WaterForm';
 import css from './WaterModal.module.css';
 
-export const WaterModal = ({ title, subtitle, onClose, toggleHandle, id }) => {
+export const WaterModal = ({
+  title,
+  subtitle,
+  onClose,
+  toggleHandle,
+  water,
+}) => {
   return (
     <div className={css.wrapper}>
       <h2 className={css.title}>{title}</h2>
@@ -9,7 +15,7 @@ export const WaterModal = ({ title, subtitle, onClose, toggleHandle, id }) => {
         subtitle={subtitle}
         onClose={onClose}
         toggleHandle={toggleHandle}
-        id={id}
+        water={water}
       />
     </div>
   );

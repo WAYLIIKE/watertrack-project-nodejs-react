@@ -92,20 +92,38 @@ const waterSlice = createSlice({
       })
       .addCase(putWater.fulfilled, (state, action) => {
         state.loading = false;
-        const deletedWaterIndex = state.items.findIndex(
+
+        const updatedWaterIndex = state.items.findIndex(
           (item) => item._id === action.payload._id
         );
-        const prevWater = state.items.find(
-          (item) => item._id === action.payload._id
-        );
-        state.items = state.items.splice(deletedWaterIndex, 1, action.payload);
-        if (prevWater.amount > action.payload.amount)
+
+        if (updatedWaterIndex !== -1) {
+          const prevWater = state.items[updatedWaterIndex];
+
+          state.items[updatedWaterIndex] = action.payload;
+
           state.totalDayWater += action.payload.amount - prevWater.amount;
-        else state.totalDayWater += prevWater.amount - action.payload.amount;
+        }
+        toast.success('Updated water successfully!', {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            textAlign: 'center',
+            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+          },
+        });
       })
       .addCase(putWater.rejected, (state) => {
         state.loading = false;
         state.error = true;
+        toast.error('Failed to delete.', {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            textAlign: 'center',
+            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+          },
+        });
       })
       .addCase(getDayWater.pending, (state) => {
         state.loading = true;
