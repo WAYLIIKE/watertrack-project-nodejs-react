@@ -12,6 +12,7 @@ import css from './WaterForm.module.css';
 import { convertTimeToUnix } from '../../helpers/convertTimeToUnix';
 import { useDispatch } from 'react-redux';
 import { addWater, putWater } from '../../redux/water/waterOps';
+import toast from 'react-hot-toast';
 
 const schema = yup.object().shape({
   date: yup.string().required('Please, enter the recorded time'),
@@ -45,6 +46,19 @@ export const WaterForm = ({ subtitle, onClose, toggleHandle, id }) => {
     const time = data.date;
 
     const unixTime = convertTimeToUnix(time);
+
+    if (unixTime > Date.now()) {
+      toast.error("You can't choose a date in the future :( "),
+        {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            textAlign: 'center',
+            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+          },
+        };
+      return;
+    }
 
     const dataToSend = {
       amount: data.amount,
