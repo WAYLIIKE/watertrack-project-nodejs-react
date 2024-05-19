@@ -11,7 +11,7 @@ import css from './WaterForm.module.css';
 
 import { convertTimeToUnix } from '../../helpers/convertTimeToUnix';
 import { useDispatch } from 'react-redux';
-import { addWater } from '../../redux/water/waterOps';
+import { addWater, putWater } from '../../redux/water/waterOps';
 
 const schema = yup.object().shape({
   date: yup.string().required('Please, enter the recorded time'),
@@ -23,7 +23,7 @@ const schema = yup.object().shape({
     .required('Value is required'),
 });
 
-export const WaterForm = ({ subtitle, onClose }) => {
+export const WaterForm = ({ subtitle, onClose, toggleHandle, id }) => {
   const dispatch = useDispatch();
 
   const {
@@ -51,7 +51,11 @@ export const WaterForm = ({ subtitle, onClose }) => {
       date: unixTime,
     };
 
-    const response = await dispatch(addWater(dataToSend));
+    const response = toggleHandle
+      ? await dispatch(addWater(dataToSend))
+      : await dispatch(putWater([id, dataToSend]));
+
+    console.log(response);
 
     response.meta.requestStatus === 'fulfilled' && onClose();
   };

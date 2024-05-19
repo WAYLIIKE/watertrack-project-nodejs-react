@@ -44,6 +44,9 @@ export const WaterItem = ({ item }) => {
         <WaterModal
           title={'Edit the entered amount of water'}
           subtitle={'Correct entered data:'}
+          onClose={closeModal}
+          toggleHandle={false}
+          id={item._id}
         />
       </BaseModal>
       <BaseModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}>

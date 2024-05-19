@@ -74,6 +74,7 @@ export default function TrackerPage() {
             title={'Add water'}
             subtitle={'Choose a value:'}
             onClose={closeWaterModal}
+            toggleHandle={true}
           />
         </BaseModal>
       </Page>
