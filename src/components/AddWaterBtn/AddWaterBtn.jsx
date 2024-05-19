@@ -13,7 +13,10 @@ export const AddWaterBtn = ({ openWaterModal, isPrimary = true }) => {
         type="button"
         onClick={openWaterModal}
       >
-        <IconPlusWater isPrimary={isPrimary} className={clsx(css.btn__svg, isPrimary && css.btn__svg_primary)} />
+        <IconPlusWater
+          isPrimary={isPrimary}
+          className={clsx(css.btn__svg, isPrimary && css.btn__svg_primary)}
+        />
         <span>Add water</span>
       </button>
     </>
