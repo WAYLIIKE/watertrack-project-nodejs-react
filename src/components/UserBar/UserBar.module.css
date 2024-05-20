@@ -15,10 +15,11 @@
     gap: 8px;
     border-radius: 30px;
     height: 50px;
-    
+    max-width: 100%;
+
     background-color: var(--color-darkblue);
     color: var(--color-white);
-    
+
     @media (--tablet-bp) {
       height: 56px;
     }
@@ -29,9 +30,15 @@
     font-size: 14px;
     line-height: 18px;
     letter-spacing: -0.01em;
+    max-width: 150px;
+   
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     @media (--tablet-bp) {
       font-size: 16px;
+      white-space: nowrap;
+      max-width: 200px;
     }
   }
 
