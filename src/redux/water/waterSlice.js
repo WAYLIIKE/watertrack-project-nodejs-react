@@ -8,6 +8,7 @@ import {
 } from './waterOps';
 
 import toast from 'react-hot-toast';
+import { isSameDay } from 'date-fns';
 
 const waterSlice = createSlice({
   name: 'water',
@@ -29,6 +30,21 @@ const waterSlice = createSlice({
         state.loading = false;
         state.items.push(action.payload);
         state.totalDayWater += action.payload.amount;
+
+        const addedDate = new Date(action.payload.date);
+        const existingMonthItem = state.monthItems.find((item) =>
+          isSameDay(new Date(item.date), addedDate)
+        );
+
+        if (existingMonthItem) {
+          existingMonthItem.totalDayWater += action.payload.amount;
+        } else {
+          state.monthItems.push({
+            date: action.payload.date,
+            totalDayWater: action.payload.amount,
+          });
+        }
+
         toast.success('Added water successfully!', {
           duration: 5000,
           position: 'top-center',
@@ -41,7 +57,8 @@ const waterSlice = createSlice({
       .addCase(addWater.rejected, (state) => {
         state.loading = false;
         state.error = true;
-        toast.error('Failed'),
+
+        toast.error('Failed to add water.'),
           {
             duration: 5000,
             position: 'top-center',
@@ -62,8 +79,19 @@ const waterSlice = createSlice({
           (item) => item._id === id
         );
         if (deletedWaterIndex !== -1) {
-          state.totalDayWater -= state.items[deletedWaterIndex].amount;
+          const deletedWater = state.items[deletedWaterIndex];
+          state.totalDayWater -= deletedWater.amount;
           state.items.splice(deletedWaterIndex, 1);
+
+          const deletedDate = new Date(deletedWater.date);
+          const existingMonthItem = state.monthItems.find((item) =>
+            isSameDay(new Date(item.date), deletedDate)
+          );
+
+          if (existingMonthItem) {
+            existingMonthItem.totalDayWater -= deletedWater.amount;
+          }
+
           toast.success('Deleted water successfully!', {
             duration: 5000,
             position: 'top-center',
@@ -99,11 +127,27 @@ const waterSlice = createSlice({
 
         if (updatedWaterIndex !== -1) {
           const prevWater = state.items[updatedWaterIndex];
+          const prevAmount = prevWater.amount;
+          const newAmount = action.payload.amount;
 
           state.items[updatedWaterIndex] = action.payload;
+          state.totalDayWater += newAmount - prevAmount;
 
-          state.totalDayWater += action.payload.amount - prevWater.amount;
+          const updatedDate = new Date(action.payload.date);
+          const existingMonthItem = state.monthItems.find((item) =>
+            isSameDay(new Date(item.date), updatedDate)
+          );
+
+          if (existingMonthItem) {
+            existingMonthItem.totalDayWater += newAmount - prevAmount;
+          } else {
+            state.monthItems.push({
+              date: action.payload.date,
+              totalDayWater: newAmount,
+            });
+          }
         }
+
         toast.success('Updated water successfully!', {
           duration: 5000,
           position: 'top-center',

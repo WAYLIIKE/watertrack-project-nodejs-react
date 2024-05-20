@@ -10,9 +10,10 @@ import { getCurrentTime } from '../../helpers/getCurrentTime';
 import css from './WaterForm.module.css';
 
 import { convertTimeToUnix } from '../../helpers/convertTimeToUnix';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addWater, putWater } from '../../redux/water/waterOps';
 import toast from 'react-hot-toast';
+import { selectWaterDate } from '../../redux/selectors';
 
 const schema = yup.object().shape({
   date: yup.string().required('Please, enter the recorded time'),
@@ -33,6 +34,8 @@ const formatToLocalTime = (timestamp) => {
 
 export const WaterForm = ({ subtitle, onClose, toggleHandle, water }) => {
   const dispatch = useDispatch();
+
+  const day = useSelector(selectWaterDate);
 
   const defaultValues = water
     ? {
@@ -59,7 +62,7 @@ export const WaterForm = ({ subtitle, onClose, toggleHandle, water }) => {
   const submitForm = async (data) => {
     const time = data.date;
 
-    const unixTime = convertTimeToUnix(time);
+    const unixTime = convertTimeToUnix(time, day);
 
     if (unixTime > Date.now()) {
       toast.error("You can't choose a date in the future."),

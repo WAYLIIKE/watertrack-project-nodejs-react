@@ -14,6 +14,7 @@ import { getMonthWater } from '../../redux/water/waterOps';
 export const Calendar = ({ currentMonth }) => {
   const dispatch = useDispatch();
   const monthData = useSelector(selectMonthWater);
+
   useEffect(() => {
     dispatch(getMonthWater(currentMonth));
   }, [dispatch, currentMonth]);

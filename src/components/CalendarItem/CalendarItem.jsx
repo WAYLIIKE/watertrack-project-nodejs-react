@@ -20,17 +20,24 @@ export const CalendarItem = ({ day, getDayData }) => {
   }
 
   const isFullConsumption = percentage === 100;
+  const isToday = isSameDay(day, new Date());
 
-  const getDayStyles = (isFullConsumption) => {
+  const getDayStyles = (isFullConsumption, isToday) => {
     if (isFullConsumption) {
       return {
-        backgroundColor: 'white',
+        backgroundColor: '#9be1a0',
+      };
+    }
+    if (isToday) {
+      return {
+        backgroundColor: '#323F47',
+        color: '#9BE1A0',
       };
     }
     return {};
   };
 
-  const styles = getDayStyles(isFullConsumption);
+  const styles = getDayStyles(isFullConsumption, isToday);
 
   const handleDayClick = () => {
     const utcDate = Date.UTC(day.getFullYear(), day.getMonth(), day.getDate());

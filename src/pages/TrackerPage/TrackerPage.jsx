@@ -15,7 +15,7 @@ import { WaterModal } from '../../components/WaterModal/WaterModal';
 export default function TrackerPage() {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const dispatch = useDispatch();
-  // const unixCurrentDate = getUnixDay(new Date());
+
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
 
@@ -43,8 +43,14 @@ export default function TrackerPage() {
     setIsSettingsModalOpen(false);
   };
 
+  const getStartOfDay = () => {
+    const day = new Date();
+
+    return Date.UTC(day.getFullYear(), day.getMonth(), day.getDate());
+  };
+
   useEffect(() => {
-    dispatch(getDayWater(Date.now()));
+    dispatch(getDayWater(getStartOfDay()));
   }, [dispatch]);
 
   return (
