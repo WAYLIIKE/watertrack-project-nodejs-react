@@ -15,7 +15,6 @@ import { addWater, putWater } from '../../redux/water/waterOps';
 import toast from 'react-hot-toast';
 import { selectWaterDate } from '../../redux/selectors';
 
-console.log(css);
 const schema = yup.object().shape({
   date: yup.string().required('Please, enter the recorded time'),
   amount: yup

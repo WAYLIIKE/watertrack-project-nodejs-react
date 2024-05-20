@@ -77,6 +77,28 @@ const userSlice = createSlice({
           },
         });
       })
+      .addCase(signIn.rejected, (state, action) => {
+        state.loading = false;
+
+        if (action.payload === 'Please, verify your email')
+          toast.error('Please, verify your email.', {
+            duration: 5000,
+            position: 'top-center',
+            style: {
+              textAlign: 'center',
+              boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+            },
+          });
+
+        toast.error('Email or password is wrong.', {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            textAlign: 'center',
+            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+          },
+        });
+      })
       .addCase(signOut.pending, (state) => {
         state.loading = true;
       })
