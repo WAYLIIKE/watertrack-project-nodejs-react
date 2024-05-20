@@ -129,3 +129,28 @@ export const currentEdit = createAsyncThunk(
     }
   }
 );
+
+export const changePassword = createAsyncThunk(
+  'user/changePassword',
+  async (passwords, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedAccessToken = state.user.accessToken;
+
+    if (persistedAccessToken === null) {
+      return thunkAPI.rejectWithValue('Unable to get current user');
+    }
+
+    try {
+      setAuthHeader(persistedAccessToken);
+
+      const response = await axiosInstance.patch(
+        `users/current/edit/password/${persistedAccessToken}`,
+        passwords
+      );
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
