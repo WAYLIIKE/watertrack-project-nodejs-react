@@ -16,7 +16,10 @@ const schema = yup.object().shape({
     .nullable()
     .oneOf(['Woman', 'Man'], 'Please select your gender'),
 
-  name: yup.string(),
+  name: yup
+    .string()
+    .min(2, 'Name must be greater than or equal to 2 characters long')
+    .max(40, 'Name must be less than or equal to 40 characters long'),
 
   email: yup.string().email('Please enter a valid email address'),
 
@@ -51,6 +54,14 @@ const schema = yup.object().shape({
       if (value === undefined || value === null || value === '') return true;
       return !isNaN(parseFloat(value)) && isFinite(value);
     })
+    .test(
+      'min-value',
+      'Value must be greater than or equal to 0.1',
+      (value) => {
+        if (value === undefined || value === null || value === '') return true;
+        return parseFloat(value) >= 0.1;
+      }
+    )
     .test('max-value', 'Value must be less than or equal to 31.2', (value) => {
       if (value === undefined || value === null || value === '') return true;
       return parseFloat(value) <= 31.2;

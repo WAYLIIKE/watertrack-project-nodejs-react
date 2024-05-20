@@ -60,6 +60,7 @@
 }
 
 .timeLabel {
+  display: block;
   color: var(--color-black);
   font-size: 14px;
   line-height: 1.28;
@@ -86,6 +87,8 @@
 }
 
 .validationError {
+  display: block;
+  font-weight: 400;
   color: var(--color-error);
   font-size: 14px;
   margin: 0;
@@ -102,6 +105,7 @@
 }
 
 .valueLabel {
+  display: inline-block;
   color: var(--color-darkblue);
   font-size: 16px;
   font-weight: 700;
