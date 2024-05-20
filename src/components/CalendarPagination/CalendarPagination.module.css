@@ -1,7 +1,8 @@
 .paginationSection {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-bottom: 24px;
+  position: relative;
 }
 .month {
   color: var(--color-darkblue);
@@ -9,6 +10,14 @@
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.2px;
+  position: absolute;
+  left: 0;
+}
+.chevron {
+  width: 18px;
+  height: 18px;
+  stroke: var(--color-darkblue);
+  stroke-width: 1;
 }
 .chevronDisabled {
   color: rgba(50, 63, 71, 0.2);
@@ -19,28 +28,19 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: black;
   outline: none;
 }
 .button:focus {
   outline: none;
 }
-.chevron:disabled {
-  color: grey;
-}
-.chevron {
-  width: 18px;
-  height: 18px;
-  stroke: var(--color-darkblue);
-  stroke-width: 1;
-}
+
 .chooseMonth {
   display: flex;
   justify-content: space-between;
-  gap: 4px;
+  gap: 2px;
 }
 .span {
-  width: 119px;
+  width: 110px;
   color: var(--color-darkblue);
   text-align: center;
   font-size: 14px;
@@ -48,9 +48,17 @@
   line-height: 1.28;
   letter-spacing: -0.14px;
 }
+.svg {
+  width: 20px;
+  height: 20px;
+}
 @media (--tablet-bp) {
   .paginationSection {
-    gap: 343px;
+    gap: 264px;
+  }
+  .svg {
+    width: 24px;
+    height: 24px;
   }
   .month {
     font-size: 28px;
@@ -71,6 +79,6 @@
 }
 @media (--desktop-bp) {
   .paginationSection {
-    gap: 311px;
+    gap: 255px;
   }
 }
