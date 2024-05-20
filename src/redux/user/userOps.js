@@ -73,7 +73,7 @@ export const signIn = createAsyncThunk(
       setAuthHeader(response.data.accessToken);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
