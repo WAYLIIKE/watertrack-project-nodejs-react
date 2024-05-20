@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { addWater, putWater } from '../../redux/water/waterOps';
 import toast from 'react-hot-toast';
 
+console.log(css);
 const schema = yup.object().shape({
   date: yup.string().required('Please, enter the recorded time'),
   amount: yup
@@ -125,6 +126,9 @@ export const WaterForm = ({ subtitle, onClose, toggleHandle, water }) => {
       <div className={css.fieldsWrapper}>
         <label className={css.timeLabel} htmlFor="date">
           Recording time:
+          {errors.date && (
+            <span className={css.validationError}>{errors.date.message}</span>
+          )}
         </label>
         <input
           {...register('date')}
@@ -133,12 +137,12 @@ export const WaterForm = ({ subtitle, onClose, toggleHandle, water }) => {
           name="date"
           id="date"
         />
-        {errors.date && (
-          <span className={css.validationError}>{errors.date.message}</span>
-        )}
 
         <label className={css.valueLabel} htmlFor="value">
           Enter the value of the water used:
+          {errors.amount && (
+            <span className={css.validationError}>{errors.amount.message}</span>
+          )}
         </label>
         <input
           {...register('amount')}
@@ -148,9 +152,6 @@ export const WaterForm = ({ subtitle, onClose, toggleHandle, water }) => {
           id="value"
           onChange={(e) => setValue('amount', Number(e.target.value))}
         />
-        {errors.amount && (
-          <span className={css.validationError}>{errors.amount.message}</span>
-        )}
       </div>
       <button className={css.submitButton} type="submit">
         Save
