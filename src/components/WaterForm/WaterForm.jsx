@@ -35,11 +35,15 @@ const formatToLocalTime = (timestamp) => {
 export const WaterForm = ({ subtitle, onClose, toggleHandle, water }) => {
   const dispatch = useDispatch();
 
+  const timezoneOffset = new Date().getTimezoneOffset();
+
+  const offset = timezoneOffset * 60 * 1000;
+
   const day = useSelector(selectWaterDate);
 
   const defaultValues = water
     ? {
-        date: formatToLocalTime(water.date),
+        date: formatToLocalTime(water.date + offset),
         amount: water.amount,
       }
     : {
@@ -62,9 +66,9 @@ export const WaterForm = ({ subtitle, onClose, toggleHandle, water }) => {
   const submitForm = async (data) => {
     const time = data.date;
 
-    const unixTime = convertTimeToUnix(time, day);
+    const unixTime = convertTimeToUnix(time, day) - offset;
 
-    if (unixTime > Date.now()) {
+    if (unixTime > Date.now() - offset) {
       toast.error("You can't choose a date in the future."),
         {
           duration: 5000,

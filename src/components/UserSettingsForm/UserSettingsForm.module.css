@@ -96,7 +96,8 @@
   height: 18px;
 }
 
-.hiddenFileInput + label:hover {
+.hiddenFileInput + label:hover,
+.hiddenFileInput + label:focus {
   color: var(--color-lightgreenhover);
 }
 
@@ -312,7 +313,8 @@
     letter-spacing: -0.16px;
   }
 
-  .input:hover {
+  .input:hover,
+  .input:focus {
     border-color: var(--color-lightgreenhover);
   }
 

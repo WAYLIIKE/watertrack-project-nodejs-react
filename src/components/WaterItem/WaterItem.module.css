@@ -83,7 +83,8 @@
   transition: color var(--animation);
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
   color: var(--color-lightgreenhover);
 }
 

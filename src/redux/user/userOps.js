@@ -2,9 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { refreshTokens } from './userSlice';
 
-// axios.defaults.baseURL =
-//   'https://server-watertrack-project-nodejs.onrender.com/api';
-
 export const axiosInstance = axios.create({
   baseURL: 'https://server-watertrack-project-nodejs.onrender.com/api',
 });
@@ -42,9 +39,6 @@ export const setupAxiosInterceptors = (store) => {
         } catch (error) {
           return Promise.reject(error);
         }
-      }
-      if (error.responce.status === 403) {
-        console.log('403');
       }
       return Promise.reject(error);
     }

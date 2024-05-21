@@ -22,7 +22,8 @@
     color: var(--color-white);
     background-color: var(--color-darkblue);
 
-    &:hover {
+    &:hover,
+    &:focus {
       stroke: var(--color-lightgreen);
       color: var(--color-lightgreen);
     }
@@ -60,7 +61,8 @@
     color: var(--color-darkblue);
     background-color: transparent;
 
-    &:hover div {
+    &:hover div,
+    &:focus div {
       background-color: var(--color-darkblue);
       color: var(--color-white);
     }
