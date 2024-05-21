@@ -54,7 +54,11 @@ export default function TrackerPage() {
   };
 
   const timezoneOffset = new Date().getTimezoneOffset();
-  const dateWithOffset = getStartOfDay() - timezoneOffset * 60 * 1000;
+  const dateWithOffset = getStartOfDay() + timezoneOffset * 60 * 1000;
+
+  console.log(timezoneOffset * 60 * 1000);
+
+  console.log(dateWithOffset);
 
   useEffect(() => {
     dispatch(getDayWater(dateWithOffset));
