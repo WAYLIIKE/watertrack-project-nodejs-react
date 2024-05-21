@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signIn, signOut, signUp, current, currentEdit } from './userOps';
+import {
+  signIn,
+  signOut,
+  signUp,
+  current,
+  currentEdit,
+  changePassword,
+} from './userOps';
 import toast from 'react-hot-toast';
 
 const userSlice = createSlice({
@@ -157,6 +164,31 @@ const userSlice = createSlice({
       .addCase(currentEdit.rejected, (state) => {
         state.loading = false;
         toast.error('Failed to update profile.', {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            textAlign: 'center',
+            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+          },
+        });
+      })
+      .addCase(changePassword.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(changePassword.fulfilled, (state) => {
+        state.loading = false;
+        toast.success('Password successfully updated!', {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            textAlign: 'center',
+            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+          },
+        });
+      })
+      .addCase(changePassword.rejected, (state) => {
+        state.loading = false;
+        toast.error('Failed to update password. ', {
           duration: 5000,
           position: 'top-center',
           style: {

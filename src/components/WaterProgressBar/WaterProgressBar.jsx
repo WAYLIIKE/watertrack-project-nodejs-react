@@ -1,9 +1,15 @@
 import { useSelector } from 'react-redux';
-import { selectTotalDayWater, selectUser } from '../../redux/selectors';
+import {
+  selectTotalDayWater,
+  selectUser,
+  selectWaterDate,
+} from '../../redux/selectors';
+import { format, isSameDay } from 'date-fns';
 import Slider from '@mui/material/Slider';
 import css from './WaterProgressBar.module.css';
 
 export const WaterProgressBar = () => {
+  const waterDate = useSelector(selectWaterDate);
   const totalDayWater = useSelector(selectTotalDayWater);
   const user = useSelector(selectUser);
 
@@ -13,7 +19,11 @@ export const WaterProgressBar = () => {
 
   return (
     <div className={css.container}>
-      <strong className={css.title}>Today</strong>
+      <strong className={css.title}>
+        {isSameDay(new Date(waterDate), new Date())
+          ? 'Today'
+          : format(new Date(waterDate), 'd, MMMM')}
+      </strong>
       <Slider
         className={css.slider}
         value={percentage}
