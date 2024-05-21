@@ -21,7 +21,7 @@
 }
 .chevronDisabled {
   color: rgba(50, 63, 71, 0.2);
-  font-size: 20px;
+  font-size: 18px;
 }
 .button {
   padding: 0;
@@ -37,7 +37,7 @@
 .chooseMonth {
   display: flex;
   justify-content: space-between;
-  gap: 2px;
+  align-items: center;
 }
 .span {
   width: 110px;
@@ -48,6 +48,13 @@
   line-height: 1.28;
   letter-spacing: -0.14px;
 }
+
+@media screen and (max-width: 342.98px) {
+  .span {
+    width: 70px;
+  }
+}
+
 .svg {
   width: 20px;
   height: 20px;
