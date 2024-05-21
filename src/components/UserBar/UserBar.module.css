@@ -33,11 +33,11 @@
     max-width: 150px;
    
     overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
 
     @media (--tablet-bp) {
       font-size: 16px;
-      white-space: nowrap;
       max-width: 200px;
     }
   }
