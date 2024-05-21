@@ -11,6 +11,9 @@ import { Loading } from './components/Loading/Loading';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage'));
+const EmailVerifyPage = lazy(() =>
+  import('./pages/EmailVerifyPage/EmailVerifyPage')
+);
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
 const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
@@ -39,6 +42,15 @@ export function App() {
               <RestrictedRoute
                 redirectTo="/tracker"
                 component={<SignUpPage />}
+              />
+            }
+          />
+          <Route
+            path="/verify"
+            element={
+              <RestrictedRoute
+                redirectTo="/signin"
+                component={<EmailVerifyPage />}
               />
             }
           />
