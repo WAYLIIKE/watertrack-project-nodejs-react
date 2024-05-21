@@ -102,7 +102,8 @@
     transform var(--animation);
 }
 
-.signinField:hover {
+.signinField:hover,
+.signinField:focus {
   box-shadow: 7px 5px 29px -18px rgba(50, 63, 71, 1);
 }
 
@@ -153,7 +154,8 @@
     letter-spacing: -0.16px;
   }
 }
-.signinButton:hover {
+.signinButton:hover,
+.signinButton:focus {
   background: var(--color-lightgreenhover);
 }
 .signinText {

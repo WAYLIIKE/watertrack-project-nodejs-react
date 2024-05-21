@@ -105,7 +105,8 @@
     transform var(--animation);
 }
 
-.signupField:hover {
+.signupField:hover,
+.signupField:focus {
   box-shadow: 7px 5px 29px -18px rgba(50, 63, 71, 1);
 }
 
@@ -156,7 +157,8 @@
     letter-spacing: -0.16px;
   }
 }
-.signupButton:hover {
+.signupButton:hover,
+.signupButton:focus {
   background: var(--color-lightgreenhover);
 }
 .signupText {

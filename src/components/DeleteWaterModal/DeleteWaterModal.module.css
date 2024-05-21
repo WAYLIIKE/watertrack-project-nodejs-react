@@ -73,7 +73,8 @@
   }
 }
 
-.deleteButton:hover {
+.deleteButton:hover,
+.deleteButton:focus {
   background-color: var(--color-lightgreenhover);
 }
 
@@ -100,6 +101,7 @@
   transition: opacity var(--animation);
 }
 
-.cancelButton:hover .cancelButtonText {
+.cancelButton:hover .cancelButtonText,
+.cancelButton:focus .cancelButtonText {
   opacity: 1;
 }

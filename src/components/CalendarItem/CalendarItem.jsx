@@ -18,8 +18,18 @@ export const CalendarItem = ({ day, getDayData }) => {
   }
 
   const handleDayClick = () => {
-    const utcDate = Date.UTC(day.getFullYear(), day.getMonth(), day.getDate());
-    if (utcDate > Date.now())
+    const timezoneOffset = new Date().getTimezoneOffset();
+    const utcDate = new Date(
+      day.getFullYear(),
+      day.getMonth(),
+      day.getDate()
+    ).getTime();
+
+    const offset = timezoneOffset * 60 * 1000;
+
+    const dateWithOffset = utcDate - offset;
+
+    if (dateWithOffset > Date.now() - offset)
       return toast.error('Can`t get waters from future.', {
         duration: 5000,
         position: 'top-center',
@@ -29,7 +39,7 @@ export const CalendarItem = ({ day, getDayData }) => {
         },
       });
 
-    if (isSameDay(waterDate, utcDate))
+    if (isSameDay(waterDate - offset, utcDate - offset))
       return toast.error(
         `Your waters already from ${format(new Date(waterDate), 'd, MMMM')}`,
         {
@@ -42,7 +52,7 @@ export const CalendarItem = ({ day, getDayData }) => {
         }
       );
 
-    dispatch(getDayWater(utcDate));
+    dispatch(getDayWater(dateWithOffset));
   };
   const isFullConsumption = percentage === 100;
   const isToday = isSameDay(day, new Date());

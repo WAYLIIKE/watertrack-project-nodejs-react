@@ -40,9 +40,8 @@ export const SignInForm = () => {
           password: '',
         }}
         validationSchema={loginSchema}
-        onSubmit={(values, action) => {
+        onSubmit={async (values) => {
           dispatch(signIn(values));
-          action.resetForm();
         }}
       >
         <Form className={css.signinForm} autoComplete="on">
