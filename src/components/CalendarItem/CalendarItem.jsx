@@ -39,7 +39,7 @@ export const CalendarItem = ({ day, getDayData }) => {
         },
       });
 
-    if (isSameDay(waterDate - offset, utcDate - offset))
+    if (isSameDay(waterDate, utcDate - offset))
       return toast.error(
         `Your waters already from ${format(new Date(waterDate), 'd, MMMM')}`,
         {
