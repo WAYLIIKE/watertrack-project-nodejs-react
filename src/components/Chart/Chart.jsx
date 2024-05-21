@@ -28,15 +28,16 @@ export const Chart = () => {
         format(new Date(data.date), 'yyyy-MM-dd') === format(day, 'yyyy-MM-dd')
     );
     return {
+      key: format(day, 'yyyy-MM-dd'),
       day: format(day, 'dd'),
       totalDayWater: dayData ? dayData.totalDayWater / 1000 : 0,
     };
   });
 
   const renderDot = (props) => {
-    const { cx, cy } = props;
+    const { cx, cy, key } = props;
     return (
-      <g>
+      <g key={key}>
         <circle
           cx={cx}
           cy={cy}

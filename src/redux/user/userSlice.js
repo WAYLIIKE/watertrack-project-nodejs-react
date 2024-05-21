@@ -9,27 +9,29 @@ import {
 } from './userOps';
 import toast from 'react-hot-toast';
 
+const initialState = {
+  user: {
+    _id: null,
+    name: null,
+    email: null,
+    avatarURL: null,
+    gender: null,
+    weight: null,
+    activityTime: null,
+    desiredVolume: null,
+    createdAt: null,
+    updatedAt: null,
+  },
+  accessToken: null,
+  refreshToken: null,
+  isLoggedIn: false,
+  isRefreshing: false,
+  loading: false,
+};
+
 const userSlice = createSlice({
   name: 'user',
-  initialState: {
-    user: {
-      _id: null,
-      name: null,
-      email: null,
-      avatarURL: null,
-      gender: null,
-      weight: null,
-      activityTime: null,
-      desiredVolume: null,
-      createdAt: null,
-      updatedAt: null,
-    },
-    accessToken: null,
-    refreshToken: null,
-    isLoggedIn: false,
-    isRefreshing: false,
-    loading: false,
-  },
+  initialState,
   reducers: {
     refreshTokens: (state, action) => {
       state.accessToken = action.payload.accessToken;
