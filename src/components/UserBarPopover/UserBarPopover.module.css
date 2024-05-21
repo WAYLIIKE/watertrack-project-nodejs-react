@@ -52,9 +52,11 @@
 
 .translucent {
   color: var(--color-darkblue-translucent);
+
   transition: var(--animation);
 
-  &:hover {
+  &:hover,
+  &:focus-within {
     color: var(--color-darkblue);
   }
 }
