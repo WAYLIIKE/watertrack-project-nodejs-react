@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signIn, signOut, signUp, current, currentEdit } from './userOps';
+import {
+  signIn,
+  signOut,
+  signUp,
+  current,
+  currentEdit,
+  fetchUserCount,
+} from './userOps';
 import toast from 'react-hot-toast';
 
 const userSlice = createSlice({
@@ -164,6 +171,18 @@ const userSlice = createSlice({
             boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
           },
         });
+      })
+      .addCase(fetchUserCount.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchUserCount.fulfilled, (state, action) => {
+        state.count = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchUserCount.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       }),
 });
 
