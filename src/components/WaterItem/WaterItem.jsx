@@ -11,7 +11,11 @@ import { formatTimestampToTime } from '../../helpers/formatTimestampToTime';
 export const WaterItem = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const formattedTime = formatTimestampToTime(item.date);
+  const timezoneOffset = new Date().getTimezoneOffset();
+
+  const offset = timezoneOffset * 60 * 1000;
+
+  const formattedTime = formatTimestampToTime(item.date + offset);
 
   const openModal = () => {
     setIsOpen(true);
