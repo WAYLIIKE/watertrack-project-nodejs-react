@@ -45,13 +45,20 @@ export default function TrackerPage() {
 
   const getStartOfDay = () => {
     const day = new Date();
+    const userTimezoneOffset = day.getTimezoneOffset();
+    const localStartOfDay = new Date(
+      day.getTime() - userTimezoneOffset * 60000
+    );
 
-    return Date.UTC(day.getFullYear(), day.getMonth(), day.getDate());
+    return localStartOfDay.setHours(0, 0, 0, 0);
   };
 
+  const timezoneOffset = new Date().getTimezoneOffset();
+  const dateWithOffset = getStartOfDay() - timezoneOffset * 60 * 1000;
+
   useEffect(() => {
-    dispatch(getDayWater(getStartOfDay()));
-  }, [dispatch]);
+    dispatch(getDayWater(dateWithOffset));
+  }, [dispatch, dateWithOffset]);
 
   return (
     <Container>

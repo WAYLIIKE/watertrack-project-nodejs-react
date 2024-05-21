@@ -6,30 +6,33 @@ import {
   current,
   currentEdit,
   fetchUserCount,
+  changePassword,
 } from './userOps';
 import toast from 'react-hot-toast';
 
+const initialState = {
+  user: {
+    _id: null,
+    name: null,
+    email: null,
+    avatarURL: null,
+    gender: null,
+    weight: null,
+    activityTime: null,
+    desiredVolume: null,
+    createdAt: null,
+    updatedAt: null,
+  },
+  accessToken: null,
+  refreshToken: null,
+  isLoggedIn: false,
+  isRefreshing: false,
+  loading: false,
+};
+
 const userSlice = createSlice({
   name: 'user',
-  initialState: {
-    user: {
-      _id: null,
-      name: null,
-      email: null,
-      avatarURL: null,
-      gender: null,
-      weight: null,
-      activityTime: null,
-      desiredVolume: null,
-      createdAt: null,
-      updatedAt: null,
-    },
-    accessToken: null,
-    refreshToken: null,
-    isLoggedIn: false,
-    isRefreshing: false,
-    loading: false,
-  },
+  initialState,
   reducers: {
     refreshTokens: (state, action) => {
       state.accessToken = action.payload.accessToken;
@@ -183,6 +186,31 @@ const userSlice = createSlice({
       .addCase(fetchUserCount.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      .addCase(changePassword.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(changePassword.fulfilled, (state) => {
+        state.loading = false;
+        toast.success('Password successfully updated!', {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            textAlign: 'center',
+            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+          },
+        });
+      })
+      .addCase(changePassword.rejected, (state) => {
+        state.loading = false;
+        toast.error('Failed to update password. ', {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            textAlign: 'center',
+            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+          },
+        });
       }),
 });
 

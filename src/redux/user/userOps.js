@@ -2,9 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { refreshTokens } from './userSlice';
 
-// axios.defaults.baseURL =
-//   'https://server-watertrack-project-nodejs.onrender.com/api';
-
 export const axiosInstance = axios.create({
   baseURL: 'https://server-watertrack-project-nodejs.onrender.com/api',
 });
@@ -42,9 +39,6 @@ export const setupAxiosInterceptors = (store) => {
         } catch (error) {
           return Promise.reject(error);
         }
-      }
-      if (error.responce.status === 403) {
-        console.log('403');
       }
       return Promise.reject(error);
     }
@@ -136,6 +130,33 @@ export const fetchUserCount = createAsyncThunk(
     try {
       const response = await axiosInstance.get('/users/count');
       return response.data.count;
+      } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+      
+export const changePassword = createAsyncThunk(
+  'user/changePassword',
+  async (passwords, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const { _id: userId } = state.user.user;
+
+    const persistedAccessToken = state.user.accessToken;
+
+    if (persistedAccessToken === null) {
+      return thunkAPI.rejectWithValue('Unable to get current user');
+    }
+
+    try {
+      setAuthHeader(persistedAccessToken);
+
+      const response = await axiosInstance.patch(
+        `users/current/edit/password/${userId}`,
+        passwords
+      );
+
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

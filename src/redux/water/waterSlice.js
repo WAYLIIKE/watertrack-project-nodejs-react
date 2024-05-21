@@ -10,18 +10,20 @@ import {
 
 import toast from 'react-hot-toast';
 import { isSameDay } from 'date-fns';
+import { signOut } from '../user/userOps';
+
+const initialState = {
+  date: null,
+  totalDayWater: 0,
+  items: [],
+  monthItems: [],
+  loading: false,
+  error: false,
+};
 
 const waterSlice = createSlice({
   name: 'water',
-  initialState: {
-    date: null,
-    totalDayWater: 0,
-    todaySumamryWater: 0,
-    items: [],
-    monthItems: [],
-    loading: false,
-    error: false,
-  },
+  initialState,
   extraReducers: (builer) =>
     builer
       .addCase(addWater.pending, (state) => {
@@ -202,6 +204,9 @@ const waterSlice = createSlice({
       })
       .addCase(getMonthWater.rejected, (state) => {
         state.error = true;
+      })
+      .addCase(signOut.fulfilled, () => {
+        return initialState;
       }),
 });
 

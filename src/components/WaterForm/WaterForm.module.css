@@ -37,7 +37,9 @@
 }
 
 .amountButton:hover svg path,
-.amountButton:hover svg rect {
+.amountButton:hover svg rect,
+.amountButton:focus svg path,
+.amountButton:focus svg rect {
   stroke: var(--color-lightgreenhover);
   transition: stroke var(--animation);
 }
@@ -95,7 +97,8 @@
   padding: 0;
 }
 
-.input:hover {
+.input:hover,
+.input:focus {
   border-color: var(--color-lightgreenhover);
 }
 
@@ -129,7 +132,8 @@
   transition: background-color var(--animation);
 }
 
-.submitButton:hover {
+.submitButton:hover,
+.submitButton:focus {
   background-color: var(--color-lightgreenhover);
 }
 

@@ -1,3 +1,6 @@
+/* Usage of modern normalize */
+@import '../node_modules/modern-normalize/modern-normalize.css';
+
 :root {
   /* Colors */
   --color-white: #ffffff;
@@ -93,7 +96,8 @@ button {
   transition: fill var(--animation);
 }
 
-.close-modal-btn:hover {
+.close-modal-btn:hover,
+.close-modal-btn:focus {
   fill: var(--color-lightgreen);
 }
 
@@ -110,7 +114,8 @@ button {
   background-color: transparent;
 }
 
-*::-webkit-scrollbar-track:hover {
+*::-webkit-scrollbar-track:hover,
+*::-webkit-scrollbar-thumb:focus {
   background-color: transparent;
 }
 
@@ -124,7 +129,8 @@ button {
   transition: background-color var(--animation);
 }
 
-*::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover,
+*::-webkit-scrollbar-thumb:focus {
   background-color: var(--color-lightgreenhover);
 }
 

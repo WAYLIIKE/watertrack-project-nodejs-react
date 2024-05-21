@@ -96,7 +96,8 @@
   height: 18px;
 }
 
-.hiddenFileInput + label:hover {
+.hiddenFileInput + label:hover,
+.hiddenFileInput + label:focus {
   color: var(--color-lightgreenhover);
 }
 
@@ -262,6 +263,27 @@
   background-color: var(--color-lightgreenhover);
 }
 
+.changePassword {
+  width: fit-content;
+  padding: 14px 40px;
+  border-radius: 30px;
+  border: none;
+  background-color: var(--color-lightgreen);
+
+  /*content styles*/
+  color: var(--color-darkblue);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.14px;
+  transition: background-color var(--animation);
+}
+
+.changePassword:hover,
+.changePassword:focus {
+  background-color: var(--color-lightgreenhover);
+}
+
 @media screen and (min-width: 768px) {
   .subtitle {
     font-size: 18px;
@@ -291,7 +313,8 @@
     letter-spacing: -0.16px;
   }
 
-  .input:hover {
+  .input:hover,
+  .input:focus {
     border-color: var(--color-lightgreenhover);
   }
 
