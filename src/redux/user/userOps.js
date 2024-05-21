@@ -128,6 +128,8 @@ export const changePassword = createAsyncThunk(
   'user/changePassword',
   async (passwords, thunkAPI) => {
     const state = thunkAPI.getState();
+    const { _id: userId } = state.user.user;
+
     const persistedAccessToken = state.user.accessToken;
 
     if (persistedAccessToken === null) {
@@ -138,7 +140,7 @@ export const changePassword = createAsyncThunk(
       setAuthHeader(persistedAccessToken);
 
       const response = await axiosInstance.patch(
-        `users/current/edit/password/${persistedAccessToken}`,
+        `users/current/edit/password/${userId}`,
         passwords
       );
 
