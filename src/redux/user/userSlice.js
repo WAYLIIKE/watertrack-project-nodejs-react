@@ -140,14 +140,17 @@ const userSlice = createSlice({
       })
       .addCase(current.pending, (state) => {
         state.isRefreshing = true;
+        state.loading = true;
       })
       .addCase(current.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        state.loading = false;
       })
       .addCase(current.rejected, (state) => {
         state.isRefreshing = false;
+        state.loading = false;
       })
       .addCase(currentEdit.pending, (state) => {
         state.loading = true;

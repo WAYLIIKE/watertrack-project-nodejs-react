@@ -6,16 +6,20 @@ import { useEffect, useState } from 'react';
 import { UserSettingsModal } from '../../components/UserSettingsModal/UserSettingsModal';
 import { Page } from '../../components/Page/Page';
 import { WaterMainInfo } from '../../components/WaterMainInfo/WaterMainInfo';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getDayWater } from '../../redux/water/waterOps';
 import { WaterDetailedInfo } from '../../components/WaterDetailedInfo/WaterDetailedInfo';
-import css from './TrackerPage.module.css';
 import { WaterModal } from '../../components/WaterModal/WaterModal';
+import { selectWaterLoading } from '../../redux/selectors';
+import { Loading } from '../../components/Loading/Loading';
+import css from './TrackerPage.module.css';
 
 export default function TrackerPage() {
-  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const dispatch = useDispatch();
 
+  const isWaterLoading = useSelector(selectWaterLoading);
+
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
 
@@ -60,7 +64,11 @@ export default function TrackerPage() {
     dispatch(getDayWater(dateWithOffset));
   }, [dispatch, dateWithOffset]);
 
-  return (
+  return isWaterLoading ? (
+    <div className="loader">
+      <Loading />
+    </div>
+  ) : (
     <Container>
       <Page>
         <div className={css.flexContainer}>

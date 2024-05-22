@@ -16,6 +16,8 @@ export const selectWaterDate = (state) => state.water.date;
 
 export const selectWaterLoading = (state) => state.water.loading;
 
+export const selectUserLoading = (state) => state.user.loading;
+
 export const selectMonthWater = (state) => state.water.monthItems;
 
 export const selectDesiredVolume = (state) => state.user.user.desiredVolume;

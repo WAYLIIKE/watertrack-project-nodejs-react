@@ -174,29 +174,23 @@ const waterSlice = createSlice({
         });
       })
       .addCase(getDayWater.pending, (state) => {
-        state.loading = true;
         state.error = false;
       })
       .addCase(getDayWater.fulfilled, (state, action) => {
-        state.loading = false;
         state.date = action.payload.date;
         state.totalDayWater = action.payload.totalDayWater;
         state.items = action.payload.consumedWaterData;
       })
       .addCase(getDayWater.rejected, (state) => {
-        state.loading = false;
         state.error = true;
       })
       .addCase(getTodaySumamryWater.pending, (state) => {
-        state.loading = true;
         state.error = false;
       })
       .addCase(getTodaySumamryWater.fulfilled, (state, action) => {
-        state.loading = false;
         state.todaySumamryWater = action.payload; // Оновлення поля todaySumamryWater
       })
       .addCase(getTodaySumamryWater.rejected, (state) => {
-        state.loading = false;
         state.error = true;
       })
       .addCase(getMonthWater.fulfilled, (state, action) => {
