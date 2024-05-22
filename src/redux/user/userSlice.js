@@ -7,6 +7,8 @@ import {
   currentEdit,
   fetchUserCount,
   changePassword,
+  resetPasswordSendMail,
+  checkResetToken,
 } from './userOps';
 import toast from 'react-hot-toast';
 
@@ -214,6 +216,30 @@ const userSlice = createSlice({
             boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
           },
         });
+      })
+      .addCase(resetPasswordSendMail.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(resetPasswordSendMail.fulfilled, (state) => {
+        state.loading = false;
+        state.error = false;
+      })
+      .addCase(resetPasswordSendMail.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(checkResetToken.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(checkResetToken.fulfilled, (state) => {
+        state.loading = false;
+        state.error = false;
+      })
+      .addCase(checkResetToken.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
       }),
 });
 

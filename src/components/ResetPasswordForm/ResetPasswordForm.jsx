@@ -1,33 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { IconEyeClose } from '../Icons/IconEyeClose';
 import { IconEye } from '../Icons/IconEye';
 
-import css from './PasswordChangeModal.module.css';
-import { useDispatch } from 'react-redux';
-import { changePassword } from '../../redux/user/userOps';
+import css from './ResetPasswordForm.module.css';
+import { checkResetToken, resetPassword } from '../../redux/user/userOps';
+import toast from 'react-hot-toast';
 
 const schema = yup.object().shape({
-  currentPass: yup.string().required('Please, enter current password'),
-
   newPass: yup
     .string()
     .matches(
       /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/,
       'Password must be at least 8 characters long, contain at least one uppercase letter, and at least one digit'
     )
-    .test(
-      'not-same-as-current',
-      'New password should not be the same as the current password',
-      function (value) {
-        return value !== this.parent.currentPass;
-      }
-    )
-    .min(8, 'Password is too short - should be 8 chars minimum.')
-    .required('Please, enter new password'),
+    .required('Please, enter new password')
+    .min(8, 'Password is too short - should be 8 chars minimum.'),
 
   repeatPass: yup
     .string()
@@ -35,16 +29,15 @@ const schema = yup.object().shape({
     .required('Please, repeat new password'),
 });
 
-export const PasswordChangeModal = ({ closeModal }) => {
+export const ResetPasswordForm = () => {
   const dispatch = useDispatch();
+  const { resetToken } = useParams();
+  const navigate = useNavigate();
 
-  const [showCurrentPass, setShowCurrentPass] = useState(false);
+  const [isTokenValid, setIsTokenValid] = useState(null);
+
   const [showNewPass, setShowNewPass] = useState(false);
   const [showNewPassRepeat, setShowNewPassRepeat] = useState(false);
-
-  const toggleCurrentPassVisibility = () => {
-    setShowCurrentPass(!showCurrentPass);
-  };
 
   const toggleNewPassVisibility = () => {
     setShowNewPass(!showNewPass);
@@ -63,49 +56,70 @@ export const PasswordChangeModal = ({ closeModal }) => {
   });
 
   const onSubmit = async (data) => {
-    const { currentPass, newPass } = data;
+    const { newPass } = data;
 
     const response = await dispatch(
-      changePassword({
-        oldPass: currentPass,
+      resetPassword({
         newPass,
+        resetToken,
       })
     );
 
-    console.log(response);
-
     if (response.meta.requestStatus === 'fulfilled') {
-      closeModal();
+      toast.success('Password successfully updated! You can log in now.', {
+        duration: 5000,
+        position: 'top-center',
+        style: {
+          textAlign: 'center',
+          boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+        },
+      });
+
+      navigate('/signin');
+    } else {
+      toast.error('Failed to update password. Try again...', {
+        duration: 5000,
+        position: 'top-center',
+        style: {
+          textAlign: 'center',
+          boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+        },
+      });
     }
   };
+
+  // Перевірка валідності reset-токену
+
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        const response = await dispatch(checkResetToken(resetToken));
+
+        if (response.meta.requestStatus === 'fulfilled') {
+          setIsTokenValid(true);
+        } else {
+          setIsTokenValid(false);
+        }
+      } catch (error) {
+        return;
+      }
+    };
+
+    checkToken();
+  }, [dispatch, resetToken]);
+
+  // Якщо токен не валідний, то редірект на Not Found Page
+  useEffect(() => {
+    if (isTokenValid === false) {
+      navigate('/not-found-page');
+    }
+  }, [navigate, isTokenValid]);
 
   return (
     <div className={css.wrapper}>
       <h2 className={css.title}>Change the password </h2>
 
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-        <label className={css.label} htmlFor="currentPass">
-          Current password:
-        </label>
-
-        {errors.currentPass && (
-          <span className={css.error}>{errors.currentPass.message} </span>
-        )}
-
-        <div className={css.inputWrapper}>
-          <input
-            {...register('currentPass')}
-            className={css.input}
-            type={showCurrentPass ? 'text' : 'password'}
-            name="currentPass"
-            id="currentPass"
-          />
-
-          <div className={css.icon} onClick={toggleCurrentPassVisibility}>
-            {showCurrentPass ? <IconEye /> : <IconEyeClose />}
-          </div>
-        </div>
-
         <label className={css.label} htmlFor="newPass">
           Enter new password:
         </label>

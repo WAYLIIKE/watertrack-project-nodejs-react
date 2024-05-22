@@ -29,7 +29,7 @@ export default function SignInPage() {
       </Page>
 
       <BaseModal isOpen={isForgotPassModalOpen} onClose={closeForgotPassword}>
-        <ForgotPasswordModal />
+        <ForgotPasswordModal closeModal={closeForgotPassword} />
       </BaseModal>
     </Container>
   );
