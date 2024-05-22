@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getDayWater } from '../../redux/water/waterOps';
 import { WaterDetailedInfo } from '../../components/WaterDetailedInfo/WaterDetailedInfo';
 import { WaterModal } from '../../components/WaterModal/WaterModal';
-import { selectWaterLoading } from '../../redux/selectors';
+import { selectUserLoading, selectWaterLoading } from '../../redux/selectors';
 import { Loading } from '../../components/Loading/Loading';
 import css from './TrackerPage.module.css';
 
@@ -18,6 +18,7 @@ export default function TrackerPage() {
   const dispatch = useDispatch();
 
   const isWaterLoading = useSelector(selectWaterLoading);
+  const isUserLoading = useSelector(selectUserLoading);
 
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
@@ -64,7 +65,7 @@ export default function TrackerPage() {
     dispatch(getDayWater(dateWithOffset));
   }, [dispatch, dateWithOffset]);
 
-  return isWaterLoading ? (
+  return isWaterLoading || isUserLoading ? (
     <div className="loader">
       <Loading />
     </div>
