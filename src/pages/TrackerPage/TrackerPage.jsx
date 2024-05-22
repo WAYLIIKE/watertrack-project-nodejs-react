@@ -48,13 +48,13 @@ export default function TrackerPage() {
   };
 
   const getStartOfDay = () => {
-    const day = new Date();
-    const userTimezoneOffset = day.getTimezoneOffset();
-    const localStartOfDay = new Date(
-      day.getTime() - userTimezoneOffset * 60000
+    const now = new Date();
+    const startOfDay = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate()
     );
-
-    return localStartOfDay.setHours(0, 0, 0, 0);
+    return startOfDay.getTime();
   };
 
   const timezoneOffset = new Date().getTimezoneOffset();
