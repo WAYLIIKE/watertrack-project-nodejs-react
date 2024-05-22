@@ -4,6 +4,7 @@ import {
   deleteWater,
   getDayWater,
   getMonthWater,
+  getTodaySumamryWater,
   putWater,
 } from './waterOps';
 
@@ -183,6 +184,18 @@ const waterSlice = createSlice({
         state.items = action.payload.consumedWaterData;
       })
       .addCase(getDayWater.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(getTodaySumamryWater.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getTodaySumamryWater.fulfilled, (state, action) => {
+        state.loading = false;
+        state.todaySumamryWater = action.payload; // Оновлення поля todaySumamryWater
+      })
+      .addCase(getTodaySumamryWater.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })

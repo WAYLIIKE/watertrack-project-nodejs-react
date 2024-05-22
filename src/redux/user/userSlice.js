@@ -5,6 +5,7 @@ import {
   signUp,
   current,
   currentEdit,
+  fetchUserCount,
   changePassword,
 } from './userOps';
 import toast from 'react-hot-toast';
@@ -173,6 +174,18 @@ const userSlice = createSlice({
             boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
           },
         });
+      })
+      .addCase(fetchUserCount.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchUserCount.fulfilled, (state, action) => {
+        state.count = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchUserCount.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       })
       .addCase(changePassword.pending, (state) => {
         state.loading = true;

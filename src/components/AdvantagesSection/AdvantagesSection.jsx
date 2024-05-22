@@ -1,8 +1,36 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchUserCount } from '../../redux/user/userOps';
 import css from './AdvantagesSection.module.css';
 import { girl1, girl2, boy } from '../../assets/img';
+import { getTodaySumamryWater } from '../../redux/water/waterOps';
+
 export const AdvantagesSection = () => {
+  const dispatch = useDispatch();
+  const userCount = useSelector((state) => state.user.count);
+  const todaySumamryWater = useSelector(
+    (state) => state.water.todaySumamryWater
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!userCount) {
+        await dispatch(fetchUserCount());
+      }
+      await dispatch(getTodaySumamryWater());
+    };
+
+    fetchData();
+  }, [dispatch, userCount]);
+
   return (
     <div className={css.section}>
+      <div className={css.totalBox}>
+        <p className={css.customerTextLiters}>
+          <span className={css.span}>{todaySumamryWater}</span> Liters drunk
+          today
+        </p>
+      </div>
       <div className={css.studentsBox}>
         <ul className={css.customerImg}>
           <li className={css.item}>
@@ -19,7 +47,7 @@ export const AdvantagesSection = () => {
         </ul>
 
         <p className={css.customerText}>
-          Our <span className={css.span}>happy</span> customers
+          Our <span className={css.span}>{userCount}</span> happy customers
         </p>
       </div>
 

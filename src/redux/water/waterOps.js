@@ -69,3 +69,16 @@ export const getMonthWater = createAsyncThunk(
     }
   }
 );
+
+export const getTodaySumamryWater = createAsyncThunk(
+  'water/getTodaySummaryWater',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axiosInstance.get('/water/today');
+      const res = (response.data.todaySumamryWater / 1000).toFixed(1);
+      return res;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
