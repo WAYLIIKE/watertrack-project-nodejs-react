@@ -29,8 +29,6 @@ export const ForgotPasswordModal = ({ closeModal }) => {
       resetPasswordSendMail({ email: data.email })
     );
 
-    console.log(response);
-
     if (response.meta.requestStatus === 'fulfilled') {
       toast.success(`${response.payload}`, {
         duration: 5000,

@@ -58,6 +58,7 @@ export const PasswordChangeModal = ({ closeModal }) => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -72,10 +73,12 @@ export const PasswordChangeModal = ({ closeModal }) => {
       })
     );
 
-    console.log(response);
-
     if (response.meta.requestStatus === 'fulfilled') {
       closeModal();
+    } else {
+      setValue('currentPass', '');
+      setValue('newPass', '');
+      setValue('repeatPass', '');
     }
   };
 
