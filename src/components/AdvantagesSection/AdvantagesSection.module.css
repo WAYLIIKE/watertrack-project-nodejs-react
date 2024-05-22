@@ -75,13 +75,13 @@
 }
 .customerTextLiters {
   color: var(--color-darkblue);
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 1.16;
 }
 .span {
   color: var(--color-lightgreen);
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 14px;
 }
