@@ -11,7 +11,6 @@ import { IconEye } from '../Icons/IconEye';
 
 import css from './ResetPasswordForm.module.css';
 import { checkResetToken, resetPassword } from '../../redux/user/userOps';
-import toast from 'react-hot-toast';
 
 const schema = yup.object().shape({
   newPass: yup
@@ -66,25 +65,7 @@ export const ResetPasswordForm = () => {
     );
 
     if (response.meta.requestStatus === 'fulfilled') {
-      toast.success('Password successfully updated! You can log in now.', {
-        duration: 5000,
-        position: 'top-center',
-        style: {
-          textAlign: 'center',
-          boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
-        },
-      });
-
       navigate('/signin');
-    } else {
-      toast.error('Failed to update password. Try again...', {
-        duration: 5000,
-        position: 'top-center',
-        style: {
-          textAlign: 'center',
-          boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
-        },
-      });
     }
   };
 

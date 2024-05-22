@@ -19,7 +19,7 @@ export const ForgotPasswordModal = ({ closeModal }) => {
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -50,7 +50,7 @@ export const ForgotPasswordModal = ({ closeModal }) => {
         },
       });
 
-      setValue('email', '');
+      reset();
     }
   };
 

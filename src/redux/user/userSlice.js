@@ -9,6 +9,7 @@ import {
   changePassword,
   resetPasswordSendMail,
   checkResetToken,
+  resetPassword,
 } from './userOps';
 import toast from 'react-hot-toast';
 
@@ -240,6 +241,34 @@ const userSlice = createSlice({
       .addCase(checkResetToken.rejected, (state) => {
         state.loading = false;
         state.error = true;
+      })
+      .addCase(resetPassword.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(resetPassword.fulfilled, (state) => {
+        state.loading = false;
+        state.error = false;
+        toast.success('Password successfully updated! You can log in now.', {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            textAlign: 'center',
+            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+          },
+        });
+      })
+      .addCase(resetPassword.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+        toast.error('Failed to update password. Try again...', {
+          duration: 5000,
+          position: 'top-center',
+          style: {
+            textAlign: 'center',
+            boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
+          },
+        });
       }),
 });
 
