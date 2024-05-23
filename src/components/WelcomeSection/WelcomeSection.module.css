@@ -1,4 +1,4 @@
-.welcomSection {
+.welcomeSection {
   border-radius: 30px;
   background: var(--color-lightgray);
   padding: 118px 16px 67px 16px;
@@ -7,7 +7,6 @@
 .text {
   color: var(--color-black);
   font-size: 14px;
-  font-weight: 400;
   line-height: 1.28;
   letter-spacing: 0.84px;
   margin-bottom: 16px;
@@ -49,11 +48,9 @@
 .linkSignIn {
   width: 104px;
   display: flex;
-
   padding: 14px 27px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   color: var(--color-darkblue);
   text-align: center;
   font-size: 14px;
@@ -72,12 +69,9 @@
   border: 1px solid var(--color-lightgreenhover);
   color: var(--color-lightgreenhover);
 }
-@media screen and (min-width: 768px) {
-  .welcomSection {
-    padding-right: 93px;
-    padding-left: 64px;
-    padding-top: 106px;
-    padding-bottom: 50px;
+@media (--tablet-bp) {
+  .welcomeSection {
+    padding: 106px 93px 50px 93px;
   }
   .text {
     font-size: 16px;
@@ -88,9 +82,6 @@
     font-size: 64px;
     line-height: 70px;
     letter-spacing: -0.64px;
-  }
-  .linkThum {
-    gap: 10px;
   }
   .linkTracker {
     padding: 18px 40px;
@@ -107,20 +98,15 @@
     letter-spacing: -0.16px;
   }
 }
-@media screen and (min-width: 768px) {
-  .welcomSection {
+@media (--desktop-bp) {
+  .welcomeSection {
     padding: 188px 64px 188px 61px;
+    margin: 0;
   }
   .mainTitle {
     font-size: 80px;
     line-height: 76px;
     letter-spacing: -0.8px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .welcomSection {
-    margin: 0;
   }
 }
 @media screen and (max-width: 330px) {

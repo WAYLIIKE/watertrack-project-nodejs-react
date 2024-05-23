@@ -29,6 +29,7 @@
 .wrapper::-webkit-scrollbar-thumb {
   background-color: var(--color-darkblue);
   border-radius: 9px;
+  cursor: pointer;
 }
 
 .wrapper::-webkit-scrollbar-track {

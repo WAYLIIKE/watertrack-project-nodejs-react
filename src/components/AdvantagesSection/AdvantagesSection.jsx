@@ -27,11 +27,11 @@ export const AdvantagesSection = () => {
     <div className={css.section}>
       <div className={css.totalBox}>
         <p className={css.customerTextLiters}>
-          <span className={css.span}>{todaySumamryWater}</span> Liters drunk
+          <span className={css.span}>{todaySumamryWater} L</span> of water drank
           today
         </p>
       </div>
-      <div className={css.studentsBox}>
+      <div className={css.customersBox}>
         <ul className={css.customerImg}>
           <li className={css.item}>
             <img className={css.img} src={girl2} alt="girl1" />
