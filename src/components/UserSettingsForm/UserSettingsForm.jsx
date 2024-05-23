@@ -75,6 +75,7 @@ export const UserSettingsForm = ({ onClose }) => {
   const [isPassModalOpen, setIsPassModalOpen] = useState(false);
 
   const openModal = () => setIsPassModalOpen(true);
+
   const closeModal = () => setIsPassModalOpen(false);
 
   const user = useSelector(selectUser);
@@ -345,7 +346,7 @@ export const UserSettingsForm = ({ onClose }) => {
       </form>
 
       <BaseModal isOpen={isPassModalOpen} onClose={closeModal}>
-        <PasswordChangeModal />
+        <PasswordChangeModal closeModal={closeModal} />
       </BaseModal>
     </>
   );

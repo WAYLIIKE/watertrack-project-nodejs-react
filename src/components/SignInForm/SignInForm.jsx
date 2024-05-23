@@ -8,7 +8,7 @@ import { useId, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../redux/user/userOps';
 
-export const SignInForm = () => {
+export const SignInForm = ({ openForgotPassModal }) => {
   const dispatch = useDispatch();
 
   const emailId = useId();
@@ -122,6 +122,14 @@ export const SignInForm = () => {
               Sign Up
             </NavLink>
           </p>
+
+          <button
+            className={css.forgotPassword}
+            type="button"
+            onClick={openForgotPassModal}
+          >
+            Forgot password?
+          </button>
         </Form>
       </Formik>
     </div>

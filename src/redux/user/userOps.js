@@ -130,12 +130,12 @@ export const fetchUserCount = createAsyncThunk(
     try {
       const response = await axiosInstance.get('/users/count');
       return response.data.count;
-      } catch (error) {
+    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-      
+
 export const changePassword = createAsyncThunk(
   'user/changePassword',
   async (passwords, thunkAPI) => {
@@ -159,6 +159,48 @@ export const changePassword = createAsyncThunk(
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const resetPasswordSendMail = createAsyncThunk(
+  'user/resetPasswordSendMail',
+  async (email, thunkAPI) => {
+    try {
+      const response = await axiosInstance.post('users/password/forgot', email);
+
+      return response.data.message;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const checkResetToken = createAsyncThunk(
+  'user/checkResetToken',
+  async (token, thunkAPI) => {
+    try {
+      const response = await axiosInstance.get(`users/password/reset/${token}`);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  'users/resetPassword',
+  async (data, thunkAPI) => {
+    try {
+      const response = await axiosInstance.patch(
+        `users/password/reset/${data.resetToken}`,
+        { newPass: data.newPass }
+      );
+
+      return response.data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
     }
   }
 );

@@ -17,6 +17,9 @@ const EmailVerifyPage = lazy(() =>
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
 const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
+const ResetPasswordPage = lazy(() =>
+  import('./pages/ResetPasswordPage/ResetPasswordPage')
+);
 
 export function App() {
   const dispatch = useDispatch();
@@ -69,6 +72,17 @@ export function App() {
               <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
             }
           />
+
+          <Route
+            path="/reset/:resetToken"
+            element={
+              <RestrictedRoute
+                redirectTo="/tracker"
+                component={<ResetPasswordPage />}
+              />
+            }
+          />
+
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
