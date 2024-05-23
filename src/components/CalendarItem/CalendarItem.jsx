@@ -30,7 +30,7 @@ export const CalendarItem = ({ day, getDayData }) => {
     const dateWithOffset = utcDate - offset;
 
     if (dateWithOffset > Date.now() - offset)
-      return toast.error('Can`t get waters from future.', {
+      return toast.error('Can`t get water from the future.', {
         duration: 5000,
         position: 'top-center',
         style: {
@@ -41,7 +41,7 @@ export const CalendarItem = ({ day, getDayData }) => {
 
     if (isSameDay(waterDate, utcDate - offset))
       return toast.error(
-        `Your waters already from ${format(new Date(waterDate), 'd, MMMM')}`,
+        `Your water is already from ${format(new Date(waterDate), 'd, MMMM')}`,
         {
           duration: 5000,
           position: 'top-center',

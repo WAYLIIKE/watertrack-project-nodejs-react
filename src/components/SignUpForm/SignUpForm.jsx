@@ -66,6 +66,8 @@ export const SignUpForm = () => {
 
           const res = await dispatch(signUp(dispatchObj));
 
+          action.resetForm();
+
           if (
             res.payload.message ===
             'Verification link has been sent to your email'

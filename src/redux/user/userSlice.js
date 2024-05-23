@@ -5,31 +5,34 @@ import {
   signUp,
   current,
   currentEdit,
+  fetchUserCount,
   changePassword,
 } from './userOps';
 import toast from 'react-hot-toast';
 
+const initialState = {
+  user: {
+    _id: null,
+    name: null,
+    email: null,
+    avatarURL: null,
+    gender: null,
+    weight: null,
+    activityTime: null,
+    desiredVolume: null,
+    createdAt: null,
+    updatedAt: null,
+  },
+  accessToken: null,
+  refreshToken: null,
+  isLoggedIn: false,
+  isRefreshing: false,
+  loading: false,
+};
+
 const userSlice = createSlice({
   name: 'user',
-  initialState: {
-    user: {
-      _id: null,
-      name: null,
-      email: null,
-      avatarURL: null,
-      gender: null,
-      weight: null,
-      activityTime: null,
-      desiredVolume: null,
-      createdAt: null,
-      updatedAt: null,
-    },
-    accessToken: null,
-    refreshToken: null,
-    isLoggedIn: false,
-    isRefreshing: false,
-    loading: false,
-  },
+  initialState,
   reducers: {
     refreshTokens: (state, action) => {
       state.accessToken = action.payload.accessToken;
@@ -137,14 +140,17 @@ const userSlice = createSlice({
       })
       .addCase(current.pending, (state) => {
         state.isRefreshing = true;
+        state.loading = true;
       })
       .addCase(current.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        state.loading = false;
       })
       .addCase(current.rejected, (state) => {
         state.isRefreshing = false;
+        state.loading = false;
       })
       .addCase(currentEdit.pending, (state) => {
         state.loading = true;
@@ -171,6 +177,18 @@ const userSlice = createSlice({
             boxShadow: '8px 11px 27px -8px rgba(66, 68, 90, 1)',
           },
         });
+      })
+      .addCase(fetchUserCount.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchUserCount.fulfilled, (state, action) => {
+        state.count = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchUserCount.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       })
       .addCase(changePassword.pending, (state) => {
         state.loading = true;

@@ -4,22 +4,26 @@ import {
   deleteWater,
   getDayWater,
   getMonthWater,
+  getTodaySumamryWater,
   putWater,
 } from './waterOps';
 
 import toast from 'react-hot-toast';
 import { isSameDay } from 'date-fns';
+import { signOut } from '../user/userOps';
+
+const initialState = {
+  date: null,
+  totalDayWater: 0,
+  items: [],
+  monthItems: [],
+  loading: false,
+  error: false,
+};
 
 const waterSlice = createSlice({
   name: 'water',
-  initialState: {
-    date: null,
-    totalDayWater: 0,
-    items: [],
-    monthItems: [],
-    loading: false,
-    error: false,
-  },
+  initialState,
   extraReducers: (builer) =>
     builer
       .addCase(addWater.pending, (state) => {
@@ -170,17 +174,23 @@ const waterSlice = createSlice({
         });
       })
       .addCase(getDayWater.pending, (state) => {
-        state.loading = true;
         state.error = false;
       })
       .addCase(getDayWater.fulfilled, (state, action) => {
-        state.loading = false;
         state.date = action.payload.date;
         state.totalDayWater = action.payload.totalDayWater;
         state.items = action.payload.consumedWaterData;
       })
       .addCase(getDayWater.rejected, (state) => {
-        state.loading = false;
+        state.error = true;
+      })
+      .addCase(getTodaySumamryWater.pending, (state) => {
+        state.error = false;
+      })
+      .addCase(getTodaySumamryWater.fulfilled, (state, action) => {
+        state.todaySumamryWater = action.payload; // Оновлення поля todaySumamryWater
+      })
+      .addCase(getTodaySumamryWater.rejected, (state) => {
         state.error = true;
       })
       .addCase(getMonthWater.fulfilled, (state, action) => {
@@ -188,6 +198,9 @@ const waterSlice = createSlice({
       })
       .addCase(getMonthWater.rejected, (state) => {
         state.error = true;
+      })
+      .addCase(signOut.fulfilled, () => {
+        return initialState;
       }),
 });
 

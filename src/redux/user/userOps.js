@@ -124,6 +124,18 @@ export const currentEdit = createAsyncThunk(
   }
 );
 
+export const fetchUserCount = createAsyncThunk(
+  'user/count',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axiosInstance.get('/users/count');
+      return response.data.count;
+      } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+      
 export const changePassword = createAsyncThunk(
   'user/changePassword',
   async (passwords, thunkAPI) => {

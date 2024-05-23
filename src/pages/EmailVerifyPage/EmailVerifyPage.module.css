@@ -1,0 +1,16 @@
+.page {
+  margin: 16px 0;
+  position: relative;
+}
+@media (--tablet-bp) {
+  .page {
+    margin: 32px 0;
+  }
+}
+@media (--desktop-bp) {
+  .page {
+    display: flex;
+    gap: 32px;
+    position: relative;
+  }
+}
