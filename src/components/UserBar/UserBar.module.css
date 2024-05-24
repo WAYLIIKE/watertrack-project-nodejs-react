@@ -62,7 +62,7 @@
     }
   }
 
-  &__svg {
+  &__svg path {
     width: 16px;
     height: 16px;
     transition: var(--animation);
