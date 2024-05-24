@@ -72,7 +72,6 @@ export function App() {
               <PrivateRoute redirectTo="/signin" component={<TrackerPage />} />
             }
           />
-
           <Route
             path="/reset/:resetToken"
             element={
@@ -82,7 +81,6 @@ export function App() {
               />
             }
           />
-
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
