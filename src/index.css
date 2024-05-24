@@ -138,6 +138,19 @@ button {
   background-color: var(--color-lightgreenhover);
 }
 
+/*  */
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: white;
+  background: var(--color-lightgreen);
+}
+
+::selection {
+  color: white;
+  background: var(--color-lightgreen);
+}
+
 .loader {
   position: fixed;
   top: 50%;

@@ -49,7 +49,7 @@ export function App() {
             }
           />
           <Route
-            path="/verify"
+            path="/verify/:verifyToken"
             element={
               <RestrictedRoute
                 redirectTo="/signin"
