@@ -32,6 +32,10 @@
   cursor: pointer;
 }
 
+.wrapper::-webkit-scrollbar-thumb:active {
+  background-color: var(--color-lightgreenhover);
+}
+
 .wrapper::-webkit-scrollbar-track {
   background-color: var(--color-white);
   border-radius: 9px;
