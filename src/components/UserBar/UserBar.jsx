@@ -57,6 +57,7 @@ export const UserBar = ({ openSettings, openLogout, user }) => {
           ref={popoverRef}
           openSettings={openSettings}
           openLogout={openLogout}
+          isVisible={isPopoverVisible}
         />
       )}
     </div>

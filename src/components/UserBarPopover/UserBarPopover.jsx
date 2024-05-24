@@ -6,7 +6,7 @@ import { forwardRef } from 'react';
 
 // eslint-disable-next-line react/display-name
 export const UserBarPopover = forwardRef(
-  ({ openSettings, openLogout }, ref) => {
+  ({ openSettings, openLogout, isVisible }, ref) => {
     const handleOpenSettigns = () => {
       openSettings();
     };
@@ -14,7 +14,10 @@ export const UserBarPopover = forwardRef(
       openLogout();
     };
     return (
-      <div ref={ref} className={css.userBarPopover__thumb}>
+      <div
+        ref={ref}
+        className={clsx(css.userBarPopover__thumb, { visible: isVisible })}
+      >
         <ul className={css.userBarPopover__list}>
           <li
             className={clsx(css.userBarPopover__item, css.dark)}
