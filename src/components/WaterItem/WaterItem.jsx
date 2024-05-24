@@ -7,10 +7,16 @@ import { WaterModal } from '../../components/WaterModal/WaterModal';
 import { DeleteWaterModal } from '../../components/DeleteWaterModal/DeleteWaterModal';
 import css from './WaterItem.module.css';
 import { formatTimestampToTime } from '../../helpers/formatTimestampToTime';
+import { Skeleton } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { selectWaterLoading } from '../../redux/selectors';
 
 export const WaterItem = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const isWaterLoading = useSelector(selectWaterLoading);
+
   const timezoneOffset = new Date().getTimezoneOffset();
 
   const offset = timezoneOffset * 60 * 1000;
@@ -29,7 +35,16 @@ export const WaterItem = ({ item }) => {
   const closeDeleteModal = () => {
     setIsDeleteModalOpen(false);
   };
-  return (
+
+  return isWaterLoading ? (
+    <Skeleton
+      variant="rectangular"
+      width={183}
+      height={87}
+      animation={'wave'}
+      sx={{ borderRadius: '15px' }}
+    />
+  ) : (
     <div className={css.itemWrapper}>
       <IconGlass size={38} />
       <div className={css.textWrapper}>
