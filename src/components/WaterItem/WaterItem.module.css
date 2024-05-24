@@ -9,6 +9,9 @@
   border-radius: 15px;
   background: var(--color-white);
 }
+.itemWrapper:last-child {
+  margin-right: 0;
+}
 
 @media (--tablet-bp) {
   .itemWrapper {
