@@ -47,7 +47,7 @@ export const CalendarPagination = ({
               {format(currentDate, 'MMMM, yyyy')}
             </span>
             <button
-              className={css.button}
+              className={isNextDisabled ? css.buttonDisabled : css.button}
               onClick={handleNextMonth}
               disabled={isNextDisabled}
             >
@@ -58,8 +58,13 @@ export const CalendarPagination = ({
           </>
         ) : null}
 
-        <button onClick={() => setIsActive(!isActive)}>
-          <IconPie className={css.svg} />
+        <button
+          className={`${css.statisticBtn} ${
+            !isActive ? css.statisticBtnActive : ''
+          }`}
+          onClick={() => setIsActive(!isActive)}
+        >
+          <IconPie />
         </button>
       </div>
     </div>
