@@ -204,3 +204,16 @@ export const resetPassword = createAsyncThunk(
     }
   }
 );
+
+export const verifyEmail = createAsyncThunk(
+  'users/verifyEmail',
+  async (token, thunkAPI) => {
+    try {
+      const response = await axiosInstance.get(`users/verify/${token}`);
+
+      return response.data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
