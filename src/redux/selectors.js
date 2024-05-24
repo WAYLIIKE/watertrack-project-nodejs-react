@@ -21,3 +21,5 @@ export const selectUserLoading = (state) => state.user.loading;
 export const selectMonthWater = (state) => state.water.monthItems;
 
 export const selectDesiredVolume = (state) => state.user.user.desiredVolume;
+
+export const selectIsResendEmail = (state) => state.user.isResendVerify;

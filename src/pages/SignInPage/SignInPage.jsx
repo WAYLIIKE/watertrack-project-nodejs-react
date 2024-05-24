@@ -7,12 +7,18 @@ import { Helmet } from 'react-helmet-async';
 import { SignInForm } from '../../components/SignInForm/SignInForm';
 import { ForgotPasswordModal } from '../../components/ForgotPasswordModal/ForgotPasswordModal';
 import { BaseModal } from '../../components/BaseModal/BaseModal';
+import { ResendEmailModal } from '../../components/ResendEmailModal/ResendEmailModal';
 export default function SignInPage() {
   const [isForgotPassModalOpen, setIsForgotPassModalOpen] = useState(false);
+  const [isResendEmailModalOpen, setIsResendEmailModalOpen] = useState(false);
 
   const openForgotPassModal = () => setIsForgotPassModalOpen(true);
 
   const closeForgotPassword = () => setIsForgotPassModalOpen(false);
+
+  const openResendEmailModal = () => setIsResendEmailModalOpen(true);
+
+  const closeResendEmail = () => setIsResendEmailModalOpen(false);
 
   return (
     <Container>
@@ -21,7 +27,10 @@ export default function SignInPage() {
       </Helmet>
       <Page>
         <div className={css.signinLaptop}>
-          <SignInForm openForgotPassModal={openForgotPassModal} />
+          <SignInForm
+            openForgotPassModal={openForgotPassModal}
+            openResendEmailModal={openResendEmailModal}
+          />
           <div className={css.signinPicture}>
             <AdvantagesSection />
           </div>
@@ -30,6 +39,9 @@ export default function SignInPage() {
 
       <BaseModal isOpen={isForgotPassModalOpen} onClose={closeForgotPassword}>
         <ForgotPasswordModal closeModal={closeForgotPassword} />
+      </BaseModal>
+      <BaseModal isOpen={isResendEmailModalOpen} onClose={closeResendEmail}>
+        <ResendEmailModal closeModal={closeResendEmail} />
       </BaseModal>
     </Container>
   );

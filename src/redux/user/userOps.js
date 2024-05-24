@@ -217,3 +217,16 @@ export const verifyEmail = createAsyncThunk(
     }
   }
 );
+
+export const resendVerifyEmail = createAsyncThunk(
+  'users/resendVerifyEmail',
+  async (email, thunkAPI) => {
+    try {
+      const response = await axiosInstance.post(`users/verify`, email);
+
+      return response.data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error);
+    }
+  }
+);

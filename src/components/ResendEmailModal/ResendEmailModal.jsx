@@ -1,18 +1,18 @@
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import css from './ForgotPasswordModal.module.css';
+import css from './ResendEmailModal.module.css';
 
 import { FormValidateError } from '../FormValidateError/FormValidateError';
 import { useDispatch } from 'react-redux';
-import { resetPasswordSendMail } from '../../redux/user/userOps';
+import { resendVerifyEmail } from '../../redux/user/userOps';
 import toast from 'react-hot-toast';
 
 const schema = yup.object().shape({
   email: yup.string().email().required('Email is not provided'),
 });
 
-export const ForgotPasswordModal = ({ closeModal }) => {
+export const ResendEmailModal = ({ closeModal }) => {
   const dispatch = useDispatch();
 
   const {
@@ -25,12 +25,10 @@ export const ForgotPasswordModal = ({ closeModal }) => {
   });
 
   const submitHandler = async (data) => {
-    const response = await dispatch(
-      resetPasswordSendMail({ email: data.email })
-    );
+    const response = await dispatch(resendVerifyEmail({ email: data.email }));
 
-    if (response.meta.requestStatus === 'fulfilled') {
-      toast.success(`${response.payload}`, {
+    if (response.payload) {
+      toast.success(`${response.payload.message}.`, {
         duration: 5000,
         position: 'top-center',
         style: {
@@ -41,7 +39,7 @@ export const ForgotPasswordModal = ({ closeModal }) => {
 
       closeModal();
     } else {
-      toast.error(`${response.payload}`, {
+      toast.error(`Email not found.`, {
         duration: 5000,
         position: 'top-center',
         style: {
@@ -56,7 +54,7 @@ export const ForgotPasswordModal = ({ closeModal }) => {
 
   return (
     <div className={css.wrapper}>
-      <h3 className={css.title}>Account recovery</h3>
+      <h3 className={css.title}>Resend verification email</h3>
       <form onSubmit={handleSubmit(submitHandler)}>
         <label className={css.label} htmlFor="email">
           Enter your email:

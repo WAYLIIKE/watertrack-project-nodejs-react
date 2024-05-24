@@ -5,11 +5,15 @@ import { IconEye } from '../Icons/IconEye';
 import { NavLink } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useId, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from '../../redux/user/userOps';
+import { selectIsResendEmail } from '../../redux/selectors';
+import { ResendEmailButton } from '../ResendEmailButton/ResendEmailButton';
 
-export const SignInForm = ({ openForgotPassModal }) => {
+export const SignInForm = ({ openForgotPassModal, openResendEmailModal }) => {
   const dispatch = useDispatch();
+
+  const isResendEmail = useSelector(selectIsResendEmail);
 
   const emailId = useId();
   const passId = useId();
@@ -130,6 +134,9 @@ export const SignInForm = ({ openForgotPassModal }) => {
           >
             Forgot password?
           </button>
+          {isResendEmail ? (
+            <ResendEmailButton openResendModal={openResendEmailModal} />
+          ) : null}
         </Form>
       </Formik>
     </div>
