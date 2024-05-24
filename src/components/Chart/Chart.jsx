@@ -41,7 +41,7 @@ export const Chart = () => {
         <circle
           cx={cx}
           cy={cy}
-          r={8}
+          r={6}
           fill="#FFFFFF"
           stroke="#4CAF50"
           strokeWidth={2}
@@ -66,7 +66,14 @@ export const Chart = () => {
   }
   return (
     <div className={css.container}>
-      <ResponsiveContainer width="100%" height={chartHeight} marginTop={margin}>
+      <ResponsiveContainer
+        width="100%"
+        height={chartHeight}
+        marginTop={margin}
+        style={{
+          paddingTop: 5,
+        }}
+      >
         <AreaChart
           data={weeklyData}
           margin={{
@@ -93,6 +100,9 @@ export const Chart = () => {
             }}
             axisLine={false}
             tickLine={false}
+            padding={{
+              bottom: 20,
+            }}
           />
           <Tooltip formatter={(value) => `${value} L`} />
           <Area
