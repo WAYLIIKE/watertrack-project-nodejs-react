@@ -32,25 +32,32 @@ export const CalendarPagination = ({
         <p className={css.month}>Statistic</p>
       )}
       <div className={css.chooseMonth}>
-        <button
-          className={css.button}
-          disabled={isPrevDisabled}
-          onClick={handlePrevMonth}
-        >
-          <BsChevronLeft
-            className={isPrevDisabled ? css.chevronDisabled : css.chevron}
-          />
-        </button>
-        <span className={css.span}>{format(currentDate, 'MMMM, yyyy')}</span>
-        <button
-          className={css.button}
-          onClick={handleNextMonth}
-          disabled={isNextDisabled}
-        >
-          <BsChevronRight
-            className={isNextDisabled ? css.chevronDisabled : css.chevron}
-          />
-        </button>
+        {isActive ? (
+          <>
+            <button
+              className={css.button}
+              disabled={isPrevDisabled}
+              onClick={handlePrevMonth}
+            >
+              <BsChevronLeft
+                className={isPrevDisabled ? css.chevronDisabled : css.chevron}
+              />
+            </button>
+            <span className={css.span}>
+              {format(currentDate, 'MMMM, yyyy')}
+            </span>
+            <button
+              className={css.button}
+              onClick={handleNextMonth}
+              disabled={isNextDisabled}
+            >
+              <BsChevronRight
+                className={isNextDisabled ? css.chevronDisabled : css.chevron}
+              />
+            </button>
+          </>
+        ) : null}
+
         <button onClick={() => setIsActive(!isActive)}>
           <IconPie className={css.svg} />
         </button>
